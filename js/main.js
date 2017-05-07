@@ -84,3 +84,11 @@
 		    }
 		    e.preventDefault(); // prevent the default action (scroll / move caret)
 		});
+	// Collision
+	// Score and Time
+		
+		// Time
+		var date = new Date()
+		// Kills
+
+		// Score Algorithm based on Time and Kills
