@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RogueBot Ad</title>
+		<link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet"> 
+		<style type="text/css">
+			#adCanvas {
+				width: 600px;
+				height: 600px;
+				background-image: url('background.png');
+				background-position: center;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			h1 {
+				font-family: "Bungee Inline", cursive;
+				color: #DDE1FA;
+				text-align: center;
+				text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+				text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6);
+				position: relative;
+				z-index: 1;
+				bottom: 600px;
+
+			}
+			#background {
+				width: 500px;
+				margin: 0 auto;
+				margin-top: 50px;
+				display: block;
+			}
+			#teamblue {
+				position: relative;
+				z-index: 3;
+				top: 30%;
+				left: -50px;
+			}
+			#teamred {
+				position: relative;
+				z-index: 2;
+				bottom: 129px;
+				left: 280px;
+			}
+			/* Filters */
+			#teamblue {
+				filter: brightness(120%);
+				-webkit-filter: brightness(120%);
+				-moz-filter: brightness(120%);
+			}
+			#teamred {
+				filter: brightness(120%);
+				-webkit-filter: brightness(120%);
+				-moz-filter: brightness(120%);
+			}
+			/* Animation CSS Source: http://codepen.io/FelixRilling/pen/qzfoc?editors=0100 */
+			h1 {
+			  color: #fff;
+			  -webkit-animation: neonGlow 1.5s ease-in-out infinite alternate;
+			  -moz-animation: neonGlow 1.5s ease-in-out infinite alternate;
+			  animation: neonGlow 1.5s ease-in-out infinite alternate;
+			}
+			@-webkit-keyframes neonGlow {
+				0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177; }
+				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
+			}
+			@-moz-keyframes neonGlow {
+				0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177; }
+				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
+			}
+			@-ms-keyframes neonGlow {
+				0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177; }
+				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
+			}
+			@-o-keyframes neonGlow {
+				0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177; }
+				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
+			}
+			@keyframes neonGlow {
+				0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177; }
+				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="adCanvas">
+			<img id="background" src="roguebot.png">
+			<img id="teamblue" src="teamblue.png">
+			<img id="teamred" src="teamred.png">
+			<h1>When the bots go Rogue</h1>
+		</div>
+	</body>
+</html>
