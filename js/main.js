@@ -20,19 +20,41 @@
 	})
 // Game Start Function
 	// Create Characters
-		createRect(); 
+		// createRect();  
+		createCharacter();
 // Load Map
 	// Create new img element
 	var img = new Image();   
 	// Set source path
 	// img.src = 'assets/images/mariotest.png'; 
 
-
+	// Enemy Creation
+		// TODO Dynamically Spawn Enemies
+	createEnemy();
 // Object Creation Functions
 	// Create White Rectangle
 		function createRect() {
 			ctx.fillStyle = 'white'
 			ctx.fillRect(50,50,50,50);
+
+		}
+	// Create Main Character
+		// Create Character Constructor
+			var rogueBot = {
+
+			}
+		// Dynamically Generate Random Stats for RogueBot using Constructor
+		function createCharacter() {
+			
+		}
+
+	// Create Enemy
+		// Create Character Constructor
+		var enemyBot = {
+
+		}
+		// Dynamically Generate Random Stats for Enemy using Constructor
+		function createEnemy() {
 
 		}
 // Game Logic
