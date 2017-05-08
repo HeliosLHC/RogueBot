@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>RogueBot Ad</title>
 		<link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet"> 
-		<link href="https://fonts.googleapis.com/css?family=Monoton|Orbitron" rel="stylesheet"> 
+ 		<link href="https://fonts.googleapis.com/css?family=Monoton|Orbitron:400,500,700,900" rel="stylesheet"> 
 		<style type="text/css">
 			#adCanvas {
 				width: 600px;
@@ -16,10 +16,12 @@
 			}
 			h1 {
 				font-family: "Orbitron",cursive;
+				font-weight: 900;	/* Set Orbitron Font to "Bold"*/
 				text-align: center;
 				font-size: 70px;
 				color: pink;
 				margin-top: 46px;
+				/* Text Glow */
 				text-shadow: 
 					0px 2px 2px rgba(255, 125, 217, 1.0),
 					0px 3px 3px rgba(255, 125, 217, 0.8),
@@ -37,8 +39,7 @@
 				text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6);
 				position: relative;
 				z-index: 1;
-				bottom: 650px;
-
+				bottom: 770px;
 			}
 			#teamblue {
 				position: relative;
@@ -52,7 +53,6 @@
 				bottom: 185px;
 				left: 280px;
 			}
-			/* Filters */
 			#teamblue {
 				filter: brightness(120%);
 				-webkit-filter: brightness(120%);
@@ -62,6 +62,14 @@
 				filter: brightness(120%);
 				-webkit-filter: brightness(120%);
 				-moz-filter: brightness(120%);
+			}
+			#teamlogo {
+				position: relative;
+				bottom: 600px;
+				z-index: 5;
+				left: 155px;
+				width: 300px;
+
 			}
 			/* Animation CSS Source: http://codepen.io/FelixRilling/pen/qzfoc?editors=0100 */
 			h2 {
@@ -82,14 +90,11 @@
 				0% { text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 120px #FF1177; }
 				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px #FF1177, 0 0 35px #FF1177, 0 0 30px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
 			}
-			@-o-keyframes neonGlow {
-				0% { text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 120px #FF1177; }
-				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px #FF1177, 0 0 35px #FF1177, 0 0 30px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
-			}
 			@keyframes neonGlow {
 				0% { text-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 120px #FF1177; }
 				100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 10px #FF1177, 0 0 35px #FF1177, 0 0 30px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177; }
 			}
+
 		</style>
 
 	</head>
@@ -98,6 +103,7 @@
 			<h1>RogueBot</h1>
 			<img id="teamblue" src="teamblue.png">
 			<img id="teamred" src="teamred.png">
+			<img id="teamlogo" src="montyjs.png">
 			<h2>When the bots go Rogue</h2>
 			<h3>Release on June 7th</h3>
 		</div>
