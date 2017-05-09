@@ -28,41 +28,51 @@
 		createEnemy();
 		initMap();
 		// loadRogueBot();
-		setInterval(render,10)
+		// setInterval(render,10)
+		render();
 	}
-// Load Map
-	// TODO Move GLobal Variables
-	// TODO Create Map Property Object
-	// TODO Move render functions (map and characters) into gameRender() function
-	// Create GLobal Variables
+// Global Variables
 	var mapX = 0;
 	var mapY = 0;
 	var rogueBot;
 	var enemyBot;
+	// Declare Image Objects
 	var mapImage = new Image();   
+	var spriteRogueBot = new Image();
+	// Map Dimensions
+	var mapWidth;
+	var mapHeight;
+	// Scaled Map Dimensions
+	var mapDynamicWidth;
+	var mapDynamicHeight;
+// Load Map
+	// TODO Move GLobal Variables
+	// TODO Create Map Property Object
+	// TODO Move render functions (map and characters) into gameRender() function
 
 	// TODO Create Global Floor Variable to Declare location (Y Level) of Floor Sprite and Collision for Characters 
 	function initMap() {
 	// Create new image object
-	// Set source path
+	// Set source path for Map
 		mapImage.src = 'assets/images/mariotest3x.png';
-		// DEBUG
-		console.log("Map Loaded");
-		
-		// Calls moveMap() function every 10 milliseconds
-		// setInterval(moveMap,10);
+		$(mapImage).load(function() {
+			// Set values for map dimensions
+			mapWidth = mapImage.width;
+			mapHeight = mapImage.height;
+			// Calculate Scaled map dimensions
+			mapDynamicWidth = mapWidth * canvas.height / 1296;
+			mapDynamicHeight = canvas.height;			
+		});
 		// DEBUG
 		console.log("Map Drawn");
 	}
 	// Use 2d renderer's drawImage method
 	function moveMap() {
-		// TODO Add Dynamic Scaling to loading Map (Currently set for 1920x1080 Resolution)
-		// Set Width to Map Image Width
-		var width = 11233;
-		// Map Height dynamically adjusted
-		var height = canvas.height;
+		// Dynamic Scaling of Map
+		
+		// Draws map when map file is loaded using global variables
 		$(document).ready(function() {
-					ctx.drawImage(mapImage,mapX,mapY,width,height);				
+			ctx.drawImage(mapImage,mapX,mapY,mapDynamicWidth,mapDynamicHeight);				
 		});
 		--mapX;
 	};
@@ -90,15 +100,16 @@
 			var name = "RogueBot1";
 			var health = 100;
 			rogueBot = new createCharacterObject(name,health);	
+			// Set Source Path for Sprite
+			spriteRogueBot.src = 'assets/images/megaman.png';
+
 			// DEBUG 
-			console.log("RogueBot Object Created");
 			console.log(rogueBot);
 			}
 			function loadRogueBot() {
-				var spriteRogueBot = new Image();
-				spriteRogueBot.src = 'assets/images/megaman.png';
-				// Move X and Y values into Global Variable
-				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 480, 100, 100);
+				// Set Source Path
+				// TODO Move X and Y values into Global Variable
+				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 765, 100, 100);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
@@ -131,10 +142,11 @@
 // Game Logic
 	//  Game Render
 	function render() {
-		// Loop render function via requestAnimateFrame
-		// requestAnimateFrame(render);
-		loadRogueBot();
+		// Loop render function via requestAnimationFrame
+		requestAnimationFrame(render);
+		// Order of Load Determines the Layer Order
 		moveMap();
+		loadRogueBot();		
 	}
 	// Character Movement
 		// Key Binding
@@ -183,3 +195,4 @@
 
 			}
 		}
+// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
