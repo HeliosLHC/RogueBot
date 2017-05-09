@@ -29,6 +29,7 @@
 		initMap();
 		// loadRogueBot();
 		// setInterval(render,10)
+		initTime();
 		render();
 	}
 // Global Variables
@@ -45,6 +46,8 @@
 	// Scaled Map Dimensions
 	var mapDynamicWidth;
 	var mapDynamicHeight;
+	// Time
+	var startTime;
 // Load Map
 	// TODO Move GLobal Variables
 	// TODO Create Map Property Object
@@ -74,7 +77,8 @@
 		$(document).ready(function() {
 			ctx.drawImage(mapImage,mapX,mapY,mapDynamicWidth,mapDynamicHeight);				
 		});
-		--mapX;
+		// --mapX;
+		mapX -= rogueBot.velocity;
 	};
 
 // Object Creation Functions
@@ -92,7 +96,9 @@
 				// Center (1/2 Canvas Width)
 				this.positionX = canvas.width / 2,
 				// Canvas Height Minus Sprite Height
-				this.positionY
+				this.positionY,
+			// RogueBot Velocity in pixels/frame				
+				this.velocity = 3
 			}
 		// Dynamically Generate Random Stats for RogueBot using Constructor
 			function createCharacter() {
@@ -137,7 +143,9 @@
 		function createProjectileObject(name) {
 			this.name = "",
 			this.positionX,
-			this.positionY
+			this.positionY,
+			// Bullet Velocity in pixels/frame
+			this.velocity = 10
 		}
 // Game Logic
 	//  Game Render
@@ -146,7 +154,8 @@
 		requestAnimationFrame(render);
 		// Order of Load Determines the Layer Order
 		moveMap();
-		loadRogueBot();		
+		loadRogueBot();	
+		updateTime();	
 	}
 	// Character Movement
 		// Key Binding
@@ -169,6 +178,7 @@
 		    }
 		    e.preventDefault(); // prevent the default action (scroll / move caret)
 		});
+		// Movement
 	// Collision
 		// Primitive Physics Engine
 			// TODO Refactor Code for use in Physics Engine (Pending Approval)
@@ -181,7 +191,26 @@
 	// Score and Time
 		
 		// Time
-		var date = new Date()
+			// Sets initial time
+			function initTime() {
+				startTime = new Date()
+			}
+			// Updates and draws time
+			function updateTime() {
+				// Get time since game start
+				currTime = new Date()
+				timeDelta = Math.floor((currTime - startTime) / 1000);
+				// Draws Timer on Screen
+				// TODO add scaling to text
+				ctx.fillStyle = "white"
+				ctx.font = "60px Orbitron";
+				ctx.textAlign = "right"
+				ctx.fillText(timeDelta + " Seconds", canvas.width - 50, 80);
+				ctx.strokeStyle = "black";
+				ctx.strokeText(timeDelta + " Seconds", canvas.width - 50, 80);
+				// DEBUG
+				console.log(timeDelta);
+			}
 
 		// Kills
 
