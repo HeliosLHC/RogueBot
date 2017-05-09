@@ -15,7 +15,7 @@
 	$("#start-btn").on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$(this).hide();
+		$(this).slideDown(400).hide(300);
 		gameStart();
 		// DEBUG
 		console.log("Game Started")
@@ -27,17 +27,22 @@
 		createCharacter();
 		createEnemy();
 		initMap();
-		// DEBUG
 	}
 // Load Map
+	// TODO Move GLobal Variables
+	// TODO Create Map Property Object
 	// Create GLobal Variables
 	var mapX = 0;
 	var mapY = 0;
+	var rogueBot;
+	var enemyBot;
+	// TODO Create Global Floor Variable to Declare location (Y Level) of Floor Sprite and Collision for Characters 
 	function initMap() {
 	// Create new image object
 		var mapImage = new Image();   
 	// Set source path
 		mapImage.src = 'assets/images/mariotest3x.png';
+		// DEBUG
 		console.log("Map Loaded");
 		
 	// Use 2d renderer's drawImage method
@@ -50,7 +55,9 @@
 			ctx.drawImage(mapImage,mapX,mapY,width,height);
 			--mapX;
 		};
+		// Calls moveMap() function every 10 milliseconds
 		setInterval(moveMap,10);
+		// DEBUG
 		console.log("Map Drawn");
 	}
 // Object Creation Functions
@@ -64,16 +71,21 @@
 		// Create Character Constructor (Constructor/Prototype Function)
 			function createCharacterObject(name,health) {
 				this.name = name,
-				this.health = health
+				this.health = health,
+				// Center (1/2 Canvas Width)
+				this.positionX = canvas.width / 2,
+				// Canvas Height Minus Sprite Height
+				this.positionY
 			}
 		// Dynamically Generate Random Stats for RogueBot using Constructor
 			function createCharacter() {
 			// Modify local variables to change RogueBot Stats
 			var name = "RogueBot1";
 			var health = 100;
-			var rogueBot = new createCharacterObject(name,health);			
+			rogueBot = new createCharacterObject(name,health);	
+			// DEBUG 
 			console.log("RogueBot Object Created");
-			console.log(rogueBot)
+			console.log(rogueBot);
 			}
 
 	// Create Enemy
@@ -87,8 +99,9 @@
 			// Modifify local variables to change enemy stats
 			var name = "enemy1";
 			var health = 100;
-			var enemyBot = new createEnemyObject(name,health)
-			console.log("Enemy " + name + "has been spawned");
+			enemyBot = new createEnemyObject(name,health)
+			// DEBUG
+			console.log("Enemy " + name + " has been spawned");
 			console.log(enemyBot);
 		}
 // Game Logic
@@ -125,10 +138,13 @@
 			function distanceTraveled(velocity,time) {
 				const gravAccel = 9.81;
 			}
+		// Collision Maps
+			// TODO Create Collision Map that moves in Sync with Map
 	// Score and Time
 		
 		// Time
 		var date = new Date()
+
 		// Kills
 
 		// Score Algorithm based on Time and Kills
