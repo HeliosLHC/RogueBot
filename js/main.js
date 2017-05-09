@@ -27,6 +27,8 @@
 		createCharacter();
 		createEnemy();
 		initMap();
+		loadRogueBot();
+
 	}
 // Load Map
 	// TODO Move GLobal Variables
@@ -88,10 +90,10 @@
 			console.log(rogueBot);
 			}
 			function loadRogueBot() {
-				var spriteRogueBot = drawImage();
-				spriteRogueBot.src = 'assets/images/'
+				var spriteRogueBot = new Image();
+				spriteRogueBot.src = 'assets/images/megaman.png';
 				// Move X and Y values into Global Variable
-				ctx.drawImage(spriteRogueBot, 0.5 * canvas.width, 578px; )
+				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 578);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
