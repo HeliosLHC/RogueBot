@@ -87,7 +87,12 @@
 			console.log("RogueBot Object Created");
 			console.log(rogueBot);
 			}
-
+			function loadRogueBot() {
+				var spriteRogueBot = drawImage();
+				spriteRogueBot.src = 'assets/images/'
+				// Move X and Y values into Global Variable
+				ctx.drawImage(spriteRogueBot, 0.5 * canvas.width, 578px; )
+			}
 	// Create Enemy
 		// Create Enemy Constructor
 		function createEnemyObject(name,health) {
@@ -103,6 +108,9 @@
 			// DEBUG
 			console.log("Enemy " + name + " has been spawned");
 			console.log(enemyBot);
+		}
+		function loadEnemy() {
+
 		}
 // Game Logic
 	//  Game Render
