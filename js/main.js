@@ -27,41 +27,46 @@
 		createCharacter();
 		createEnemy();
 		initMap();
-		loadRogueBot();
-
+		// loadRogueBot();
+		setInterval(render,10)
 	}
 // Load Map
 	// TODO Move GLobal Variables
 	// TODO Create Map Property Object
+	// TODO Move render functions (map and characters) into gameRender() function
 	// Create GLobal Variables
 	var mapX = 0;
 	var mapY = 0;
 	var rogueBot;
 	var enemyBot;
+	var mapImage = new Image();   
+
 	// TODO Create Global Floor Variable to Declare location (Y Level) of Floor Sprite and Collision for Characters 
 	function initMap() {
 	// Create new image object
-		var mapImage = new Image();   
 	// Set source path
 		mapImage.src = 'assets/images/mariotest3x.png';
 		// DEBUG
 		console.log("Map Loaded");
 		
-	// Use 2d renderer's drawImage method
-		function moveMap() {
-			// TODO Add Dynamic Scaling to loading Map (Currently set for 1920x1080 Resolution)
-			// Set Width to Map Image Width
-			var width = 11233;
-			// Map Height dynamically adjusted
-			var height = canvas.height;
-			ctx.drawImage(mapImage,mapX,mapY,width,height);
-			--mapX;
-		};
 		// Calls moveMap() function every 10 milliseconds
-		setInterval(moveMap,10);
+		// setInterval(moveMap,10);
 		// DEBUG
 		console.log("Map Drawn");
 	}
+	// Use 2d renderer's drawImage method
+	function moveMap() {
+		// TODO Add Dynamic Scaling to loading Map (Currently set for 1920x1080 Resolution)
+		// Set Width to Map Image Width
+		var width = 11233;
+		// Map Height dynamically adjusted
+		var height = canvas.height;
+		$(document).ready(function() {
+					ctx.drawImage(mapImage,mapX,mapY,width,height);				
+		});
+		--mapX;
+	};
+
 // Object Creation Functions
 	// Create White Rectangle
 		function createRect() {
@@ -93,13 +98,15 @@
 				var spriteRogueBot = new Image();
 				spriteRogueBot.src = 'assets/images/megaman.png';
 				// Move X and Y values into Global Variable
-				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 578);
+				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 480, 100, 100);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
 		function createEnemyObject(name,health) {
 				this.name = name,
-				this.health = health
+				this.health = health,
+				this.positionX,
+				this.positionY
 			}
 		// Dynamically Generate Random Stats for Enemy using Constructor
 		function createEnemy() {
@@ -114,11 +121,20 @@
 		function loadEnemy() {
 
 		}
+	// Create Projectile
+		// Create Projectile Constructor
+		function createProjectileObject(name) {
+			this.name = "",
+			this.positionX,
+			this.positionY
+		}
 // Game Logic
 	//  Game Render
 	function render() {
 		// Loop render function via requestAnimateFrame
-		requestAnimateFrame(render)
+		// requestAnimateFrame(render);
+		loadRogueBot();
+		moveMap();
 	}
 	// Character Movement
 		// Key Binding
@@ -158,3 +174,12 @@
 		// Kills
 
 		// Score Algorithm based on Time and Kills
+	// Check if Game End
+		function gameEnd() {
+			if (true) {
+
+			} 
+			else {
+
+			}
+		}
