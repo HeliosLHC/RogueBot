@@ -11,7 +11,7 @@
 		
 		// Map Edge Collision
 			// Left Edge at 630px
-			if (gMO.mapX >= 630) {
+			if (gMO.mapX >= (630 * scaleFactor)) {
 				console.log("Map Edge Reached");
 				collideState = "left"
 				return collideState;
