@@ -59,7 +59,7 @@
 	var keyUp;
 	var keyRelease;
 	// Jump
-	var spacePressTime;
+	var upPressTime;
 	var jumpState = false;
 	var jumpTime;
 // Load Map
@@ -190,13 +190,7 @@
 			// jQuery ".which" method returns keycode for event "e"
 		    switch(e.which) {
 		    	case 32: // space
-			    	// Prevent Player from pressing or holding space while character is jumping
-			    	if (jumpState === false) {
-			    		spacePressTime = new Date();
-			    	}
 			    	
-			    	// Set Jump State - charJump() called if jumpState = true
-			    	jumpState = true
 			    	break;
 		        case 37: // left
 		        	// Positive Map Velocity = Map Moves Right
@@ -204,6 +198,13 @@
 			        break;
 
 		        case 38: // up
+		        	// Prevent Player from pressing or holding "UP" while character is jumping
+			    	if (jumpState === false) {
+			    		upPressTime = new Date();
+			    	}
+			    	
+			    	// Set Jump State - charJump() called if jumpState = true
+			    	jumpState = true
 		        	break;
 
 		        case 39: // right
@@ -241,7 +242,7 @@
 				function charJump() {
 					if (jumpState) {
 						// Get time since Space was pressed
-						jumpTime = ((new Date()) - spacePressTime) / 1000;
+						jumpTime = ((new Date()) - upPressTime) / 1000;
 						// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
 						rogueBot.positionY -= distY(rogueBot.jumpVelocity,jumpTime)
 						// Check if Character Hits Map FLoor, if true, stop the jump physics
