@@ -1,7 +1,7 @@
 // Resize Canvas
 	$('canvas').attr({
-		width: (-5 + $(window).innerWidth()),
-		height: (-5 + $(window).innerHeight())
+		width: (-4 + $(window).innerWidth()),
+		height: (-4 + $(window).innerHeight())
 	});
 
 // Create Canvas Drawing Tool
@@ -30,13 +30,17 @@
 		// loadRogueBot();
 		// setInterval(render,10)
 		initTime();
+		// Start Event Listeners
+		keyBind();
 		render();
 	}
 // Global Variables
+	// TODO transfer map properties into Global Map Object
 	var mapX = 0;
 	var mapY = 0;
 	var rogueBot;
 	var enemyBot;
+	var mapVelocity = 0;
 	// Declare Image Objects
 	var mapImage = new Image();   
 	var spriteRogueBot = new Image();
@@ -48,11 +52,15 @@
 	var mapDynamicHeight;
 	// Time
 	var startTime;
+	// Event Listeners
+	var keyUp;
+	var keyRelease;
 // Load Map
+	// TODO Split Javascript File into separate components
 	// TODO Move GLobal Variables
 	// TODO Create Map Property Object
 	// TODO Move render functions (map and characters) into gameRender() function
-
+	// TODO Move Map Y location on Jump
 	// TODO Create Global Floor Variable to Declare location (Y Level) of Floor Sprite and Collision for Characters 
 	function initMap() {
 	// Create new image object
@@ -78,7 +86,7 @@
 			ctx.drawImage(mapImage,mapX,mapY,mapDynamicWidth,mapDynamicHeight);				
 		});
 		// --mapX;
-		mapX -= rogueBot.velocity;
+		mapX += mapVelocity;
 	};
 
 // Object Creation Functions
@@ -97,14 +105,15 @@
 				this.positionX = canvas.width / 2,
 				// Canvas Height Minus Sprite Height
 				this.positionY,
-			// RogueBot Velocity in pixels/frame				
-				this.velocity = 3
+			// RogueBot Initial Velocity in pixels/frame				
+				this.velocity = 10
 			}
 		// Dynamically Generate Random Stats for RogueBot using Constructor
 			function createCharacter() {
 			// Modify local variables to change RogueBot Stats
 			var name = "RogueBot1";
 			var health = 100;
+			// Creates RogueBot Object with the values set above
 			rogueBot = new createCharacterObject(name,health);	
 			// Set Source Path for Sprite
 			spriteRogueBot.src = 'assets/images/megaman.png';
@@ -159,16 +168,23 @@
 	}
 	// Character Movement
 		// Key Binding
-		$(document).keydown(function(e) {
+		function keyBind() {
+			// Key Press
+			$(document).keydown(function(e) {
 			// jQuery ".which" method returns keycode for event "e"
 		    switch(e.which) {
+		    	case 32: // space
+		    	charJump();
+		    	break;
 		        case 37: // left
+		        mapVelocity = rogueBot.velocity;
 		        break;
 
 		        case 38: // up
 		        break;
 
 		        case 39: // right
+		        mapVelocity = -rogueBot.velocity;
 		        break;
 
 		        case 40: // down
@@ -178,7 +194,22 @@
 		    }
 		    e.preventDefault(); // prevent the default action (scroll / move caret)
 		});
+			// Key Release
+			$(document).keyup(function(e) {
+			/* Act on the event */
+			mapVelocity = 0;
+		});
+		}
 		// Movement
+			// Jump 
+				function charJump() {
+					// Get time since Space was pressed
+					spacePressTime = new Date();
+					jumpTime = ((new Date()) - spacePressTime) / 1000;
+					// Calculate current Height of Character Relative to Map Floor
+					distY(rogueBot.velocity,jumpTime)
+					// Set PositionY of Character
+				}
 	// Collision
 		// Primitive Physics Engine
 			// TODO Refactor Code for use in Physics Engine (Pending Approval)
@@ -203,7 +234,7 @@
 				// Draws Timer on Screen
 				// TODO add scaling to text
 				ctx.fillStyle = "white"
-				ctx.font = "60px Orbitron";
+				ctx.font = "60px 'Press Start 2P'";
 				ctx.textAlign = "right"
 				ctx.fillText(timeDelta + " Seconds", canvas.width - 50, 80);
 				ctx.strokeStyle = "black";
