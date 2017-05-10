@@ -64,3 +64,13 @@ function keyBind() {
 	
 	});
 }
+// Resize Event
+	$(window).resize(function(event) {
+		$('canvas').attr({
+			width: ($(window).width()),
+			height: ($(window).height())
+		});
+		initMap();
+
+		console.log("Window Resized");
+	});

@@ -30,6 +30,7 @@
 		initTimeAndFont();
 		// Start Event Listeners
 		keyBind();
+		// resizeEvent();
 		render();
 	}
 // Global Variables
