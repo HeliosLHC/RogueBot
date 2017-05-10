@@ -31,6 +31,8 @@
 		// Start Event Listeners
 		keyBind();
 		render();
+		// DEBUG
+		setInterval(rogueBot.positionY, 200);
 	}
 // Global Variables
 	// TODO transfer map properties into Global Map Object
@@ -53,6 +55,9 @@
 	// Event Listeners
 	var keyUp;
 	var keyRelease;
+	// Jump
+	var spacePressTime;
+	var jumpState = false;
 // Load Map
 	// TODO Split Javascript File into separate components
 	// TODO Move GLobal Variables
@@ -89,6 +94,7 @@
 
 // Object Creation Functions
 	// Create Main Character
+
 		// Create Character Constructor (Constructor/Prototype Function)
 			function createCharacterObject(name,health) {
 				this.name = name,
@@ -96,10 +102,11 @@
 				// Center (1/2 Canvas Width)
 				this.positionX = canvas.width / 2,
 				// Canvas Height Minus Sprite Height
-				this.positionY,
+				this.positionY = 765,
 			// RogueBot Initial Velocity in pixels/frame				
 				this.velocity = 10
 			}
+
 		// Dynamically Generate Random Stats for RogueBot using Constructor
 			function createCharacter() {
 			// Modify local variables to change RogueBot Stats
@@ -113,10 +120,11 @@
 			// DEBUG 
 			console.log(rogueBot);
 			}
+
 			function loadRogueBot() {
 				// Set Source Path
 				// TODO Move X and Y values into Global Variable
-				ctx.drawImage(spriteRogueBot, (0.5 * canvas.width), 765, 100, 100);
+				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100, 100);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
@@ -126,6 +134,7 @@
 				this.positionX,
 				this.positionY
 			}
+
 		// Dynamically Generate Random Stats for Enemy using Constructor
 		function createEnemy() {
 			// Modifify local variables to change enemy stats
@@ -140,6 +149,7 @@
 
 		}
 	// Create Projectile
+
 		// Create Projectile Constructor
 		function createProjectileObject(name) {
 			this.name = "",
@@ -149,6 +159,7 @@
 			this.velocity = 10
 		}
 // Game Logic
+
 	//  Game Render
 	function render() {
 		// Loop render function via requestAnimationFrame
@@ -156,8 +167,10 @@
 		// Order of Load Determines the Layer Order
 		moveMap();
 		loadRogueBot();	
+		charJump();
 		updateTime();	
 	}
+
 	// Character Movement
 		// Key Binding
 		function keyBind() {
@@ -166,7 +179,10 @@
 			// jQuery ".which" method returns keycode for event "e"
 		    switch(e.which) {
 		    	case 32: // space
-		    	charJump();
+		    	// Create Date Object with time value of when Space Bar was pressed
+		    	spacePressTime = new Date();
+		    	// Set Jump State - charJump() called if jumpState = true
+		    	jumpState = true
 		    	break;
 		        case 37: // left
 		        mapVelocity = rogueBot.velocity;
@@ -195,13 +211,14 @@
 		// Movement
 			// Jump 
 				function charJump() {
-					// Get time since Space was pressed
-					spacePressTime = new Date();
+					if (jumpState) {
+						// Get time since Space was pressed
 					jumpTime = ((new Date()) - spacePressTime) / 1000;
-					// Calculate current Height of Character Relative to Map Floor
-					distY(rogueBot.velocity,jumpTime)
-					// Set PositionY of Character
+					// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
+					rogueBot.positionY -= distY(rogueBot.velocity,jumpTime)
+					}
 				}
+
 	// Collision
 		// Primitive Physics Engine
 			// TODO Refactor Code for use in Physics Engine (Pending Approval)
@@ -211,6 +228,7 @@
 			}
 		// Collision Maps
 			// TODO Create Collision Map that moves in Sync with Map
+
 	// Score and Time
 		
 		// Time
@@ -232,12 +250,13 @@
 				ctx.strokeStyle = "black";
 				ctx.strokeText(timeDelta + " Seconds", canvas.width - 50, 80);
 				// DEBUG
-				console.log(timeDelta);
+				// console.log(timeDelta);
 			}
 
 		// Kills
 
 		// Score Algorithm based on Time and Kills
+		
 	// Check if Game End
 		function gameEnd() {
 			if (true) {
