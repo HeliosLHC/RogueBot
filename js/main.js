@@ -36,7 +36,8 @@
 	}
 // Global Variables (Do you Even GLOBAL?)
 	// GLOBAL SCALE FACTOR
-	var scaleFactor; // Width, Height, Velocity, positions
+	// Set Scale Factor based on screen resolution dimensions relative to 1920x1080 (height only)
+	var scaleFactor = canvas.height / 1080; // Width, Height, Velocity, positions
 	// Declare Sprite Objects
 	var rogueBot;
 	var enemyBot;
@@ -67,11 +68,10 @@
 // Load Map
  	// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
 	// TODO Split Javascript File into separate components
-	// TODO Create Map Property Object
 	// TODO Move render functions (map and characters) into gameRender() function
-	// TODO Move Map Y location on Jump
-
+	// TODO Move Jump Collision Check into new function and plae into collision.js
 	// Creates the Initial State of Map
+	// Change Map Floor as mapX changes (changes in height)
 	function initMap() {
 	// Create new image object
 	// Set source path for Map
@@ -112,7 +112,7 @@
 				// Set Sprite Location on Map Floor
 				this.positionY = gMO.mapFloor;
 				// RogueBot Initial Velocity in pixels/frame				
-				this.velocity = 10;
+				this.velocity = 5;
 				// RogueBot Jump Velocity
 				this.jumpVelocity = 34;
 			}
@@ -180,10 +180,10 @@
 		charJump();
 		updateTime();	
 		updateKills();
+		collisionCheck();
 	}
 
 	// Character Movement
-		
 		// Movement
 			// Jump 
 				function charJump() {
@@ -204,11 +204,12 @@
 					}
 				}
 	// Check if Game End
+		// Create gameEnd event
 		function gameEnd() {
 			if (true) {
 				calculateScore(killCount,timeDelta);
 			} 
 			else {
-
+				return;
 			}
 		}
