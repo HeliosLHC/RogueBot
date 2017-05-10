@@ -199,6 +199,7 @@
 			    	jumpState = true
 			    	break;
 		        case 37: // left
+		        	// Positive Map Velocity = Map Moves Right
 			        mapVelocity = rogueBot.velocity;
 			        break;
 
@@ -206,6 +207,7 @@
 		        	break;
 
 		        case 39: // right
+		        	// Negative Map Velocity = Map Moves Left
 			        mapVelocity = -rogueBot.velocity;
 			        break;
 
