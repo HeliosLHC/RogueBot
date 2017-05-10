@@ -3,7 +3,7 @@ body {
 }
 #gameDiv {
 	/* background-color: black; */
-	background-image: url('../assets/images/retrowavebg.jpg');
+	background-image: url('../assets/images/retrowavebg-compressor.png');
 	background-size: cover;
 	background-position: center center;
 	overflow: hidden;
