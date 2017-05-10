@@ -2,7 +2,10 @@ body {
 	margin: 0;
 }
 #gameDiv {
-	background-color: black;
+	/* background-color: black; */
+	background-image: url('../assets/images/retrowavebg.png');
+	background-size: cover;
+	background-position: center center;
 	overflow: hidden;
 }
 

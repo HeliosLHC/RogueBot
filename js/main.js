@@ -9,8 +9,6 @@
 	var canvas = document.querySelector('canvas');
 
 	var ctx = canvas.getContext('2d');
-
-	ctx.fillRect(100, 100, 100, 100);
 // Start Button
 	$("#start-btn").on('click', function(event) {
 		event.preventDefault();
@@ -90,12 +88,6 @@
 	};
 
 // Object Creation Functions
-	// Create White Rectangle
-		function createRect() {
-			ctx.fillStyle = 'white'
-			ctx.fillRect(50,50,50,50);
-
-		}
 	// Create Main Character
 		// Create Character Constructor (Constructor/Prototype Function)
 			function createCharacterObject(name,health) {
