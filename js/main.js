@@ -31,28 +31,17 @@
 		// Start Event Listeners
 		keyBind();
 		render();
-		// DEBUG
-		setInterval(rogueBot.positionY, 200);
+		// DEBUG (Enable or Disable Debugging)
+		// setInterval(debug, 200);
 	}
 // Global Variables (Do you Even GLOBAL?)
 	// GLOBAL SCALE FACTOR
 	var scaleFactor; // Width, Height, Velocity, positions
-	// TODO transfer map properties into Global Map Object
-	var mapX = 0;
-	var mapY = 0;
 	var rogueBot;
 	var enemyBot;
-	var mapVelocity = 0;
 	// Declare Image Objects
 	var mapImage = new Image();   
 	var spriteRogueBot = new Image();
-	// Map Dimensions
-	var mapWidth;
-	var mapHeight;
-	var mapFloor;
-	// Scaled Map Dimensions
-	var mapDynamicWidth;
-	var mapDynamicHeight;
 	// Time
 	var startTime;
 	// Event Listeners
@@ -62,6 +51,18 @@
 	var upPressTime;
 	var jumpState = false;
 	var jumpTime;
+	// GLobal Map Object 
+	var gMO = {
+		mapX: 0,
+		mapY: 0,
+		mapVelocity: 0,
+		// Initial Map Dimensions
+		mapWidth: null,
+		mapHeight: null,
+		// Scaled Map Dimensions
+		mapDynamicHeight: null,
+		mapDynamicWidth: null
+	}
 // Load Map
 
 	// TODO Split Javascript File into separate components
@@ -77,14 +78,14 @@
 		mapImage.src = 'assets/images/mariotest3x.png';
 		$(mapImage).load(function() {
 			// Set values for map dimensions
-			mapWidth = mapImage.width;
-			mapHeight = mapImage.height;
+			gMO.mapWidth = mapImage.width;
+			gMO.mapHeight = mapImage.height;
 			// Calculate Scaled map dimensions
-			mapDynamicWidth = mapWidth * canvas.height / 1296;
-			mapDynamicHeight = canvas.height;			
+			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / 1296;
+			gMO.mapDynamicHeight = canvas.height;			
 		});
 		// Set Map Floor Value
-		mapFloor = 0.788*canvas.height;
+		gMO.mapFloor = 0.788*canvas.height;
 		// DEBUG
 		console.log("Map Drawn");
 	}
@@ -94,10 +95,9 @@
 		
 		// Draws map when map file is loaded using global variables
 		$(document).ready(function() {
-			ctx.drawImage(mapImage,mapX,mapY,mapDynamicWidth,mapDynamicHeight);				
+			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapDynamicWidth,gMO.mapDynamicHeight);				
 		});
-		// --mapX;
-		mapX += mapVelocity;
+		gMO.mapX += gMO.mapVelocity;
 	};
 
 // Object Creation Functions
@@ -110,7 +110,7 @@
 				// Center (1/2 Canvas Width)
 				this.positionX = canvas.width / 2,
 				// Set Sprite Location on Map Floor
-				this.positionY = mapFloor;
+				this.positionY = gMO.mapFloor;
 				// RogueBot Initial Velocity in pixels/frame				
 				this.velocity = 10;
 				// RogueBot Jump Velocity
@@ -194,7 +194,7 @@
 			    	break;
 		        case 37: // left
 		        	// Positive Map Velocity = Map Moves Right
-			        mapVelocity = rogueBot.velocity;
+			        gMO.mapVelocity = rogueBot.velocity;
 			        break;
 
 		        case 38: // up
@@ -209,7 +209,7 @@
 
 		        case 39: // right
 		        	// Negative Map Velocity = Map Moves Left
-			        mapVelocity = -rogueBot.velocity;
+			        gMO.mapVelocity = -rogueBot.velocity;
 			        break;
 
 		        case 40: // down
@@ -226,10 +226,10 @@
 
 						break;
 					case 37: 
-						mapVelocity = 0;
+						gMO.mapVelocity = 0;
 						break;
 					case 39: 
-						mapVelocity = 0;
+						gMO.mapVelocity = 0;
 						break;
 					default:
 						return;
@@ -246,9 +246,9 @@
 						// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
 						rogueBot.positionY -= distY(rogueBot.jumpVelocity,jumpTime)
 						// Check if Character Hits Map FLoor, if true, stop the jump physics
-						if (jumpTime > 1 && rogueBot.positionY >= mapFloor) {
+						if (jumpTime > 1 && rogueBot.positionY >= gMO.mapFloor) {
 							jumpState = false;
-							rogueBot.positionY = mapFloor;
+							rogueBot.positionY = gMO.mapFloor;
 							return;
 						}	
 					}
@@ -259,12 +259,8 @@
 
 	// Collision
 		// Primitive Physics Engine
-			function distanceTraveled(velocity,time) {
-				const gravAccel = 9.81;
-			}
 		// Collision Maps
 			// TODO Create Collision Map that moves in Sync with Map
-
 	// Score and Time
 		
 		// Time
