@@ -1,7 +1,7 @@
 // Resize Canvas
 	$('canvas').attr({
-		width: (-4 + $(window).innerWidth()),
-		height: (-4 + $(window).innerHeight())
+		width: ($(window).width()),
+		height: ($(window).height())
 	});
 
 // Create Canvas Drawing Tool
@@ -37,10 +37,10 @@
 // Global Variables (Do you Even GLOBAL?)
 	// GLOBAL SCALE FACTOR
 	// Aspect Ratio Function
-	var aspectRatio = (canvas.width)/(canvas.height)
-	// Set Scale Factor based on screen resolution dimensions relative to 1920x1080 (height only)
-	var scaleFactorX = canvas.height / 1080; // Width, Height, Velocity, positions
-	var scaleFactorY = canvas.width 
+	var aspectRatio = (canvas.width)/(canvas.height);
+	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
+	var scaleFactor; // Width, Height, Velocity, positions
+
 	// Declare Sprite Objects
 	var rogueBot;
 	var enemyBot;
@@ -76,19 +76,24 @@
 	// Creates the Initial State of Map
 	// Change Map Floor as mapX changes (changes in height)
 	function initMap() {
-	// Create new image object
-	// Set source path for Map
+
+		// Set source path for Map
 		mapImage.src = 'assets/images/mariotest3x.png';
-		$(mapImage).load(function() {
+
+		// .load commented out to allow rogueBot to run prior to .load occurence
+		// $(mapImage).load(function() {
 			// Set values for map dimensions
 			gMO.mapWidth = mapImage.width;
 			gMO.mapHeight = mapImage.height;
 			// Calculate Scaled map dimensions
-			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / 1296;
-			gMO.mapDynamicHeight = canvas.height;			
-		});
+			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / gMO.mapHeight;
+			gMO.mapDynamicHeight = canvas.height;
+			// Set Scaling Factor			
+			scaleFactor = gMO.mapDynamicHeight / 974
+		// });
+
 		// Set Map Floor Value
-		gMO.mapFloor = 0.788*canvas.height;
+		gMO.mapFloor = 0.788*974*scaleFactor;
 		// DEBUG
 		console.log("Map Drawn");
 	}
@@ -100,7 +105,7 @@
 		$(document).ready(function() {
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapDynamicWidth,gMO.mapDynamicHeight);				
 		});
-		gMO.mapX += gMO.mapVelocity;
+		gMO.mapX += (gMO.mapVelocity * scaleFactor);
 	};
 
 // Object Creation Functions
@@ -117,7 +122,7 @@
 				// RogueBot Initial Velocity in pixels/frame				
 				this.velocity = 5;
 				// RogueBot Jump Velocity
-				this.jumpVelocity = 34;
+				this.jumpVelocity = 34 * scaleFactor;
 			}
 
 		// Dynamically Generate Random Stats for RogueBot using Constructor
@@ -129,15 +134,14 @@
 			rogueBot = new createCharacterObject(name,health);	
 			// Set Source Path for Sprite
 			spriteRogueBot.src = 'assets/images/megaman.png';
-
+			// Creates RogueBot Sprite Object
 			// DEBUG 
 			console.log(rogueBot);
 			}
 
 			function loadRogueBot() {
-				// Set Source Path
-				// TODO Move X and Y values into Global Variable
-				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100, 100);
+
+				ctx.drawImage(spriteRogueBot, rogueBot.positionX * scaleFactor, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
