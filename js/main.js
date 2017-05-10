@@ -34,7 +34,9 @@
 		// DEBUG
 		setInterval(rogueBot.positionY, 200);
 	}
-// Global Variables
+// Global Variables (Do you Even GLOBAL?)
+	// GLOBAL SCALE FACTOR
+	var scaleFactor; // Width, Height, Velocity, positions
 	// TODO transfer map properties into Global Map Object
 	var mapX = 0;
 	var mapY = 0;
@@ -61,12 +63,14 @@
 	var jumpState = false;
 	var jumpTime;
 // Load Map
+
 	// TODO Split Javascript File into separate components
 	// TODO Move GLobal Variables
 	// TODO Create Map Property Object
 	// TODO Move render functions (map and characters) into gameRender() function
 	// TODO Move Map Y location on Jump
-	// TODO Create Global Floor Variable to Declare location (Y Level) of Floor Sprite and Collision for Characters 
+
+	// Creates the Initial State of Map
 	function initMap() {
 	// Create new image object
 	// Set source path for Map
@@ -251,8 +255,6 @@
 
 	// Collision
 		// Primitive Physics Engine
-			// TODO Refactor Code for use in Physics Engine (Pending Approval)
-			// TODO Actually Create Physics (Creating Science YAY)
 			function distanceTraveled(velocity,time) {
 				const gravAccel = 9.81;
 			}
@@ -284,13 +286,20 @@
 			}
 
 		// Kills
+			// Kill Event
+
+			// Update Kill Count
+
+			// Draw Kill Counter
 
 		// Score Algorithm based on Time and Kills
-
+			 function calculateScore (kills,time) {
+				gameScore = kills * 10 + timeDelta;
+			 }
 	// Check if Game End
 		function gameEnd() {
 			if (true) {
-
+				calculateScore(killCount,timeDelta);
 			} 
 			else {
 
