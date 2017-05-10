@@ -22,9 +22,9 @@
 	function gameStart() {
 	// Create Characters
 		// createRect();  
-		createCharacter();
-		createEnemy();
 		initMap();
+		createCharacter();
+		createEnemy();	
 		// loadRogueBot();
 		// setInterval(render,10)
 		initTime();
@@ -47,6 +47,7 @@
 	// Map Dimensions
 	var mapWidth;
 	var mapHeight;
+	var mapFloor;
 	// Scaled Map Dimensions
 	var mapDynamicWidth;
 	var mapDynamicHeight;
@@ -58,6 +59,7 @@
 	// Jump
 	var spacePressTime;
 	var jumpState = false;
+	var jumpTime;
 // Load Map
 	// TODO Split Javascript File into separate components
 	// TODO Move GLobal Variables
@@ -77,6 +79,8 @@
 			mapDynamicWidth = mapWidth * canvas.height / 1296;
 			mapDynamicHeight = canvas.height;			
 		});
+		// Set Map Floor Value
+		mapFloor = 0.788*canvas.height;
 		// DEBUG
 		console.log("Map Drawn");
 	}
@@ -101,10 +105,12 @@
 				this.health = health,
 				// Center (1/2 Canvas Width)
 				this.positionX = canvas.width / 2,
-				// Canvas Height Minus Sprite Height
-				this.positionY = 765,
-			// RogueBot Initial Velocity in pixels/frame				
-				this.velocity = 10
+				// Set Sprite Location on Map Floor
+				this.positionY = mapFloor;
+				// RogueBot Initial Velocity in pixels/frame				
+				this.velocity = 10;
+				// RogueBot Jump Velocity
+				this.jumpVelocity = 34;
 			}
 
 		// Dynamically Generate Random Stats for RogueBot using Constructor
@@ -179,24 +185,27 @@
 			// jQuery ".which" method returns keycode for event "e"
 		    switch(e.which) {
 		    	case 32: // space
-		    	// Create Date Object with time value of when Space Bar was pressed
-		    	spacePressTime = new Date();
-		    	// Set Jump State - charJump() called if jumpState = true
-		    	jumpState = true
-		    	break;
+			    	// Prevent Player from pressing or holding space while character is jumping
+			    	if (jumpState === false) {
+			    		spacePressTime = new Date();
+			    	}
+			    	
+			    	// Set Jump State - charJump() called if jumpState = true
+			    	jumpState = true
+			    	break;
 		        case 37: // left
-		        mapVelocity = rogueBot.velocity;
-		        break;
+			        mapVelocity = rogueBot.velocity;
+			        break;
 
 		        case 38: // up
-		        break;
+		        	break;
 
 		        case 39: // right
-		        mapVelocity = -rogueBot.velocity;
-		        break;
+			        mapVelocity = -rogueBot.velocity;
+			        break;
 
 		        case 40: // down
-		        break;
+		        	break;
 
 		        default: return; // exit this handler for other keys
 		    }
@@ -204,18 +213,39 @@
 		});
 			// Key Release
 			$(document).keyup(function(e) {
-			/* Act on the event */
-			mapVelocity = 0;
-		});
+				switch (e.which) {
+					case 32:
+
+						break;
+					case 37: 
+						mapVelocity = 0;
+						break;
+					case 39: 
+						mapVelocity = 0;
+						break;
+					default:
+						return;
+				}
+			
+			});
 		}
 		// Movement
 			// Jump 
 				function charJump() {
 					if (jumpState) {
 						// Get time since Space was pressed
-					jumpTime = ((new Date()) - spacePressTime) / 1000;
-					// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
-					rogueBot.positionY -= distY(rogueBot.velocity,jumpTime)
+						jumpTime = ((new Date()) - spacePressTime) / 1000;
+						// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
+						rogueBot.positionY -= distY(rogueBot.jumpVelocity,jumpTime)
+						// Check if Character Hits Map FLoor, if true, stop the jump physics
+						if (jumpTime > 1 && rogueBot.positionY >= mapFloor) {
+							jumpState = false;
+							rogueBot.positionY = mapFloor;
+							return;
+						}	
+					}
+					else {
+						return;
 					}
 				}
 
@@ -256,7 +286,7 @@
 		// Kills
 
 		// Score Algorithm based on Time and Kills
-		
+
 	// Check if Game End
 		function gameEnd() {
 			if (true) {
