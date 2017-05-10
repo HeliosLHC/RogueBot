@@ -2,8 +2,10 @@
 
 // Time
 	// Sets initial time
-	function initTime() {
-		startTime = new Date()
+	function initTimeAndFont() {
+		startTime = new Date();
+		// Change value to change font size
+		fontSize = scaleFactor * fontSize + "px";
 	}
 	// Updates and draws time
 	function updateTime() {
@@ -13,7 +15,7 @@
 		// Draws Timer on Screen
 		// TODO add scaling to text
 		ctx.fillStyle = "white"
-		ctx.font = "60px 'Press Start 2P'";
+		ctx.font = fontSize + " 'Press Start 2P'";
 		ctx.textAlign = "right"
 		ctx.fillText(timeDelta + " Seconds", canvas.width - 50, 80);
 		ctx.strokeStyle = "black";
@@ -29,7 +31,7 @@
 	// Draw Kill Counter
 	function updateKills() {
 		ctx.fillStyle = "white"
-		ctx.font = "60px 'Press Start 2P'";
+		ctx.font = fontSize + " 'Press Start 2P'";
 		ctx.textAlign = "left"
 		ctx.fillText("Kills:" + killCount , 50, 80);
 		ctx.strokeStyle = "black";

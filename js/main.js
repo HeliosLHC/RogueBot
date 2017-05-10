@@ -27,20 +27,18 @@
 		createEnemy();	
 		// loadRogueBot();
 		// setInterval(render,10)
-		initTime();
+		initTimeAndFont();
 		// Start Event Listeners
 		keyBind();
 		render();
-		// DEBUG (Enable or Disable Debugging)
-		// setInterval(debug, 200);
 	}
-// Global Variables (Do you Even GLOBAL?)
+// Global Variables
 	// GLOBAL SCALE FACTOR
-	// Aspect Ratio Function
-	var aspectRatio = (canvas.width)/(canvas.height);
 	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
 	var scaleFactor; // Width, Height, Velocity, positions
 
+	// Font Size in px
+	var fontSize = 60;
 	// Declare Sprite Objects
 	var rogueBot;
 	var enemyBot;
