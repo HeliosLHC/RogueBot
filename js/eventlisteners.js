@@ -66,10 +66,7 @@ function keyBind() {
 }
 // Resize Event
 	$(window).resize(function(event) {
-		$('canvas').attr({
-			width: ($(window).width()),
-			height: ($(window).height())
-		});
+		canvasResize();
 		initMap();
 
 		console.log("Window Resized");

@@ -1,9 +1,13 @@
 // Resize Canvas
-	$('canvas').attr({
-		width: ($(window).width()),
-		height: ($(window).height())
+	function canvasResize() {
+		$('canvas').attr({
+			width: ($(window).width()),
+			height: ($(window).height())
+		});		
+	}
+	$(document).ready(function() {
+		canvasResize();
 	});
-
 // Create Canvas Drawing Tool
 	// Assign Canvas Element to variable "canvas"
 	var canvas = document.querySelector('canvas');
