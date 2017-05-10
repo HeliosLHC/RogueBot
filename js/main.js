@@ -13,7 +13,7 @@
 	$("#start-btn").on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$(this).slideDown(400).hide(300);
+		$(this).hide(300);
 		gameStart();
 		// DEBUG
 		console.log("Game Started")
@@ -179,6 +179,7 @@
 		loadRogueBot();	
 		charJump();
 		updateTime();	
+		updateKills();
 	}
 
 	// Character Movement
@@ -289,9 +290,17 @@
 			// Kill Event
 
 			// Update Kill Count
-
+				var killCount;
 			// Draw Kill Counter
-
+			function updateKills() {
+				ctx.fillStyle = "white"
+				ctx.font = "60px 'Press Start 2P'";
+				ctx.textAlign = "left"
+				ctx.fillText("Kills:" + killCount , 50, 80);
+				ctx.strokeStyle = "black";
+				ctx.strokeText("Kills:" + killCount , 50, 80);
+			}
+			
 		// Score Algorithm based on Time and Kills
 			 function calculateScore (kills,time) {
 				gameScore = kills * 10 + timeDelta;
