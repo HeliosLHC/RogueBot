@@ -64,9 +64,8 @@
 		mapDynamicWidth: null
 	}
 // Load Map
-
+ 	// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
 	// TODO Split Javascript File into separate components
-	// TODO Move GLobal Variables
 	// TODO Create Map Property Object
 	// TODO Move render functions (map and characters) into gameRender() function
 	// TODO Move Map Y location on Jump
@@ -85,6 +84,7 @@
 			gMO.mapDynamicHeight = canvas.height;			
 		});
 		// Set Map Floor Value
+		// gMO.mapFloor = 0.788*canvas.height;
 		gMO.mapFloor = 0.788*canvas.height;
 		// DEBUG
 		console.log("Map Drawn");
@@ -256,54 +256,6 @@
 						return;
 					}
 				}
-
-	// Collision
-		// Primitive Physics Engine
-		// Collision Maps
-			// TODO Create Collision Map that moves in Sync with Map
-	// Score and Time
-		
-		// Time
-			// Sets initial time
-			function initTime() {
-				startTime = new Date()
-			}
-			// Updates and draws time
-			function updateTime() {
-				// Get time since game start
-				currTime = new Date()
-				timeDelta = Math.floor((currTime - startTime) / 1000);
-				// Draws Timer on Screen
-				// TODO add scaling to text
-				ctx.fillStyle = "white"
-				ctx.font = "60px 'Press Start 2P'";
-				ctx.textAlign = "right"
-				ctx.fillText(timeDelta + " Seconds", canvas.width - 50, 80);
-				ctx.strokeStyle = "black";
-				ctx.strokeText(timeDelta + " Seconds", canvas.width - 50, 80);
-				// DEBUG
-				// console.log(timeDelta);
-			}
-
-		// Kills
-			// Kill Event
-
-			// Update Kill Count
-				var killCount;
-			// Draw Kill Counter
-			function updateKills() {
-				ctx.fillStyle = "white"
-				ctx.font = "60px 'Press Start 2P'";
-				ctx.textAlign = "left"
-				ctx.fillText("Kills:" + killCount , 50, 80);
-				ctx.strokeStyle = "black";
-				ctx.strokeText("Kills:" + killCount , 50, 80);
-			}
-			
-		// Score Algorithm based on Time and Kills
-			 function calculateScore (kills,time) {
-				gameScore = kills * 10 + timeDelta;
-			 }
 	// Check if Game End
 		function gameEnd() {
 			if (true) {
@@ -313,4 +265,3 @@
 
 			}
 		}
-// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
