@@ -36,8 +36,11 @@
 	}
 // Global Variables (Do you Even GLOBAL?)
 	// GLOBAL SCALE FACTOR
+	// Aspect Ratio Function
+	var aspectRatio = (canvas.width)/(canvas.height)
 	// Set Scale Factor based on screen resolution dimensions relative to 1920x1080 (height only)
-	var scaleFactor = canvas.height / 1080; // Width, Height, Velocity, positions
+	var scaleFactorX = canvas.height / 1080; // Width, Height, Velocity, positions
+	var scaleFactorY = canvas.width 
 	// Declare Sprite Objects
 	var rogueBot;
 	var enemyBot;
