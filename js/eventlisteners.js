@@ -1,3 +1,4 @@
+// TODO Split into separate event listeners to allow individual disabling
 // Key Binding
 function keyBind() {
 	// Key Press
@@ -19,7 +20,7 @@ function keyBind() {
 	        		gMO.mapVelocity = 0;
 	        		break;
 	        	}	
-
+	        break;
         case 38: // up
         	// Prevent Player from pressing or holding "UP" while character is jumping
 	    	if (jumpState === false) {
@@ -41,7 +42,7 @@ function keyBind() {
         		else {
 					gMO.mapVelocity = 0;
         		}
-
+        	break;
         case 40: // down
         	break;
 
@@ -76,6 +77,7 @@ function keyBind() {
 			height: ($(window).height())
 		});	
 		initMap();
+		// moveMap();
 		rogueBot.positionY = gMO.mapFloor;
 		loadRogueBot();
 		console.log("Window Resized");
