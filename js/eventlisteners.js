@@ -80,4 +80,9 @@ function keyBind() {
 		loadRogueBot();
 		console.log("Window Resized");
 	});
+
+	// Checks if game window is out of focus
+	$(window).focusout(function(event) {
+		gMO.mapVelocity = 0;
+	}); 
 }
