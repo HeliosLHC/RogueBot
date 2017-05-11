@@ -69,7 +69,12 @@ function keyBind() {
 
 	// Resize Event
 	$(window).resize(function(event) {
-		canvasResize();
+		// Resize Canvas
+		// TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
+		$('canvas').attr({
+			width: ($(window).width()),
+			height: ($(window).height())
+		});	
 		initMap();
 		rogueBot.positionY = gMO.mapFloor;
 		loadRogueBot();

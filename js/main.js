@@ -1,11 +1,9 @@
 // Resize Canvas
-	function canvasResize() {
 		$('canvas').attr({
 			width: ($(window).width()),
 			height: ($(window).height())
 		});		
-	}
-		canvasResize();
+	
 // Create Canvas Drawing Tool
 	// Assign Canvas Element to variable "canvas"
 	var canvas = document.querySelector('canvas');
@@ -74,6 +72,7 @@
 	// TODO Split Javascript File into separate components
 	// TODO Move render functions (map and characters) into gameRender() function
 	// TODO Move Jump Collision Check into new function and plae into collision.js
+	// TODO Debug Object with console.table()
 	// Creates the Initial State of Map
 	// Change Map Floor as mapX changes (changes in height)
 	function initMap() {
