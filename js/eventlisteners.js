@@ -24,10 +24,12 @@ function keyBind() {
         	// Prevent Player from pressing or holding "UP" while character is jumping
 	    	if (jumpState === false) {
 	    		upPressTime = new Date();
-	    	}
+	    		
+	    	};
 	    	
 	    	// Set Jump State - charJump() called if jumpState = true
-	    	jumpState = true
+	    	jumpState = true;
+	    	console.log("Jumping");
         	break;
 
         case 39: // right
@@ -46,7 +48,8 @@ function keyBind() {
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
-});
+	});
+
 	// Key Release
 	$(document).keyup(function(e) {
 		switch (e.which) {
@@ -63,11 +66,13 @@ function keyBind() {
 		}
 	
 	});
-}
-// Resize Event
+
+	// Resize Event
 	$(window).resize(function(event) {
 		canvasResize();
 		initMap();
+		rogueBot.positionY = gMO.mapFloor;
 		loadRogueBot();
 		console.log("Window Resized");
 	});
+}
