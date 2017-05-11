@@ -120,7 +120,7 @@
 				// Set Sprite Location on Map Floor
 				this.positionY = gMO.mapFloor;
 				// RogueBot Initial Velocity in pixels/frame				
-				this.velocity = 5;
+				this.velocity = 45;
 				// RogueBot Jump Velocity
 				this.jumpVelocity = 34 * scaleFactor;
 			}
