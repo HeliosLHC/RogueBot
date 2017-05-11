@@ -68,6 +68,6 @@ function keyBind() {
 	$(window).resize(function(event) {
 		canvasResize();
 		initMap();
-
+		loadRogueBot();
 		console.log("Window Resized");
 	});

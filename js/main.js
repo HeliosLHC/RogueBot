@@ -143,7 +143,7 @@
 			}
 
 			function loadRogueBot() {
-
+				rogueBot.positionY = gMO.mapFloor;
 				ctx.drawImage(spriteRogueBot, rogueBot.positionX * scaleFactor, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
