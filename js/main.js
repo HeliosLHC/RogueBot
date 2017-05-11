@@ -186,6 +186,7 @@
 		// collisionMapMove();
 		loadRogueBot();	
 		charJump();
+		// setFontSize();
 		updateTime();	
 		updateKills();
 		collisionCheck();

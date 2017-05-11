@@ -4,9 +4,11 @@
 	// Sets initial time
 	function initTimeAndFont() {
 		startTime = new Date();
-		// Change value to change font size
 		fontSize = scaleFactor * fontSize + "px";
 	}
+	// function setFontSize() {
+	// 	fontSize = scaleFactor * fontSize + "px";
+	// }
 	// Updates and draws time
 	function updateTime() {
 		// Get time since game start
