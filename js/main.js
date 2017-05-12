@@ -1,38 +1,3 @@
-// Resize Canvas
-		$('canvas').attr({
-			width: ($(window).width()),
-			height: ($(window).height())
-		});		
-	
-// Create Canvas Drawing Tool
-	// Assign Canvas Element to variable "canvas"
-	var canvas = document.querySelector('canvas');
-
-	var ctx = canvas.getContext('2d');
-// Start Button
-	$("#start-btn").on('click', function(event) {
-		event.preventDefault();
-		/* Act on the event */
-		$(this).hide(300);
-		gameStart();
-		// DEBUG
-		console.log("Game Started")
-	})
-// Game Start Function
-	function gameStart() {
-	// Create Characters
-		// createRect();  
-		initMap();
-		createCharacter();
-		createEnemy();	
-		// loadRogueBot();
-		// setInterval(render,10)
-		initTimeAndFont();
-		// Start Event Listeners
-		keyBind();
-		// resizeEvent();
-		render();
-	}
 // Global Variables
 	// GLOBAL SCALE FACTOR
 	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
@@ -55,7 +20,7 @@
 	var upPressTime;
 	var jumpState = false;
 	var jumpTime;
-	// GLobal Map Object 
+	// GLobal Map Object (Contains all Map Properties)
 	var gMO = {
 		mapX: 0,
 		mapY: 0,
@@ -67,12 +32,58 @@
 		mapDynamicHeight: null,
 		mapDynamicWidth: null
 	}
+
+// Initialization Functions (Called Only Once)
+	// Resize Canvas
+			$('canvas').attr({
+				width: ($(window).width()),
+				height: ($(window).height())
+			});		
+		
+	// Create Canvas Drawing Tool
+		// Assign Canvas Element to variable "canvas"
+		var canvas = document.querySelector('canvas');
+		// Creates HTML Canvas Drawing Tool assigned to variable "ctx"
+		var ctx = canvas.getContext('2d');
+	// Start Button
+		$("#start-btn").on('click', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			$(this).hide(300);
+			gameStart();
+			// DEBUG
+			console.log("Game Started")
+		})
+	// Game Start Function
+		function gameStart() {
+			// Initialize Map 
+			initMap();
+
+			// Create Character Objects
+			createCharacter();
+			createEnemy();	
+
+			// loadRogueBot();
+
+			// Initialize Time Object and Set Font Rendering Properties
+			initTimeAndFont();
+
+			// Start Event Listeners
+			keyBind();
+
+			// Wait for page (initial frame) to be loaded before beginning animation and logic 
+			$(document).ready(function() {
+				render();
+			});
+		}
+
 // Load Map
  	// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
 	// TODO Split Javascript File into separate components
 	// TODO Move render functions (map and characters) into gameRender() function
 	// TODO Move Jump Collision Check into new function and plae into collision.js
 	// TODO Debug Object with console.table()
+	// TODO Move Global Vars and Initialization Functions into its own JS Module
 	// Creates the Initial State of Map
 	// Change Map Floor as mapX changes (changes in height)
 	function initMap() {
@@ -105,6 +116,7 @@
 		$(document).ready(function() {
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapDynamicWidth,gMO.mapDynamicHeight);				
 		});
+		// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
 		gMO.mapX += (gMO.mapVelocity * scaleFactor);
 	};
 
@@ -135,12 +147,13 @@
 			// Set Source Path for Sprite
 			spriteRogueBot.src = 'assets/images/megaman.png';
 			// Creates RogueBot Sprite Object
+
 			// DEBUG 
 			console.log(rogueBot);
 			}
 
+			// Draws RogueBot Sprite with specified arguments
 			function loadRogueBot() {
-				
 				ctx.drawImage(spriteRogueBot, rogueBot.positionX * scaleFactor, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
@@ -154,7 +167,7 @@
 
 		// Dynamically Generate Random Stats for Enemy using Constructor
 		function createEnemy() {
-			// Modifify local variables to change enemy stats
+			// Modify local variables to change enemy stats
 			var name = "enemy1";
 			var health = 100;
 			enemyBot = new createEnemyObject(name,health)
@@ -177,18 +190,22 @@
 		}
 // Game Logic
 
-	//  Game Render
+	//  Game Render (Logic and Animation calculated by frame instead of time)
 	function render() {
+		// Order of Load Determines the Layer Order
+
 		// Loop render function via requestAnimationFrame
 		requestAnimationFrame(render);
-		// Order of Load Determines the Layer Order
+		// Animates Map Movement
 		moveMap();
 		// collisionMapMove();
 		loadRogueBot();	
+		// Checks if character is in jump state and begins jump animation
 		charJump();
 		// setFontSize();
 		updateTime();	
 		updateKills();
+		// Check for Collision Events for All Objects and Map
 		collisionCheck();
 	}
 
@@ -209,6 +226,7 @@
 						}	
 					}
 					else {
+						// If Character is not jumping, return to caller function and continue loop
 						return;
 					}
 				}

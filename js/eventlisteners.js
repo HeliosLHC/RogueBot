@@ -5,9 +5,11 @@ function keyBind() {
     $(document).keydown(function(e) {
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
+            
             case 32: // space
 
                 break;
+
             case 37: // left
                 // Check Map Collision
                 // Checks if Collision occurs before setting map velocity
@@ -20,6 +22,7 @@ function keyBind() {
                     break;
                 }
                 break;
+
             case 38: // up
                 // Prevent Player from pressing or holding "UP" while character is jumping
                 if (jumpState === false) {
@@ -41,6 +44,7 @@ function keyBind() {
                     gMO.mapVelocity = 0;
                 }
                 break;
+
             case 40: // down
                 break;
 
@@ -83,7 +87,7 @@ function keyBind() {
         console.log("Window Resized");
     });
 
-    // Checks if game window is out of focus
+    // Checks if game window is not in focus
     $(window).focusout(function(event) {
         gMO.mapVelocity = 0;
     });
