@@ -70,6 +70,7 @@ function keyBind() {
         }
 
     });
+    	// 
 
     // Resize Event
     $(window).resize(function(event) {

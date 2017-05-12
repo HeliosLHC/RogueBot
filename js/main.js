@@ -1,10 +1,14 @@
 // Global Variables
+	// Settings
+
+		// Font Size in px
+		var fontSize = 60;
+		var debugEnabled = false;
+
 	// GLOBAL SCALE FACTOR
 	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
 	var scaleFactor; // Width, Height, Velocity, positions
 
-	// Font Size in px
-	var fontSize = 60;
 	// Declare Sprite Objects
 	var rogueBot;
 	var enemyBot;
@@ -59,6 +63,9 @@
 			// Initialize Map 
 			initMap();
 
+			// Initialize Collision MAp
+			initCollisionMap();
+
 			// Create Character Objects
 			createCharacter();
 			createEnemy();	
@@ -70,6 +77,11 @@
 
 			// Start Event Listeners
 			keyBind();
+
+			// DEBUG
+			if (debugEnabled) {
+				debug();
+			}
 
 			// Wait for page (initial frame) to be loaded before beginning animation and logic 
 			$(document).ready(function() {
@@ -84,6 +96,10 @@
 	// TODO Move Jump Collision Check into new function and plae into collision.js
 	// TODO Debug Object with console.table()
 	// TODO Move Global Vars and Initialization Functions into its own JS Module
+	// TODO Move Jump Collision into COllision.js
+	// Collision Check Function, set range for x and y that check becomes active, this input collisionbox data to check for match
+	// TODO Create JSON File for All Collision Map Data OR Create Multiple Objects per Collision Box
+	// Dynamic Collision State Generation
 	// Creates the Initial State of Map
 	// Change Map Floor as mapX changes (changes in height)
 	function initMap() {
