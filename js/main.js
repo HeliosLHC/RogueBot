@@ -95,6 +95,7 @@
 	// TODO Move render functions (map and characters) into gameRender() function
 	// TODO Move Jump Collision Check into new function and plae into collision.js
 	// TODO Debug Object with console.table()
+	// JSON Object include properties "solid" true or false and "floating" true or false
 	// TODO Move Global Vars and Initialization Functions into its own JS Module
 	// TODO Move Jump Collision into COllision.js
 	// Collision Check Function, set range for x and y that check becomes active, this input collisionbox data to check for match
