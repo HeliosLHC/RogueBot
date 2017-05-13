@@ -15,7 +15,7 @@
 		// Map Edge Collision
 
 			// Left Edge at 630px
-			if (gMO.mapX >= (630 * scaleFactor)) {
+			if (gMO.mapX >= (660 * scaleFactor)) {
 				console.log("Map Left Edge Reached");
 				collideState = "left"
 				return collideState;
@@ -39,21 +39,19 @@
 
 			// Bottom Edge 
 		}
-		// Collision Box Object Constructor Function
-		function createCollisionBox(name,top,right,bottom,left) {
-			this.objectName = name,
-			this.topBound = top,
-			this.rightBound = right,
-			this.bottomBound = bottom,
-			this.leftBound = left
+
+	// Global Collision Check 
+		// Uses gMO (Map Object) as "collider"
+		// Uses Object being tested for collision as "collideObject" 
+		function globalCollisionCheck(collider, colliderObject) {
+			// Platform 1 
+			if (collider.mapX === 0) {
+			console.log("mapX is greater than 0")
+			}
 		}
-		function initCollisionMap() {
-			// Create Collision Box for Platform 1
-			platform1Box = new createCollisionBox("platform1", (gMO.mapFloor - 67), -457, gMO.mapFloor, -94.5);
-			
-			// Create Global Collision Check Function 
-		}
-	
+		globalCollisionCheck(gMO,platform1)
+
+
 	// Collision Map Movement
 		// Collision Map must move with Map Sprite
 			// Define Global Collision Map Object
@@ -67,3 +65,18 @@
 		function collisionMapMove() {
 			gCM.mapX += (gMO.mapVelocity * scaleFactor);
 		}
+// DEPRECATED
+		// Collision Box Object Constructor Function
+			// function createCollisionBox(name,top,right,bottom,left) {
+			// 	this.objectName = name,
+			// 	this.topBound = top,
+			// 	this.rightBound = right,
+			// 	this.bottomBound = bottom,
+			// 	this.leftBound = left
+			// }
+			// function initCollisionMap() {
+			// 	// Create Collision Box for Platform 1
+			// 	platform1Box = new createCollisionBox("platform1", (gMO.mapFloor - 67), -457, gMO.mapFloor, -94.5);
+				
+			// 	// Create Global Collision Check Function 
+			// }

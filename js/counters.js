@@ -6,6 +6,7 @@
 		startTime = new Date();
 		fontSize = scaleFactor * fontSize + "px";
 	}
+	// BUG - Causing Issue with Text Rendering
 	// function setFontSize() {
 	// 	fontSize = scaleFactor * fontSize + "px";
 	// }

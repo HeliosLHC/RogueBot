@@ -73,23 +73,26 @@ function keyBind() {
     	// 
 
     // Resize Event
-    $(window).resize(function(event) {
-        // Resize Canvas
-        // TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
-        $('canvas').attr({
-            width: ($(window).width()),
-            height: ($(window).height())
+    $(document).ready(function() {
+        $(window).resize(function(event) {
+            // Resize Canvas
+            // TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
+            $('canvas').attr({
+                width: ($(window).width()),
+                height: ($(window).height())
+            });
+            initMap();
+            // moveMap();
+            rogueBot.positionY = gMO.mapFloor;
+            loadRogueBot();
+            // setFontSize();
+            console.log("Window Resized");
         });
-        initMap();
-        // moveMap();
-        rogueBot.positionY = gMO.mapFloor;
-        loadRogueBot();
-        setFontSize();
-        console.log("Window Resized");
-    });
 
-    // Checks if game window is not in focus
-    $(window).focusout(function(event) {
-        gMO.mapVelocity = 0;
+        // Checks if game window is not in focus
+        $(window).focusout(function(event) {
+            gMO.mapVelocity = 0;
+        });    
     });
+    
 }
