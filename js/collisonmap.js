@@ -3,8 +3,8 @@
 var platform1 = {
 	topBound: 716,
 	bottomBound: null,
-	leftBound: 561,
-	rightBound: 864,
+	leftBound: 240,
+	rightBound: -435,
 	solid: false,
 	floating: false
 }

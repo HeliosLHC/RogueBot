@@ -55,6 +55,9 @@
 			/* Act on the event */
 			$(this).hide(300);
 			gameStart();
+
+			// Disable Background Image 
+			$("#gameDiv").css('background-image', 'url("")');
 			// DEBUG
 			console.log("Game Started")
 		})
@@ -64,7 +67,7 @@
 			initMap();
 
 			// Initialize Collision MAp
-			initCollisionMap();
+			// initCollisionMap();
 
 			// Create Character Objects
 			createCharacter();
@@ -122,6 +125,8 @@
 
 		// Set Map Floor Value
 		gMO.mapFloor = 0.788*974*scaleFactor;
+		// Resize Event
+		// gMO.mapX = scaleFactor;
 		// DEBUG
 		console.log("Map Drawn");
 	}
@@ -171,7 +176,8 @@
 
 			// Draws RogueBot Sprite with specified arguments
 			function loadRogueBot() {
-				ctx.drawImage(spriteRogueBot, rogueBot.positionX * scaleFactor, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
+				rogueBot.positionX = canvas.width / 2;
+				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
 		// Create Enemy Constructor
@@ -222,8 +228,11 @@
 		// setFontSize();
 		updateTime();	
 		updateKills();
+		debugTable();
 		// Check for Collision Events for All Objects and Map
 		collisionCheck();
+		// collisionCheckExec();
+		// console.log(collideState)
 	}
 
 	// Character Movement

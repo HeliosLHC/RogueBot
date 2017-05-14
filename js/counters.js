@@ -1,5 +1,6 @@
 // Score and Time
-
+	// Declare timeDelta as global variable
+	var timeDelta;
 // Time
 	// Sets initial time
 	function initTimeAndFont() {
@@ -45,3 +46,18 @@
 	 function calculateScore (kills,time) {
 		gameScore = kills * 10 + timeDelta;
 	 }
+// DEBUG
+	function debugTable() {
+		ctx.fillStyle = "white"
+		ctx.font = "30px" + " 'Arial'";
+		ctx.textAlign = "right"
+		// Map X
+		ctx.fillText("mapX = " + gMO.mapX, canvas.width - 50, 150);
+		ctx.strokeStyle = "black";
+		ctx.strokeText("mapX = " + gMO.mapX, canvas.width - 50, 150);
+		// Collison
+		ctx.fillText("Collision = " + collideState, canvas.width - 50, 200);
+		ctx.strokeStyle = "black";
+		ctx.strokeText("Collision = " + collideState, canvas.width - 50, 200);
+	}
+	
