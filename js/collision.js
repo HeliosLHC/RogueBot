@@ -17,7 +17,8 @@
 			// Left Edge at 630px
 			if (gMO.mapX >= (660 * scaleFactor)) {
 				console.log("Map Left Edge Reached");
-				collideState = "left"
+				collideState = "left";
+				gMO.mapVelocity = 0;
 				return collideState;
 			}
 			else {
@@ -43,13 +44,44 @@
 	// Global Collision Check 
 		// Uses gMO (Map Object) as "collider"
 		// Uses Object being tested for collision as "collideObject" 
-		function globalCollisionCheck(collider, colliderObject) {
-			// Platform 1 
-			if (collider.mapX === 0) {
-			console.log("mapX is greater than 0")
+
+		// Check if Collsion Came from Right or Left
+		// Compares Character Position to the center of the colliderObject collision box
+		function collideDirectionCheck(collider, colliderObject) {
+			var collObjCenter = (colliderObject.leftBound + colliderObject.rightBound) / 2; 
+
+			if (collObjCenter > collider.mapX) {
+				return true;
+			} 
+			else {
+				return false;
 			}
 		}
-		globalCollisionCheck(gMO,platform1)
+
+		function globalCollisionCheck(collider, colliderObject) {
+			// Platform 1 
+			if (collider.mapX <= colliderObject.leftBound && collider.mapX >= colliderObject.rightBound) {
+				// console.log("Collision Detected")
+
+				
+				if (collideDirectionCheck(collider, colliderObject)) {
+					collideState = "left"
+				}
+				else {
+					collideState = "right"
+				}
+			}
+			else {
+				// console.log("No Collision Detected")
+			}
+		}
+		function collisionCheckExec() {
+			globalCollisionCheck(gMO,platform1);
+			console.log(collideState)
+		}
+		// setInterval(collisionCheckExec, 10)
+
+		
 
 
 	// Collision Map Movement
