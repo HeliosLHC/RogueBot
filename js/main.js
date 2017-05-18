@@ -176,7 +176,7 @@
 
 			// Draws RogueBot Sprite with specified arguments
 			function loadRogueBot() {
-				rogueBot.positionX = canvas.width / 2;
+				rogueBot.positionX = canvas.width / 2 + (1 - canvasHeightFinal / canvasHeightInit) * .5 * (canvas.width);
 				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
@@ -216,6 +216,9 @@
 	//  Game Render (Logic and Animation calculated by frame instead of time)
 	function render() {
 		// Order of Load Determines the Layer Order
+
+		// Clear Canvas
+		ctx.clearRect(0,0, canvas.width, canvas.height)
 
 		// Loop render function via requestAnimationFrame
 		requestAnimationFrame(render);

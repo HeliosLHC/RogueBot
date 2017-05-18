@@ -1,3 +1,8 @@
+var canvasWidthInit;
+var canvasHeightInit;
+var canvasWidthFinal;
+var canvasHeightFinal;
+
 // TODO Split into separate event listeners to allow individual disabling
 // Key Binding
 function keyBind() {
@@ -93,19 +98,20 @@ function keyBind() {
     // Resize Event
     $(document).ready(function() {
         $(window).resize(function(event) {
-            var canvasWidthInit = canvas.width;
-            var canvasHeightInit = canvas.height;
+            canvasWidthInit = canvas.width;
+            canvasHeightInit = canvas.height;
             // Resize Canvas
             // TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
             $('canvas').attr({
                 width: ($(window).width()),
                 height: ($(window).height())
             });
-            var canvasWidthFinal = canvas.width;
-            var canvasHeightFinal = canvas.width;
+            canvasWidthFinal = canvas.width;
+            canvasHeightFinal = canvas.width;
             gMO.mapX -= 0.5 * (canvasWidthInit - canvasWidthFinal)
             initMap();
             rogueBot.positionY = gMO.mapFloor;
+
             loadRogueBot();
             // setFontSize();
             console.log("Window Resized");
