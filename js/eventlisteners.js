@@ -107,8 +107,9 @@ function keyBind() {
                 height: ($(window).height())
             });
             canvasWidthFinal = canvas.width;
-            canvasHeightFinal = canvas.width;
-            gMO.mapX -= 0.5 * (canvasWidthInit - canvasWidthFinal)
+            canvasHeightFinal = canvas.height;
+            gMO.mapX -= 0.5 * (canvasWidthInit - canvasWidthFinal);
+            gMO.mapX +=  canvasWidthInit * ((canvasHeightInit - canvasHeightFinal) / 974);
             initMap();
             rogueBot.positionY = gMO.mapFloor;
 

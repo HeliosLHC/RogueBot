@@ -176,7 +176,7 @@
 
 			// Draws RogueBot Sprite with specified arguments
 			function loadRogueBot() {
-				rogueBot.positionX = canvas.width / 2 + (1 - canvasHeightFinal / canvasHeightInit) * .5 * (canvas.width);
+				rogueBot.positionX = canvas.width / 2;
 				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
 			}
 	// Create Enemy
