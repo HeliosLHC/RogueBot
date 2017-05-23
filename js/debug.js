@@ -1,7 +1,13 @@
 function debug() {
 	// Console Table
 	// Log Global Variable Array
-	console.table()
+	function debugTable() {
+		
+	}
+	var globalDebugObject = new Debug
+	console.table(
+			[]
+		)
 
 	// HTML Output Debugging
 	$("body").html("<html><table>" + debugTable + "</table></html>");
