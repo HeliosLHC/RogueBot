@@ -63,33 +63,40 @@
 		})
 	// Game Start Function
 		function gameStart() {
-			// Initialize Map 
-			initMap();
+			// Asset Initialization
+				// Loads Map Image
+				mapImage.src = 'assets/images/mariotest3x.png';
+			// Waits for map to load before executing rest of initialization
+			mapImage.addEventListener('load', function() {
+				// Initialize Map 
+				initMap();
 
-			// Initialize Collision MAp
-			// initCollisionMap();
+				// Initialize Collision MAp
+				// initCollisionMap();
 
-			// Create Character Objects
-			createCharacter();
-			createEnemy();	
+				// Create Character Objects
+				createCharacter();
+				createEnemy();	
 
-			// loadRogueBot();
+				// loadRogueBot();
 
-			// Initialize Time Object and Set Font Rendering Properties
-			initTimeAndFont();
+				// Initialize Time Object and Set Font Rendering Properties
+				initTimeAndFont();
 
-			// Start Event Listeners
-			keyBind();
+				// Start Event Listeners
+				keyBind();
 
-			// DEBUG
-			if (debugEnabled) {
-				debug();
-			}
+				// DEBUG
+				if (debugEnabled) {
+					debug();
+				}
 
-			// Wait for page (initial frame) to be loaded before beginning animation and logic 
-			$(document).ready(function() {
-				render();
-			});
+				// Wait for page (initial frame) to be loaded before beginning animation and logic 
+				$(document).ready(function() {
+					render();
+				});
+				
+			}, false);
 		}
 
 // Load Map
@@ -109,26 +116,25 @@
 	function initMap() {
 
 		// Set source path for Map
-		mapImage.src = 'assets/images/mariotest3x.png';
 
 		// .load commented out to allow rogueBot to run prior to .load occurence
-		// $(mapImage).load(function() {
-			// Set values for map dimensions
+		// Set values for map dimensions
 			gMO.mapWidth = mapImage.width;
 			gMO.mapHeight = mapImage.height;
 			// Calculate Scaled map dimensions
 			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / gMO.mapHeight;
 			gMO.mapDynamicHeight = canvas.height;
 			// Set Scaling Factor			
-			scaleFactor = gMO.mapDynamicHeight / 974
-		// });
+			scaleFactor = gMO.mapDynamicHeight / 974;
+			console.log("Map Drawn");
+			// Set Map Floor Value
+			gMO.mapFloor = 0.788*974*scaleFactor;
 
-		// Set Map Floor Value
-		gMO.mapFloor = 0.788*974*scaleFactor;
+	
+
 		// Resize Event
 		// gMO.mapX = scaleFactor;
 		// DEBUG
-		console.log("Map Drawn");
 	}
 	// Use 2d renderer's drawImage method
 	function moveMap() {
@@ -142,75 +148,7 @@
 		gMO.mapX += (gMO.mapVelocity * scaleFactor);
 	};
 
-// Object Creation Functions
-	// Create Main Character
 
-		// Create Character Constructor (Constructor/Prototype Function)
-			function createCharacterObject(name,health) {
-				this.name = name,
-				this.health = health,
-				// Center (1/2 Canvas Width)
-				this.positionX = canvas.width / 2,
-				// Set Sprite Location on Map Floor
-				this.positionY = gMO.mapFloor;
-				// RogueBot Initial Velocity in pixels/frame				
-				this.velocity = 5;
-				// RogueBot Jump Velocity
-				this.jumpVelocity = 34 * scaleFactor;
-			}
-
-		// Dynamically Generate Random Stats for RogueBot using Constructor
-			function createCharacter() {
-			// Modify local variables to change RogueBot Stats
-			var name = "RogueBot1";
-			var health = 100;
-			// Creates RogueBot Object with the values set above
-			rogueBot = new createCharacterObject(name,health);	
-			// Set Source Path for Sprite
-			spriteRogueBot.src = 'assets/images/megaman.png';
-			// Creates RogueBot Sprite Object
-
-			// DEBUG 
-			console.log(rogueBot);
-			}
-
-			// Draws RogueBot Sprite with specified arguments
-			function loadRogueBot() {
-				rogueBot.positionX = canvas.width / 2;
-				ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
-			}
-	// Create Enemy
-		// Create Enemy Constructor
-		function createEnemyObject(name,health) {
-				this.name = name,
-				this.health = health,
-				this.positionX,
-				this.positionY
-			}
-
-		// Dynamically Generate Random Stats for Enemy using Constructor
-		function createEnemy() {
-			// Modify local variables to change enemy stats
-			var name = "enemy1";
-			var health = 100;
-			enemyBot = new createEnemyObject(name,health)
-			// DEBUG
-			console.log("Enemy " + name + " has been spawned");
-			console.log(enemyBot);
-		}
-		function loadEnemy() {
-
-		}
-	// Create Projectile
-
-		// Create Projectile Constructor
-		function createProjectileObject(name) {
-			this.name = "",
-			this.positionX,
-			this.positionY,
-			// Bullet Velocity in pixels/frame
-			this.velocity = 10
-		}
 // Game Logic
 
 	//  Game Render (Logic and Animation calculated by frame instead of time)
@@ -218,10 +156,9 @@
 		// Order of Load Determines the Layer Order
 
 		// Clear Canvas
-		ctx.clearRect(0,0, canvas.width, canvas.height)
+		ctx.clearRect(0,0, canvas.width, canvas.height);
 
 		// Loop render function via requestAnimationFrame
-		requestAnimationFrame(render);
 		// Animates Map Movement
 		moveMap();
 		// collisionMapMove();
@@ -236,29 +173,10 @@
 		collisionCheck();
 		// collisionCheckExec();
 		// console.log(collideState)
+		requestAnimationFrame(render);
+
 	}
 
-	// Character Movement
-		// Movement
-			// Jump 
-				function charJump() {
-					if (jumpState) {
-						// Get time since Space was pressed
-						jumpTime = ((new Date()) - upPressTime) / 1000;
-						// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
-						rogueBot.positionY -= distY(rogueBot.jumpVelocity,jumpTime)
-						// Check if Character Hits Map FLoor, if true, stop the jump physics
-						if (jumpTime > 1 && rogueBot.positionY >= gMO.mapFloor) {
-							jumpState = false;
-							rogueBot.positionY = gMO.mapFloor;
-							return;
-						}	
-					}
-					else {
-						// If Character is not jumping, return to caller function and continue loop
-						return;
-					}
-				}
 	// Check if Game End
 		// Create gameEnd event
 		function gameEnd() {

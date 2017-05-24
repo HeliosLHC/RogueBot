@@ -1,0 +1,12 @@
+{
+	"gamesettings": {
+		"roguebot": {
+			"health": 100,
+			"speed": 30,
+		},
+		"enemy": {
+			"health": 50,
+			"speed": 30
+		}
+	}
+}
