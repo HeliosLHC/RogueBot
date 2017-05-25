@@ -67,22 +67,28 @@
 		// Bullet Velocity in pixels/frame
 		this.velocity = 10
 	}
+	function loadProjectileObject() {
+		
+	} 
 // Animations
 	// Global Sprite Animation Function
-		function spriteAnim() {
+		function spriteAnim(img, sx, sy, sw, sh, dx, dy, dw, dh) {
 			var sprite = {
 				context: null,
 				width: null,
 				height: null,
-				image: null,
-				render: null
+				image: img,
+				render: function() {
+					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
+					ctx.drawImage(this.image, sx, sy, sw, sh, dx, dy, dw, dh)
+				}
 			}
 		}
 	// RogueBot Animations
 		// Load Spritesheet
 		var rogueBotAnim = new Image();
 		rogueBotAnim.src = "assets/images/roguebotspritesheet.png";
-
+		spriteAnim(rogueBotAnim,)
 	// Enemy Animations
 
 	// Projectile Animations

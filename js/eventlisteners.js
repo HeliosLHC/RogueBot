@@ -5,6 +5,14 @@ var canvasHeightFinal;
 
 // TODO Split into separate event listeners to allow individual disabling
 // Key Binding
+	// Enter Key Binding - Triggers Start Button Click
+	// TODO ONLY ALLOW TRIGGER TO OCCUR BEFORE GAME 
+		// DISABLE EVENT LISTENER 
+	$(document).keydown(function(event) {
+		if (event.which === 13) {
+			$("#start-btn").trigger("click")
+		} 
+	});
 function keyBind() {
     // Key Press
         // Left Key
@@ -28,7 +36,6 @@ function keyBind() {
     $(document).keydown(function(e) {
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
-            
             case 32: // space
 
                 break;
