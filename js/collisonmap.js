@@ -8,3 +8,6 @@ var platform1 = {
 	solid: false,
 	floating: false
 }
+var platform2 = {
+	
+}

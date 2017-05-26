@@ -1,5 +1,5 @@
 {
-	"gamesettings": {
+	"gameSettings": {
 		"roguebot": {
 			"health": 100,
 			"speed": 30,
@@ -8,5 +8,12 @@
 			"health": 50,
 			"speed": 30
 		}
-	}
+	},
+	"graphicsSettings": {
+		"canvasWidth": 1920,
+		"canvasHeight": 974,
+
+	},
+	"debug": false
+	
 }

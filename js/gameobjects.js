@@ -57,20 +57,28 @@
 	function loadEnemy() {
 
 	}
+// TODO USe Array to add and append projectilej=objects
 // Create Projectile
-
 	// Create Projectile Constructor
-	function createProjectileObject(name) {
-		this.name = "",
-		this.positionX,
-		this.positionY,
+	function createProjectileObject(index) {
+		this.name = index,
+		this.positionX = 0,
+		this.positionY = 0,
 		// Bullet Velocity in pixels/frame
 		this.velocity = 10
 	}
+// Load Projectiles
+	var projectileArray = []
 	function loadProjectileObject() {
-		
+		projectileArray.push( new createProjectileObject(1) )
+	}
+	loadProjectileObject()
+// Unload Projectile
+	// Removes projectile upon collision
+	function killProjectile(index) {
+
 	} 
-// Animations
+// Animations (Separate Animation Loop)
 	// Global Sprite Animation Function
 		function spriteAnim(img, sx, sy, sw, sh, dx, dy, dw, dh) {
 			var sprite = {
@@ -92,3 +100,8 @@
 	// Enemy Animations
 
 	// Projectile Animations
+// Animation Render Loop 
+	function renderAnim() {
+		
+		requestAnimationFrame(renderAnim)
+	}

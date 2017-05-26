@@ -94,8 +94,7 @@
 				// Wait for page (initial frame) to be loaded before beginning animation and logic 
 				$(document).ready(function() {
 					render();
-				});
-				
+				});		
 			}, false);
 		}
 
@@ -173,8 +172,9 @@
 		collisionCheck();
 		// collisionCheckExec();
 		// console.log(collideState)
+		// Initiates Animation Render Loop
+		renderAnim();
 		requestAnimationFrame(render);
-
 	}
 
 	// Check if Game End
