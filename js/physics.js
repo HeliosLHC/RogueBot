@@ -11,14 +11,14 @@ function distY(velocity,time) {
 	// Movement
 		// Jump 
 			function charJump() {
-				if (jumpState) {
+				if (rogueBot.state == "jump") {
 					// Get time since Space was pressed
 					jumpTime = ((new Date()) - upPressTime) / 1000;
 					// Calculate current Height of Character Relative to Map Floor and Set PositionY of Character
 					rogueBot.positionY -= distY(rogueBot.jumpVelocity,jumpTime)
 					// Check if Character Hits Map FLoor, if true, stop the jump physics
 					if (jumpTime > 1 && rogueBot.positionY >= gMO.mapFloor) {
-						jumpState = false;
+						rogueBot.state = "";
 						rogueBot.positionY = gMO.mapFloor;
 						return;
 					}	

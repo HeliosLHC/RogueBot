@@ -20,6 +20,8 @@
 		// Modify local variables to change RogueBot Stats
 		var name = "RogueBot1";
 		var health = 100;
+		// State Property can have values: "idle", "jump", "running"
+		var state = "";
 		// Creates RogueBot Object with the values set above
 		rogueBot = new createCharacterObject(name,health);	
 		// Set Source Path for Sprite
@@ -57,6 +59,8 @@
 	function loadEnemy() {
 
 	}
+	// Enemy AI
+
 // TODO USe Array to add and append projectilej=objects
 // Create Projectile
 	// Create Projectile Constructor
@@ -94,14 +98,19 @@
 		}
 	// RogueBot Animations
 		// Load Spritesheet
-		var rogueBotAnim = new Image();
-		rogueBotAnim.src = "assets/images/roguebotspritesheet.png";
-		spriteAnim(rogueBotAnim,)
-	// Enemy Animations
+			// Idle - 512px x 512px/ Frame
+			var rogueBotAnimIdle = new Image();
+			rogueBotAnimIdle.src = "robot1-idle-Sheet-8X.png";
+		// Animation Trigger and Render (Select Which Animation to Render)
+		// Uses global RogueBot State to determine Animation Type
+			if (true) {} else {} 
+			spriteAnim(rogueBotAnimIdle, )
 
 	// Projectile Animations
 // Animation Render Loop 
+	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
 	function renderAnim() {
-		
-		requestAnimationFrame(renderAnim)
+
+		// Cannot have loop
+		// requestAnimationFrame(renderAnim)
 	}

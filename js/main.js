@@ -22,7 +22,6 @@
 	var keyRelease;
 	// Jump
 	var upPressTime;
-	var jumpState = false;
 	var jumpTime;
 	// GLobal Map Object (Contains all Map Properties)
 	var gMO = {
@@ -173,7 +172,13 @@
 		// collisionCheckExec();
 		// console.log(collideState)
 		// Initiates Animation Render Loop
-		renderAnim();
+		// For every 5 frames of the game render, 1 frame of sprite animation is rendered (12)
+		for (var i = 6; i > 5; i--) {
+			// renderAnim();	
+			if (i == 1) {
+				i = 6;
+			};
+		}
 		requestAnimationFrame(render);
 	}
 

@@ -55,13 +55,13 @@ function keyBind() {
 
             case 38: // up
                 // Prevent Player from pressing or holding "UP" while character is jumping
-                if (jumpState === false) {
+                if (rogueBot.state != "jump" ) {
                     upPressTime = new Date();
 
                 };
 
-                // Set Jump State - charJump() called if jumpState = true
-                jumpState = true;
+                // Set Jump State - charJump() called if rogueBot.state = "jump"
+                rogueBot.state = "jump";
                 console.log("Jumping");
                 break;
 
@@ -116,7 +116,7 @@ function keyBind() {
             canvasWidthFinal = canvas.width;
             canvasHeightFinal = canvas.height;
             gMO.mapX -= 0.5 * (canvasWidthInit - canvasWidthFinal);
-            gMO.mapX += gMO.mapVelocity * ((canvasHeightInit - canvasHeightFinal) / 974);
+            gMO.mapX += (canvasWidthInit * ((canvasHeightInit - canvasHeightFinal) / 974));
             initMap();
             rogueBot.positionY = gMO.mapFloor;
 
