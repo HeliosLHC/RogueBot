@@ -1,4 +1,5 @@
 // Collision Detection
+	// Implement Collision Offset 
 	// Global Collision Variable
 	// Possible states up "up", "left", "right", and "down"
 	// States are triggered and set by collisionCheck Function
@@ -75,9 +76,17 @@
 				// console.log("No Collision Detected")
 			}
 		}
+		// Checks for collision in each frame
+		// Check for collision for only objects on canvas
 		function collisionCheckExec() {
+			// Checks for floor collision
 			globalCollisionCheck(gMO,platform1);
+			
+			// 
+
+			// DEBUG
 			console.log(collideState)
+
 		}
 		// setInterval(collisionCheckExec, 10)
 

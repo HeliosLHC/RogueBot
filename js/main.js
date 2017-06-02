@@ -1,12 +1,11 @@
 // Global Variables
 	// Settings
-
 		// Font Size in px
 		var fontSize = 60;
 		var debugEnabled = false;
 
 	// GLOBAL SCALE FACTOR
-	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
+	// Set Scale Factor based on screen resolution dimensions relative to 700 (height only)
 	var scaleFactor; // Width, Height, Velocity, positions
 
 	// Declare Sprite Objects
@@ -40,7 +39,8 @@
 	// Resize Canvas
 			$('canvas').attr({
 				width: ($(window).width()),
-				height: ($(window).height())
+				// height: ($(window).height())
+				height: 700
 			});		
 		
 	// Create Canvas Drawing Tool
@@ -123,10 +123,10 @@
 			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / gMO.mapHeight;
 			gMO.mapDynamicHeight = canvas.height;
 			// Set Scaling Factor			
-			scaleFactor = gMO.mapDynamicHeight / 974;
+			scaleFactor = gMO.mapDynamicHeight / 700;
 			console.log("Map Drawn");
 			// Set Map Floor Value
-			gMO.mapFloor = 0.788*974*scaleFactor;
+			gMO.mapFloor = 0.788*700*scaleFactor;
 
 	
 
@@ -169,12 +169,11 @@
 		debugTable();
 		// Check for Collision Events for All Objects and Map
 		collisionCheck();
-		// collisionCheckExec();
 		// console.log(collideState)
 		// Initiates Animation Render Loop
 		// For every 5 frames of the game render, 1 frame of sprite animation is rendered (12)
 		for (var i = 6; i > 5; i--) {
-			// renderAnim();	
+			renderAnim();	
 			if (i == 1) {
 				i = 6;
 			};

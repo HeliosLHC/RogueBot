@@ -13,6 +13,8 @@
 			this.velocity = 5;
 			// RogueBot Jump Velocity
 			this.jumpVelocity = 34 * scaleFactor;
+			// State Property can have values: "idle", "jump", "running"
+			this.state = ""
 		}
 
 	// Dynamically Generate Random Stats for RogueBot using Constructor
@@ -20,8 +22,6 @@
 		// Modify local variables to change RogueBot Stats
 		var name = "RogueBot1";
 		var health = 100;
-		// State Property can have values: "idle", "jump", "running"
-		var state = "";
 		// Creates RogueBot Object with the values set above
 		rogueBot = new createCharacterObject(name,health);	
 		// Set Source Path for Sprite
@@ -31,12 +31,12 @@
 		// DEBUG 
 		console.log(rogueBot);
 		}
-
+		// DEPRECATED
 		// Draws RogueBot Sprite with specified arguments
-		function loadRogueBot() {
-			rogueBot.positionX = canvas.width / 2;
-			ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
-		}
+		// function loadRogueBot() {
+		// 	rogueBot.positionX = canvas.width / 2;
+		// 	ctx.drawImage(spriteRogueBot, rogueBot.positionX, rogueBot.positionY, 100 * scaleFactor, 100 * scaleFactor);
+		// }
 // Create Enemy
 	// Create Enemy Constructor
 	function createEnemyObject(name,health) {
@@ -52,15 +52,21 @@
 		var name = "enemy1";
 		var health = 100;
 		enemyBot = new createEnemyObject(name,health)
+		spriteEnemyBot.src = "assets/images/megaman"; 
 		// DEBUG
 		console.log("Enemy " + name + " has been spawned");
 		console.log(enemyBot);
+		// Return Object
+		return enemyBot
 	}
 	function loadEnemy() {
-
+		enemyBotArray.push(createEnemy())
 	}
-	// Enemy AI
+	// Enemy Array
+	var enemyBotArray = []
 
+	var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
+	// Math.Random() SPAWN RATE
 // TODO USe Array to add and append projectilej=objects
 // Create Projectile
 	// Create Projectile Constructor
@@ -84,33 +90,76 @@
 	} 
 // Animations (Separate Animation Loop)
 	// Global Sprite Animation Function
-		function spriteAnim(img, sx, sy, sw, sh, dx, dy, dw, dh) {
+		function spriteAnim(imgObject) {
 			var sprite = {
 				context: null,
 				width: null,
 				height: null,
-				image: img,
-				render: function() {
+				image: imgObject,
+				render: function(img, sx, sy, sw, sh, dx, dy, dw, dh) {
 					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
 					ctx.drawImage(this.image, sx, sy, sw, sh, dx, dy, dw, dh)
 				}
 			}
+			// Returns the sprite object to the caller function
+			return sprite
 		}
+
 	// RogueBot Animations
 		// Load Spritesheet
-			// Idle - 512px x 512px/ Frame
-			var rogueBotAnimIdle = new Image();
-			rogueBotAnimIdle.src = "robot1-idle-Sheet-8X.png";
+			// Idle - 512px x 512px / Frame
+			var rogueBotAnimIdleImg = new Image();
+			rogueBotAnimIdleImg.src = "robot1-idle-Sheet-8X.png";
+
+			// Running - 512px x 512x / Frame
+			var rogueBotAnimRunningImg = new Image();
+			rogueBotAnimRunningImg.src = "robot1-run-gun-Sheet-8X";
+
+			// Running with Gun - 512px x 512x / Frame
+			var rogueBotAnimRunningGunImg = new Image();
+			rogueBotAnimRunningGunImg.src = "robot1-run-gun-Sheet-8X";
+
+			// Jumping - 512px x 512x / Frame
+			var rogueBotAnimJumpingImg = new Image();
+			rogueBotAnimJumpingImg.src = "robot1-jumping-Sheet-8X.png";
+
+			// Shooting - 512px x 512x / Frame
+			var rogueBotAnimShooting = new Image();
+			rogueBotAnimShooting.src = "robot1-jumping-Sheet-8X.png";
+
+		// Create Animation Objects
+			rogueBot.animation.idle = spriteAnim(rogueBotAnimIdleImg)
+			rogueBot.animation.running = spriteAnim(rogueBotAnimRunning)
+			rogueBot.animation.jumping = spriteAnim(rogueBotAnimJumping)
+			rogueBot.animation.shooting = spriteAnim(rogueBotAnimShooting)
+
+
 		// Animation Trigger and Render (Select Which Animation to Render)
 		// Uses global RogueBot State to determine Animation Type
-			if (true) {} else {} 
-			spriteAnim(rogueBotAnimIdle, )
+			function rogueBotAnimSelector() {
+				if (rogueBot.state == "idle") {
+					rogueBot.animation.idle.render(rogueBotAnimIdleImg, 0 , 0 , 512 , 512, )
+				} 
+				else if (rogueBot.state == "running") {
+					rogueBot.animation.running.render(rogueBotAnimRunningImg, 0 , 0 , 512 , 512, )
+				} 
+				else if (rogueBot.state == "jumping") {
+					rogueBot.animation.jumping.render(rogueBotAnimJumpingImg, 0 , 0 , 512 , 512, )
+				}
+				else if (rogueBot.state == "runninggunning") {
+					rogueBot.animation.running.render(rogueBotAnimRunningGunImg, 0 , 0 , 512 , 512, )
+				} 
+				else if (rogueBot.state == "shooting") {
+					rogueBot.animation.shooting.render(rogueBotAnimShootingImg, 0 , 0 , 512 , 512 )
+				}
+			}
 
 	// Projectile Animations
+
 // Animation Render Loop 
 	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
 	function renderAnim() {
-
-		// Cannot have loop
+		rogueBotAnimSelector()
+		// Cannot have loop (Lag)
 		// requestAnimationFrame(renderAnim)
 	}
