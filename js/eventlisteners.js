@@ -2,6 +2,7 @@ var canvasWidthInit;
 var canvasHeightInit;
 var canvasWidthFinal;
 var canvasHeightFinal;
+var keyPressState;
 
 // TODO Split into separate event listeners to allow individual disabling
 // Key Binding
@@ -34,6 +35,9 @@ function keyBind() {
         //         }
         // });
     $(document).keydown(function(e) {
+        // Sets KeyPressState to true
+        keyPressState = true
+
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
             case 32: // space
@@ -96,6 +100,7 @@ function keyBind() {
 
     // Key Release
     $(document).keyup(function(e) {
+        keyPressState = false
         switch (e.which) {
             case 32:
                 break;

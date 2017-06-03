@@ -163,10 +163,12 @@
 		// loadRogueBot();	
 		// Checks if character is in jump state and begins jump animation
 		// charJump();
-		if (rogueBot.positionY = gMO.mapFloor) {
+
+		// Move State Updates into Collison JS File
+		if (rogueBot.positionY = gMO.mapFloor && !(keyPressState == true)) {
 			rogueBot.state = "idle"
 		}
-		// setFontSize();
+
 		updateTime();	
 		updateKills();
 		debugTable();
@@ -174,7 +176,7 @@
 		collisionCheck();
 		// collisionCheckExec();
 		// console.log(collideState)
-		
+
 		// Initiates Animation Render Loop
 		renderAnim();	
 

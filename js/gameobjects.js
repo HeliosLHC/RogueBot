@@ -95,8 +95,9 @@
 	} 
 // Animations (Separate Animation Loop)
 	// Global Sprite Animation Function
-		function spriteAnim(width,height) {
+		function spriteAnim(image,width,height) {
 			var sprite = {
+				image: image,
 				context: null,
 				width: width,
 				height: height,
@@ -107,7 +108,7 @@
 					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
 					// ctx.drawImage(img, sx, sy, sw * frameNum, sh, dx, dy, dw, dh)
 					// Move constants into animationSelector()
-					ctx.drawImage(img, 0 + 256 * rogueBot.animation.idle.spriteFrameIndex, 0, 256, 256, canvas.width / 2 - 128 , gMO.mapFloor - 176 , 256, 256)
+					ctx.drawImage(this.image, 0 + this.width * this.spriteFrameIndex, 0, this.width, this.height, canvas.width / 2 - 128 , gMO.mapFloor - 176 , this.width, this.width)
 				}
 			}
 			// Returns the sprite object to the caller function
@@ -122,25 +123,25 @@
 
 			// Running - 512px x 512x / Frame
 			var rogueBotAnimRunningImg = new Image();
-			rogueBotAnimRunningImg.src = "assets/images/robot1-run-gun-Sheet-8X";
+			rogueBotAnimRunningImg.src = "assets/images/robot1-run-Sheet-4X.png";
 
 			// Running with Gun - 512px x 512x / Frame
 			var rogueBotAnimRunningGunImg = new Image();
-			rogueBotAnimRunningGunImg.src = "assets/images/robot1-run-gun-Sheet-8X";
+			rogueBotAnimRunningGunImg.src = "assets/images/robot1-run-gun-Sheet-4X.png";
 
 			// Jumping - 512px x 512x / Frame
 			var rogueBotAnimJumpingImg = new Image();
-			rogueBotAnimJumpingImg.src = "assets/images/robot1-jumping-Sheet-8X.png";
+			rogueBotAnimJumpingImg.src = "assets/images/robot1-jumping-Sheet-4X.png";
 
 			// Shooting - 512px x 512x / Frame
 			var rogueBotAnimShootingImg = new Image();
-			rogueBotAnimShootingImg.src = "assets/images/robot1-jumping-Sheet-8X.png";
+			rogueBotAnimShootingImg.src = "assets/images/robot1-shooting-Sheet-4X.png";
 
 		// Create Animation Objects
 			function setAnimations() {
 				// RogueBot Animations
-					rogueBot.animation.idle = spriteAnim()
-					rogueBot.animation.running = spriteAnim()
+					rogueBot.animation.idle = spriteAnim(rogueBotAnimIdleImg,256,256)
+					rogueBot.animation.running = spriteAnim(rogueBotAnimRunningImg,256,256)
 					rogueBot.animation.jumping = spriteAnim()
 					rogueBot.animation.shooting = spriteAnim()
 
@@ -151,7 +152,7 @@
 			function rogueBotAnimSelector() {
 				if (rogueBot.state == "idle") {
 					// Reverts Sprite to Initial Frame
-					if (rogueBot.animation.idle.frameNum === 150) {
+					if (rogueBot.animation.idle.frameNum === 100) {
 						rogueBot.animation.idle.frameNum = 0
 					}
 					if (rogueBot.animation.idle.spriteFrameIndex === 5) {
@@ -159,15 +160,31 @@
 					}
 
 					// Increments Sprite Frame
-					rogueBot.animation.idle.spriteFrameIndex = Math.floor(rogueBot.animation.idle.frameNum / 30)
+					rogueBot.animation.idle.spriteFrameIndex = Math.floor(rogueBot.animation.idle.frameNum / 20)
 					
-					rogueBot.animation.idle.renderSprite(rogueBotAnimIdleImg)
+					rogueBot.animation.idle.renderSprite()
 					// Increments Frame Number
 					rogueBot.animation.idle.frameNum += 1
 
 				} 
 				else if (rogueBot.state == "running") {
-					rogueBot.animation.running.renderSprite(rogueBotAnimRunningImg, 0 , 0 , 512 , 512, )
+					// Reverts Sprite to Initial Frame
+					if (rogueBot.animation.running.frameNum === 100) {
+						rogueBot.animation.running.frameNum = 0
+					}
+					if (rogueBot.animation.running.spriteFrameIndex === 10) {
+						rogueBot.animation.running.spriteFrameIndex = 0
+					}
+
+					// Increments Sprite Frame
+					rogueBot.animation.running.spriteFrameIndex = Math.floor(rogueBot.animation.running.frameNum / 10)
+					
+					rogueBot.animation.running.renderSprite()
+					// Increments Frame Number
+					rogueBot.animation.running.frameNum += 1
+
+				
+				
 				} 
 				else if (rogueBot.state == "jumping") {
 					rogueBot.animation.jumping.renderSprite(rogueBotAnimJumpingImg, 0 , 0 , 512 , 512, )
