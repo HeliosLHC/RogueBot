@@ -2,6 +2,7 @@ var canvasWidthInit;
 var canvasHeightInit;
 var canvasWidthFinal;
 var canvasHeightFinal;
+var keyPressState;
 
 // TODO Split into separate event listeners to allow individual disabling
 // Key Binding
@@ -34,10 +35,13 @@ function keyBind() {
         //         }
         // });
     $(document).keydown(function(e) {
+        // Sets KeyPressState to true
+        keyPressState = true
+
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
             case 32: // space
-
+                rogueBot.state = "shooting"
                 break;
 
             case 37: // left
@@ -46,6 +50,10 @@ function keyBind() {
                 if (collideState != "left") {
                     // Positive Map Velocity = Map Moves Right
                     gMO.mapVelocity = rogueBot.velocity;
+
+                    // Set RogueBot State
+                    rogueBot.state = "running"
+
                     break;
                 } else {
                     e.preventDefault();
@@ -58,6 +66,8 @@ function keyBind() {
                 if (rogueBot.state != "jump" ) {
                     upPressTime = new Date();
 
+                    // Set RogueBot State
+                    rogueBot.state = "jumping"
                 };
 
                 // Set Jump State - charJump() called if rogueBot.state = "jump"
@@ -69,6 +79,10 @@ function keyBind() {
                 if (collideState != "right") {
                     // Negative Map Velocity = Map Moves Left				
                     gMO.mapVelocity = -rogueBot.velocity;
+     
+                    // Set RogueBot State
+                    rogueBot.state = "running"
+
                     break;
                 } else {
                     e.preventDefault();
@@ -86,6 +100,7 @@ function keyBind() {
 
     // Key Release
     $(document).keyup(function(e) {
+        keyPressState = false
         switch (e.which) {
             case 32:
                 break;
