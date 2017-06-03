@@ -174,8 +174,8 @@
 		collisionCheck();
 		// collisionCheckExec();
 		// console.log(collideState)
+		
 		// Initiates Animation Render Loop
-		// For every 5 frames of the game render, 1 frame of sprite animation is rendered (12)
 		renderAnim();	
 
 		requestAnimationFrame(render);

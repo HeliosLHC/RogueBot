@@ -46,6 +46,10 @@ function keyBind() {
                 if (collideState != "left") {
                     // Positive Map Velocity = Map Moves Right
                     gMO.mapVelocity = rogueBot.velocity;
+
+                    // Set RogueBot State
+                    rogueBot.state = "running"
+
                     break;
                 } else {
                     e.preventDefault();
@@ -58,6 +62,8 @@ function keyBind() {
                 if (rogueBot.state != "jump" ) {
                     upPressTime = new Date();
 
+                    // Set RogueBot State
+                    rogueBot.state = "jumping"
                 };
 
                 // Set Jump State - charJump() called if rogueBot.state = "jump"
@@ -69,6 +75,10 @@ function keyBind() {
                 if (collideState != "right") {
                     // Negative Map Velocity = Map Moves Left				
                     gMO.mapVelocity = -rogueBot.velocity;
+     
+                    // Set RogueBot State
+                    rogueBot.state = "running"
+
                     break;
                 } else {
                     e.preventDefault();

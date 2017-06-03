@@ -100,12 +100,14 @@
 				context: null,
 				width: width,
 				height: height,
-				frameNum: null,
+				frameNum: 1,
+				spriteFrameIndex: 1,
 				// image: imgObject,
 				renderSprite: function(img, sx, sy, sw, sh, dx, dy, dw, dh) {
 					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
-					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
-					ctx.drawImage(img, 0, 0)
+					// ctx.drawImage(img, sx, sy, sw * frameNum, sh, dx, dy, dw, dh)
+					// Move constants into animationSelector()
+					ctx.drawImage(img, 0 + 256 * rogueBot.animation.idle.spriteFrameIndex, 0, 256, 256, canvas.width / 2 - 128 , gMO.mapFloor - 176 , 256, 256)
 				}
 			}
 			// Returns the sprite object to the caller function
@@ -116,7 +118,7 @@
 		// Load Spritesheet
 			// Idle - 512px x 512px / Frame
 			var rogueBotAnimIdleImg = new Image();
-			rogueBotAnimIdleImg.src = "assets/images/robot1-idle-Sheet-8X.png";
+			rogueBotAnimIdleImg.src = "assets/images/robot1-idle-Sheet-4X.png";
 
 			// Running - 512px x 512x / Frame
 			var rogueBotAnimRunningImg = new Image();
@@ -148,7 +150,21 @@
 		// Uses global RogueBot State to determine Animation Type
 			function rogueBotAnimSelector() {
 				if (rogueBot.state == "idle") {
-					rogueBot.animation.idle.renderSprite(rogueBotAnimIdleImg, 0 , 0 , 512 , 512, )
+					// Reverts Sprite to Initial Frame
+					if (rogueBot.animation.idle.frameNum === 150) {
+						rogueBot.animation.idle.frameNum = 0
+					}
+					if (rogueBot.animation.idle.spriteFrameIndex === 5) {
+						rogueBot.animation.idle.spriteFrameIndex = 0
+					}
+
+					// Increments Sprite Frame
+					rogueBot.animation.idle.spriteFrameIndex = Math.floor(rogueBot.animation.idle.frameNum / 30)
+					
+					rogueBot.animation.idle.renderSprite(rogueBotAnimIdleImg)
+					// Increments Frame Number
+					rogueBot.animation.idle.frameNum += 1
+
 				} 
 				else if (rogueBot.state == "running") {
 					rogueBot.animation.running.renderSprite(rogueBotAnimRunningImg, 0 , 0 , 512 , 512, )
@@ -170,6 +186,5 @@
 	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
 	function renderAnim() {
 		rogueBotAnimSelector() 		
-		// Cannot have loop (Lag)
-		// requestAnimationFrame(renderAnim)
+		// requestAnimationFrame(renderAnim) (Causes Lag)
 	}
