@@ -119,31 +119,32 @@
 		// Load Spritesheet
 			// Idle - 512px x 512px / Frame
 			var rogueBotAnimIdleImg = new Image();
-			rogueBotAnimIdleImg.src = "assets/images/robot1-idle-Sheet-4X.png";
+			rogueBotAnimIdleImg.src = "assets/images/playerbot-idle-Sheet-4X.png";
 
 			// Running - 512px x 512x / Frame
 			var rogueBotAnimRunningImg = new Image();
-			rogueBotAnimRunningImg.src = "assets/images/robot1-run-Sheet-4X.png";
+			rogueBotAnimRunningImg.src = "assets/images/playerbot-run-Sheet-4X.png";
 
 			// Running with Gun - 512px x 512x / Frame
-			var rogueBotAnimRunningGunImg = new Image();
-			rogueBotAnimRunningGunImg.src = "assets/images/robot1-run-gun-Sheet-4X.png";
+			var rogueBotAnimRunningShootingImg = new Image();
+			rogueBotAnimRunningShootingImg.src = "assets/images/playerbot-run-shoot-Sheet-4X.png";
 
 			// Jumping - 512px x 512x / Frame
 			var rogueBotAnimJumpingImg = new Image();
-			rogueBotAnimJumpingImg.src = "assets/images/robot1-jumping-Sheet-4X.png";
+			rogueBotAnimJumpingImg.src = "assets/images/playerbot-jumping-Sheet-4X.png";
 
 			// Shooting - 512px x 512x / Frame
 			var rogueBotAnimShootingImg = new Image();
-			rogueBotAnimShootingImg.src = "assets/images/robot1-shooting-Sheet-4X.png";
+			rogueBotAnimShootingImg.src = "assets/images/playerbot-shoot-Sheet-4X.png";
 
 		// Create Animation Objects
 			function setAnimations() {
 				// RogueBot Animations
 					rogueBot.animation.idle = spriteAnim(rogueBotAnimIdleImg,256,256)
 					rogueBot.animation.running = spriteAnim(rogueBotAnimRunningImg,256,256)
-					rogueBot.animation.jumping = spriteAnim()
-					rogueBot.animation.shooting = spriteAnim()
+					rogueBot.animation.jumping = spriteAnim(rogueBotAnimJumpingImg,256,256)
+					rogueBot.animation.shooting = spriteAnim(rogueBotAnimShootingImg,256,256)
+					rogueBot.animation.runningshooting = spriteAnim(rogueBotAnimRunningShootingImg,256,256)
 
 			}
 
@@ -182,18 +183,44 @@
 					rogueBot.animation.running.renderSprite()
 					// Increments Frame Number
 					rogueBot.animation.running.frameNum += 1
+				} 
 
-				
-				
-				} 
 				else if (rogueBot.state == "jumping") {
-					rogueBot.animation.jumping.renderSprite(rogueBotAnimJumpingImg, 0 , 0 , 512 , 512, )
+					rogueBot.animation.jumping.renderSprite(rogueBotAnimJumpingImg, 0 , 0 , 512 , 512)
 				}
-				else if (rogueBot.state == "runninggunning") {
-					rogueBot.animation.running.renderSprite(rogueBotAnimRunningGunImg, 0 , 0 , 512 , 512, )
+
+				else if (rogueBot.state == "runningshooting") {
+					// Reverts Sprite to Initial Frame
+					if (rogueBot.animation.runningshooting.frameNum === 100) {
+						rogueBot.animation.runningshooting.frameNum = 0
+					}
+					if (rogueBot.animation.runningshooting.spriteFrameIndex === 10) {
+						rogueBot.animation.runningshooting.spriteFrameIndex = 0
+					}
+
+					// Increments Sprite Frame
+					rogueBot.animation.runningshooting.spriteFrameIndex = Math.floor(rogueBot.animation.runningshooting.frameNum / 10)
+					
+					rogueBot.animation.runningshooting.renderSprite()
+					// Increments Frame Number
+					rogueBot.animation.runningshooting.frameNum += 1
 				} 
+
 				else if (rogueBot.state == "shooting") {
-					rogueBot.animation.shooting.renderSprite(rogueBotAnimShootingImg, 0 , 0 , 512 , 512 )
+					// Reverts Sprite to Initial Frame
+					if (rogueBot.animation.shooting.frameNum === 40) {
+						rogueBot.animation.shooting.frameNum = 0
+					}
+					if (rogueBot.animation.shooting.spriteFrameIndex === 2) {
+						rogueBot.animation.shooting.spriteFrameIndex = 0
+					}
+
+					// Increments Sprite Frame
+					rogueBot.animation.shooting.spriteFrameIndex = Math.floor(rogueBot.animation.shooting.frameNum / 20)
+					
+					rogueBot.animation.shooting.renderSprite()
+					// Increments Frame Number
+					rogueBot.animation.shooting.frameNum += 1
 				}
 			}
 

@@ -138,10 +138,9 @@
 	function moveMap() {
 		// Dynamic Scaling of Map
 		
-		// Draws map when map file is loaded using global variables
-		$(document).ready(function() {
+		// Draws map when map file is loaded using global variables		$(document).ready(function() {
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapDynamicWidth,gMO.mapDynamicHeight);				
-		});
+
 		// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
 		gMO.mapX += (gMO.mapVelocity * scaleFactor);
 	};
@@ -154,7 +153,7 @@
 		// Order of Load Determines the Layer Order
 
 		// Clear Canvas
-		// ctx.clearRect(0,0, canvas.width, canvas.height);
+		ctx.clearRect(0,0, canvas.width, canvas.height);
 
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement

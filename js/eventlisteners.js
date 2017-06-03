@@ -41,7 +41,7 @@ function keyBind() {
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
             case 32: // space
-
+                rogueBot.state = "shooting"
                 break;
 
             case 37: // left
