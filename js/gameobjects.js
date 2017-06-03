@@ -8,11 +8,11 @@
 			// Center (1/2 Canvas Width)
 			this.positionX = canvas.width / 2,
 			// Set Sprite Location on Map Floor
-			this.positionY = gMO.mapFloor;
+			this.positionY = gMO.mapFloor
 			// RogueBot Initial Velocity in pixels/frame				
 			this.velocity = 5;
 			// RogueBot Jump Velocity
-			this.jumpVelocity = 34 * scaleFactor;
+			this.jumpVelocity = 34 * scaleFactor
 			// State Property can have values: "idle", "jump", "running"
 			this.state = ""
 		}
@@ -52,12 +52,12 @@
 		var name = "enemy1";
 		var health = 100;
 		enemyBot = new createEnemyObject(name,health)
-		spriteEnemyBot.src = "assets/images/megaman"; 
+		spriteEnemyBot.src = 'assets/images/megaman.png'; 
 		// DEBUG
 		console.log("Enemy " + name + " has been spawned");
 		console.log(enemyBot);
 		// Return Object
-		return enemyBot
+		// return enemyBot
 	}
 	function loadEnemy() {
 		enemyBotArray.push(createEnemy())
@@ -65,7 +65,7 @@
 	// Enemy Array
 	var enemyBotArray = []
 
-	var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
+	// var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
 	// Math.Random() SPAWN RATE
 // TODO USe Array to add and append projectilej=objects
 // Create Projectile
@@ -82,6 +82,7 @@
 	function loadProjectileObject() {
 		projectileArray.push( new createProjectileObject(1) )
 	}
+
 	loadProjectileObject()
 // Unload Projectile
 	// Removes projectile upon collision
@@ -159,7 +160,7 @@
 // Animation Render Loop 
 	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
 	function renderAnim() {
-		rogueBotAnimSelector()
+		// rogueBotAnimSelector() 		
 		// Cannot have loop (Lag)
 		// requestAnimationFrame(renderAnim)
 	}

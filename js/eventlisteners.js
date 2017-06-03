@@ -111,7 +111,7 @@ function keyBind() {
             // TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
             $('canvas').attr({
                 width: ($(window).width()),
-                height: ($(window).height())
+                // height: ($(window).height())
             });
             canvasWidthFinal = canvas.width;
             canvasHeightFinal = canvas.height;
