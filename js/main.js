@@ -10,7 +10,7 @@
 	var scaleFactor; // Width, Height, Velocity, positions
 
 	// Declare Sprite Objects
-	var rogueBot;
+	var rogueBot = {};
 	var enemyBot;
 	// Declare Image Objects
 	var mapImage = new Image();   
@@ -73,12 +73,15 @@
 				// Initialize Map 
 				initMap();
 
+				// Start Music 
+
 				// Initialize Collision MAp
 				// initCollisionMap();
 
 				// Create Character Objects
 				createCharacter();
 				createEnemy();	
+				setAnimations();
 				// loadRogueBot();
 
 				// Initialize Time Object and Set Font Rendering Properties
@@ -151,15 +154,18 @@
 		// Order of Load Determines the Layer Order
 
 		// Clear Canvas
-		ctx.clearRect(0,0, canvas.width, canvas.height);
+		// ctx.clearRect(0,0, canvas.width, canvas.height);
 
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement
 		moveMap();
 		// collisionMapMove();
-		loadRogueBot();	
+		// loadRogueBot();	
 		// Checks if character is in jump state and begins jump animation
-		charJump();
+		// charJump();
+		if (rogueBot.positionY = gMO.mapFloor) {
+			rogueBot.state = "idle"
+		}
 		// setFontSize();
 		updateTime();	
 		updateKills();
@@ -170,12 +176,8 @@
 		// console.log(collideState)
 		// Initiates Animation Render Loop
 		// For every 5 frames of the game render, 1 frame of sprite animation is rendered (12)
-		for (var i = 6; i > 5; i--) {
-			// renderAnim();	
-			if (i == 1) {
-				i = 6;
-			};
-		}
+		renderAnim();	
+
 		requestAnimationFrame(render);
 	}
 

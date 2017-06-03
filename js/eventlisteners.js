@@ -120,7 +120,7 @@ function keyBind() {
             initMap();
             rogueBot.positionY = gMO.mapFloor;
 
-            loadRogueBot();
+            // loadRogueBot();
             // setFontSize();
             console.log("Window Resized");
         });
