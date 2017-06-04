@@ -231,7 +231,115 @@ var collisionMapArray = [
     ]
     ,
     stairs3 = [
-        
+        // Section 1
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 2336,
+            rightBound: 2368,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 2 
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 2368,
+            rightBound: 2400,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 3 
+        {
+            topBound: 416,
+            bottomBound: 512,
+            leftBound: 2400,
+            rightBound: 2432,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 4
+        {
+            topBound: 384,
+            bottomBound: 512,
+            leftBound: 2432,
+            rightBound: 2464,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 5
+        {
+            topBound: 352,
+            bottomBound: 512,
+            leftBound: 2464,
+            rightBound: 2528,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Spikes
+        {
+            topBound: 512,
+            bottomBound: 544,
+            leftBound: 2528,
+            rightBound: 2624,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 6
+        {
+            topBound: 352,
+            bottomBound: 512,
+            leftBound: 2624,
+            rightBound: 2688,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 7
+        {
+            topBound: 384,
+            bottomBound: 512,
+            leftBound: 2688,
+            rightBound: 2720,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 8 
+        {
+            topBound: 416,
+            bottomBound: 512,
+            leftBound: 2720,
+            rightBound: 2752,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 9
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 2752,
+            rightBound: 2784,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 10
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 2784,
+            rightBound: 2816,
+            solid: true,
+			floating: false
+        }
     ]
 ]
 
