@@ -52,28 +52,67 @@ var collisionMapArray = [
     }
     ,
     box1 = {
-        
+        topBound: 448,
+        bottomBound: 512,
+        leftBound: 544,
+        rightBound: 576,
+        solid: true,
+        floating: false
     }
     ,
 	stairs1 = [
 		// Section 1
 		{
-			
+			topBound: 480,
+            bottomBound: 512,
+            leftBound: 960,
+            rightBound: 992,
+            solid: true,
+			floating: false
 		}
 		,
 		// Section 2
 		{
-			topBound: 336,
-			bottomBound: 384,
-			leftBound: 744,
-			rightBound: 768,
+			topBound: 448,
+			bottomBound: 512,
+			leftBound: 992,
+			rightBound: 1024,
 			solid: true,
 			floating: false
 		}
+        ,
 		// Section 3
+        {
+            topBound: 416,
+            bottomBound: 512,
+            leftBound: 1024,
+            rightBound: 1120,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 4
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 1120,
+            rightBound: 1152,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 5
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 1152,
+            rightBound: 1184,
+            solid: true,
+			floating: false
+        }
 	]
 	,
-	platform2 = [
+	fplatform2 = [
 	
 	]
 	,
