@@ -178,7 +178,6 @@
 
 		// Initiates Animation Render Loop
 		renderAnim();	
-
 		requestAnimationFrame(render);
 	}
 
