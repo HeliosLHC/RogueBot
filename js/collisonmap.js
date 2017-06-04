@@ -10,6 +10,7 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
+        ,
         //Section 2
         {
             topBound: 448,
@@ -19,6 +20,7 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
+        ,
         //Section 3
         {
             topBound: 416,
@@ -28,6 +30,7 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
+        ,
         //Section 4
         {
             topBound: 448,
@@ -47,6 +50,11 @@ var collisionMapArray = [
         solid: true,
         floating: true
     }
+    ,
+    box1 = {
+        
+    }
+    ,
 	stairs1 = [
 		// Section 1
 		{
