@@ -139,9 +139,99 @@ var collisionMapArray = [
     ]
     ,
     stairs2 = [
+        // Section 1
         {
-            
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 1824,
+            rightBound: 1856,
+            solid: true,
+			floating: false
         }
+        ,
+        // Section 2
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 1856,
+            rightBound: 1888,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 3
+        {
+            topBound: 416,
+            bottomBound: 512,
+            leftBound: 1888,
+            rightBound: 1920,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 4 
+        {
+            topBound: 384,
+            bottomBound: 512,
+            leftBound: 1920,
+            rightBound: 1952,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Spikes
+        {
+            topBound: 512,
+            bottomBound: 544,
+            leftBound: 1952,
+            rightBound: 1984,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 5
+        {
+            topBound: 384,
+            bottomBound: 512,
+            leftBound: 1984,
+            rightBound: 2016,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 6
+        {
+            topBound: 416,
+            bottomBound: 512,
+            leftBound: 2016,
+            rightBound: 2048,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 7
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 2048,
+            rightBound: 2080,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 8
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 2080,
+            rightBound: 2112,
+            solid: true,
+			floating: false
+        }
+    ]
+    ,
+    stairs3 = [
+        
     ]
 ]
 
