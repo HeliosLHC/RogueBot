@@ -178,8 +178,9 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
-        ,
-        // Spikes
+    ]
+    ,
+    spike1 = [
         {
             topBound: 512,
             bottomBound: 544,
@@ -188,8 +189,10 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
-        ,
-        // Section 5
+    ]
+    ,
+    stairs3 = [
+        // Section 1
         {
             topBound: 384,
             bottomBound: 512,
@@ -199,7 +202,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 6
+        // Section 2
         {
             topBound: 416,
             bottomBound: 512,
@@ -209,7 +212,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 7
+        // Section 3
         {
             topBound: 448,
             bottomBound: 512,
@@ -219,7 +222,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 8
+        // Section 4
         {
             topBound: 480,
             bottomBound: 512,
@@ -230,7 +233,7 @@ var collisionMapArray = [
         }
     ]
     ,
-    stairs3 = [
+    stairs4 = [
         // Section 1
         {
             topBound: 480,
@@ -280,8 +283,9 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
-        ,
-        // Spikes
+    ]
+    ,
+    spike2 = [
         {
             topBound: 512,
             bottomBound: 544,
@@ -290,8 +294,10 @@ var collisionMapArray = [
             solid: true,
 			floating: false
         }
-        ,
-        // Section 6
+    ]
+    ,
+    stairs5 = [
+        // Section 1
         {
             topBound: 352,
             bottomBound: 512,
@@ -301,7 +307,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 7
+        // Section 2
         {
             topBound: 384,
             bottomBound: 512,
@@ -311,7 +317,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 8 
+        // Section 3
         {
             topBound: 416,
             bottomBound: 512,
@@ -321,7 +327,7 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 9
+        // Section 4
         {
             topBound: 448,
             bottomBound: 512,
@@ -331,12 +337,45 @@ var collisionMapArray = [
 			floating: false
         }
         ,
-        // Section 10
+        // Section 5
         {
             topBound: 480,
             bottomBound: 512,
             leftBound: 2784,
             rightBound: 2816,
+            solid: true,
+			floating: false
+        }
+    ]
+    ,
+    fplatform4 = [
+        {
+            topBound: 384,
+            bottomBound: 416,
+            leftBound: 2880,
+            rightBound: 3040,
+            solid: true,
+			floating: true
+        }
+    ]
+    ,
+    fplatform5 = [
+        {
+            topBound: 416,
+            bottomBound: 448,
+            leftBound: 3424,
+            rightBound: 3488,
+            solid: true,
+			floating: true
+        }
+    ]
+    ,
+    spike3 = [
+        {
+            topBound: 512,
+            bottomBound: 544,
+            leftBound: 3392,
+            rightBound: 3520,
             solid: true,
 			floating: false
         }
