@@ -42,23 +42,27 @@ var collisionMapArray = [
         }
     ]
     ,
-    fplatform1 = {
-        topBound: 384,
-        bottomBound: 416,
-        leftBound: 256,
-        rightBound: 224,
-        solid: true,
-        floating: true
-    }
+    fplatform1 = [
+        {
+            topBound: 384,
+            bottomBound: 416,
+            leftBound: 256,
+            rightBound: 224,
+            solid: true,
+            floating: true
+        }
+    ]
     ,
-    box1 = {
-        topBound: 448,
-        bottomBound: 512,
-        leftBound: 544,
-        rightBound: 576,
-        solid: true,
-        floating: false
-    }
+    box1 = [
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 544,
+            rightBound: 576,
+            solid: true,
+            floating: false
+        }
+    ]
     ,
 	stairs1 = [
 		// Section 1
@@ -113,9 +117,32 @@ var collisionMapArray = [
 	]
 	,
 	fplatform2 = [
-	
+        {
+            topBound: 352,
+            bottomBound: 384,
+            leftBound: 1248,
+            rightBound: 1376,
+            solid: true,
+			floating: true
+        }
 	]
 	,
+    fplatform3 = [
+        {
+            topBound: 288,
+            bottomBound: 320,
+            leftBound: 1472,
+            rightBound: 1600,
+            solid: true,
+			floating: true
+        }
+    ]
+    ,
+    stairs2 = [
+        {
+            
+        }
+    ]
 ]
 
 	
