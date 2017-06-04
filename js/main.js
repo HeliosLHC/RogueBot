@@ -6,7 +6,7 @@
 		var debugEnabled = false;
 
 	// GLOBAL SCALE FACTOR
-	// Set Scale Factor based on screen resolution dimensions relative to 504 (height only)
+	// Set Scale Factor based on screen resolution dimensions relative to 672 (height only)
 	var scaleFactor; // Width, Height, Velocity, positions
 
 	// Declare Sprite Objects
@@ -32,17 +32,15 @@
 		// Initial Map Dimensions
 		mapWidth: null,
 		mapHeight: null,
-		// Scaled Map Dimensions
-		mapDynamicHeight: null,
-		mapDynamicWidth: null
 	}
 
 // Initialization Functions (Called Only Once)
 	// Resize Canvas
 			$('canvas').attr({
 				width: ($(window).width()),
-				// height: ($(window).height())
-				height: 504
+				// height: ($(window).height()),
+				// width: 800,
+				height: 672
 
 			});		
 		
@@ -67,7 +65,7 @@
 		function gameStart() {
 			// Asset Initialization
 				// Loads Map Image
-				mapImage.src = 'assets/images/finalmap_compressed.jpg';
+				mapImage.src = 'assets/images/100.png';
 			// Waits for map to load before executing rest of initialization
 			mapImage.addEventListener('load', function() {
 				// Initialize Map 
@@ -120,31 +118,23 @@
 			gMO.mapWidth = mapImage.width;
 			gMO.mapHeight = mapImage.height;
 
-			// Calculate Scaled map dimensions
-			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / gMO.mapHeight;
-			gMO.mapDynamicHeight = canvas.height;
-
-			// Set Scaling Factor			
-			scaleFactor = gMO.mapDynamicHeight / 504;
 			console.log("Map Drawn");
 			// Set Map Floor Value
-			gMO.mapFloor = 380;
+			gMO.mapFloor = 510;
 
 	
 
-		// Resize Event
-		// gMO.mapX = scaleFactor;
-		// DEBUG
+
 	}
 	// Use 2d renderer's drawImage method
 	function moveMap() {
 		// Dynamic Scaling of Map
 		
 		// Draws map when map file is loaded using global variables		$(document).ready(function() {
-			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapDynamicWidth,gMO.mapDynamicHeight);				
+			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapWidth,gMO.mapHeight);				
 
 		// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
-		gMO.mapX += (gMO.mapVelocity * scaleFactor);
+		gMO.mapX += (gMO.mapVelocity);
 	};
 
 
@@ -166,7 +156,7 @@
 		charJump();
 
 		// Move State Updates into Collison JS File
-		
+
 		// Check if Character Hits Map FLoor, if true, stop the jump physics
 		if (rogueBot.positionY >= gMO.mapFloor && !(keyPressState == true)) {
 			rogueBot.state = "idle"

@@ -156,6 +156,7 @@ function keyBind() {
             // setFontSize();
             console.log("Window Resized");
         });
+        
 
         // Checks if game window is not in focus
         $(window).focusout(function(event) {
