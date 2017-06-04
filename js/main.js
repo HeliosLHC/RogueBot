@@ -126,7 +126,7 @@
 			scaleFactor = gMO.mapDynamicHeight / 974;
 			console.log("Map Drawn");
 			// Set Map Floor Value
-			gMO.mapFloor = 0.788*974*scaleFactor;
+			gMO.mapFloor = 620;
 
 	
 
@@ -161,10 +161,10 @@
 		// collisionMapMove();
 		// loadRogueBot();	
 		// Checks if character is in jump state and begins jump animation
-		// charJump();
+		charJump();
 
 		// Move State Updates into Collison JS File
-		if (rogueBot.positionY = gMO.mapFloor && !(keyPressState == true)) {
+		if (rogueBot.positionY == gMO.mapFloor && !(keyPressState == true)) {
 			rogueBot.state = "idle"
 		}
 

@@ -3,6 +3,7 @@ var canvasHeightInit;
 var canvasWidthFinal;
 var canvasHeightFinal;
 var keyPressState;
+var keyCodeArray = [];
 
 // TODO Split into separate event listeners to allow individual disabling
 // Key Binding
@@ -41,6 +42,9 @@ function keyBind() {
         // jQuery ".which" method returns keycode for event "e"
         switch (e.which) {
             case 32: // space
+                // Add Key to Key Array
+                keyCodeArray[e.which] = true
+
                 rogueBot.state = "shooting"
                 break;
 
@@ -48,6 +52,8 @@ function keyBind() {
                 // Check Map Collision
                 // Checks if Collision occurs before setting map velocity
                 if (collideState != "left") {
+                    // Add Key to Key Array
+                    keyCodeArray[e.which] = true
                     // Positive Map Velocity = Map Moves Right
                     gMO.mapVelocity = rogueBot.velocity;
 
@@ -63,7 +69,7 @@ function keyBind() {
 
             case 38: // up
                 // Prevent Player from pressing or holding "UP" while character is jumping
-                if (rogueBot.state != "jump" ) {
+                if (rogueBot.state != "jumping" ) {
                     upPressTime = new Date();
 
                     // Set RogueBot State
@@ -71,12 +77,15 @@ function keyBind() {
                 };
 
                 // Set Jump State - charJump() called if rogueBot.state = "jump"
-                rogueBot.state = "jump";
+                rogueBot.state = "jumping";
                 console.log("Jumping");
                 break;
 
             case 39: // right
                 if (collideState != "right") {
+                    // Add Key to Key Array
+                    keyCodeArray[e.which] = true
+
                     // Negative Map Velocity = Map Moves Left				
                     gMO.mapVelocity = -rogueBot.velocity;
      
@@ -103,11 +112,14 @@ function keyBind() {
         keyPressState = false
         switch (e.which) {
             case 32:
+                keyCodeArray[e.which] = false
                 break;
             case 37:
+                keyCodeArray[e.which] = false
                 gMO.mapVelocity = 0;
                 break;
             case 39:
+                keyCodeArray[e.which] = false
                 gMO.mapVelocity = 0;
                 break;
             default:
@@ -146,4 +158,11 @@ function keyBind() {
         });    
     });
     
+}
+function keyComboCheck() {
+    if (keyCodeArray[32] && keyCodeArray[37] || keyCodeArray[32] && keyCodeArray[39]) {
+        return true
+    } else {
+        return false
+    }
 }
