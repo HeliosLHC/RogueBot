@@ -12,11 +12,13 @@
 			// RogueBot Initial Velocity in pixels/frame				
 			this.velocity = 5;
 			// RogueBot Jump Velocity
-			this.jumpVelocity = 34
+			this.jumpVelocity = 25
 			// State Property can have values: "idle", "jump", "running"
 			this.state = ""
 			// Create Animation Sub-Object
 			this.animation = {}
+
+			this.projectileArray = []
 
 			return this
 		}
@@ -71,23 +73,17 @@
 
 	// var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
 	// Math.Random() SPAWN RATE
-// TODO USe Array to add and append projectilej=objects
+// TODO Destory Projectiles Upon Collision or Off Screen
 // Create Projectile
 	// Create Projectile Constructor
-	function createProjectileObject(index) {
-		this.name = index,
-		this.positionX = 0,
-		this.positionY = 0,
+	function createProjectileObject(x,y) {
+		this.positionX = x + 20,
+		this.positionY = y - 35,
 		// Bullet Velocity in pixels/frame
-		this.velocity = 10
-	}
-// Load Projectiles
-	var projectileArray = []
-	function loadProjectileObject() {
-		projectileArray.push( new createProjectileObject(1) )
+		// this.velocity = 15,
+		this.animation = spriteAnim(rogueBotProjectile,32,32,this.positionX,this.positionY,"playerProjectile")
 	}
 
-	loadProjectileObject()
 // Unload Projectile
 	// Removes projectile upon collision
 	function killProjectile(index) {
@@ -95,73 +91,76 @@
 	} 
 // Animations (Separate Animation Loop)
 	// Global Sprite Animation Function
-		function spriteAnim(image,width,height) {
+		function spriteAnim(image,width,height,posX,posY,spriteType) {
 			var sprite = {
 				image: image,
-				context: null,
+				type: spriteType,
 				width: width,
 				height: height,
+				positionX: posX,
+				positionY: posY,
 				frameNum: 1,
 				spriteFrameIndex: 1,
-				// image: imgObject,
+				spriteHeightCheck: function() {
+					if (this.type == "playerProjectile") {
+							return this.positionY
+						} 
+						else if (rogueBot.state == "jumping") {
+							return rogueBot.positionY - 64
+						} 
+
+						else {
+							return eval(gMO.mapFloor - 58)
+						}
+				},
 				renderSprite: function(img, sx, sy, sw, sh, dx, dy, dw, dh) {
 					// ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh)
 					// ctx.drawImage(img, sx, sy, sw * frameNum, sh, dx, dy, dw, dh)
 					// Move constants into animationSelector()
-					function playerHeightCheck() {
-						if (rogueBot.state == "jumping") {
-							return rogueBot.positionY - 256
-						} 
-
-							else {
-							return eval(gMO.mapFloor - 248)
-						}
-					}
-					ctx.drawImage(this.image, 0 + this.width * this.spriteFrameIndex, 0, this.width, this.height, canvas.width / 2 - 128 , playerHeightCheck() , this.width, this.width)
+					ctx.drawImage(this.image, 0 + this.width * this.spriteFrameIndex, 0, this.width, this.height, this.positionX , this.spriteHeightCheck() , this.width, this.width)
 				}
 			}
 			// Returns the sprite object to the caller function
 			return sprite
 		}
-
+		// TODO Move 64 into its own global setting variable
 	// RogueBot Animations
 		// Load Spritesheet
-			// Idle - 256px x 256px / Frame
+			// Idle - 64px x 64px / Frame
 			var rogueBotAnimIdleImg = new Image();
-			rogueBotAnimIdleImg.src = "assets/images/playerbot-idle-Sheet-4X.png";
+			rogueBotAnimIdleImg.src = "assets/images/playerbot-idle-Sheet.png";
 
-			// Running - 256px x 256px / Frame
+			// Running - 64px x 64px / Frame
 			var rogueBotAnimRunningImg = new Image();
-			rogueBotAnimRunningImg.src = "assets/images/playerbot-run-Sheet-4X.png";
+			rogueBotAnimRunningImg.src = "assets/images/playerbot-run-Sheet.png";
 
-			// Running with Gun - 256px x 256px / Frame
+			// Running with Gun - 64px x 64px / Frame
 			var rogueBotAnimRunningShootingImg = new Image();
-			rogueBotAnimRunningShootingImg.src = "assets/images/playerbot-run-shoot-Sheet-4X.png";
+			rogueBotAnimRunningShootingImg.src = "assets/images/playerbot-run-shoot-Sheet.png";
 
-			// Jumping - 256px x 256px / Frame
+			// Jumping - 64px x 64px / Frame
 			var rogueBotAnimJumpingImg = new Image();
-			rogueBotAnimJumpingImg.src = "assets/images/playerbot-jump-Sheet-Mod-4X.png";
+			rogueBotAnimJumpingImg.src = "assets/images/playerbot-jump-Sheet-Mod.png";
 
-			// Shooting - 256px x 256px / Frame
+			// Shooting - 64px x 64px / Frame
 			var rogueBotAnimShootingImg = new Image();
-			rogueBotAnimShootingImg.src = "assets/images/playerbot-shoot-Sheet-4X.png";
+			rogueBotAnimShootingImg.src = "assets/images/playerbot-shoot-Sheet.png";
 
-			// Destroyed - 256px x 256px / Frame
+			// Destroyed - 64px x 64px / Frame
 			var rogueBotAnimDestroyedImg = new Image();
-			rogueBotAnimDestroyedImg.src = "assets/images/playerbot-jump-Sheet-Mod-4X.png"
+			rogueBotAnimDestroyedImg.src = "assets/images/playerbot-damaged-Sheet.png"
 		// Create Animation Objects
 			function setAnimations() {
 				// RogueBot Animations
-					rogueBot.animation.idle = spriteAnim(rogueBotAnimIdleImg,256,256)
-					rogueBot.animation.running = spriteAnim(rogueBotAnimRunningImg,256,256)
-					rogueBot.animation.jumping = spriteAnim(rogueBotAnimJumpingImg,256,256)
-					rogueBot.animation.shooting = spriteAnim(rogueBotAnimShootingImg,256,256)
-					rogueBot.animation.runningshooting = spriteAnim(rogueBotAnimRunningShootingImg,256,256)
-					rogueBot.animation.destroyed = spriteAnim(rogueBotAnimDestroyedImg,256,256)
+					rogueBot.animation.idle = spriteAnim(rogueBotAnimIdleImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62), "player")
+					rogueBot.animation.running = spriteAnim(rogueBotAnimRunningImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+					rogueBot.animation.jumping = spriteAnim(rogueBotAnimJumpingImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+					rogueBot.animation.shooting = spriteAnim(rogueBotAnimShootingImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+					rogueBot.animation.runningshooting = spriteAnim(rogueBotAnimRunningShootingImg,64,64,canvas.width / 2 - 32,eval(gMO.mapFloor - 62) ,"player")
+					rogueBot.animation.destroyed = spriteAnim(rogueBotAnimDestroyedImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")		
 			}
 
 		// Animation Trigger and Render (Select Which Animation to Render)
-		// Uses global RogueBot State to determine Animation Type
 			function rogueBotAnimSelector() {
 				if (rogueBot.state == "idle") {
 					// Reverts Sprite to Initial Frame
@@ -267,6 +266,42 @@
 			}
 
 	// Projectile Animations
+		// Load Spritesheet
+		var rogueBotProjectile = new Image();
+		rogueBotProjectile.src = "assets/images/playerbot-bullet-Sheet.png"
+
+		var enemyBotProjectile = new Image();
+		enemyBotProjectile.src = "assets/images/enemybot-bullet-Sheet.png"
+
+		// Create Animation Objects
+		// rogueBot.projectileArray = []
+		// enemyBot.projectileArray = []
+
+		// Renders Projectiles
+		function projectileAnimation() {
+			// Check if Projectiles Exist
+			if (rogueBot.projectileArray.length > 0) {
+				for (var i = rogueBot.projectileArray.length - 1; i >= 0; i--) {
+					// Reverts Sprite to Initial Frame
+						if (rogueBot.projectileArray[i].animation.frameNum === 30) {
+							rogueBot.projectileArray[i].animation.frameNum = 0
+						}
+						if (rogueBot.projectileArray[i].animation.spriteFrameIndex === 3) {
+							rogueBot.projectileArray[i].animation.spriteFrameIndex = 0
+						}
+
+						// Increments Sprite Frame
+						rogueBot.projectileArray[i].animation.spriteFrameIndex = Math.floor(rogueBot.projectileArray[i].animation.frameNum / 10)
+						
+						rogueBot.projectileArray[i].animation.renderSprite()
+						// Increments Frame Number
+						rogueBot.projectileArray[i].animation.frameNum += 1
+
+						// Moves Projectile
+						rogueBot.projectileArray[i].animation.positionX += 10
+				}
+			}
+		}
 
 // Animation Render Loop 
 	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
@@ -275,5 +310,8 @@
 		// keyComboCheck()
 
 		rogueBotAnimSelector() 		
+		projectileAnimation()
+		// projectileAnimation(enemyBot.projectileArray)
+
 		// requestAnimationFrame(renderAnim) (Causes Lag)
 	}

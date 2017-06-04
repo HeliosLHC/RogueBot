@@ -5,7 +5,7 @@
 	// Sets initial time
 	function initTimeAndFont() {
 		startTime = new Date();
-		fontSize = scaleFactor * fontSize + "px";
+		fontSize = fontSize + "px";
 	}
 	// BUG - Causing Issue with Text Rendering
 	// function setFontSize() {

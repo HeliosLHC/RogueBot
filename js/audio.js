@@ -11,4 +11,4 @@ soundObject = {
 // Set bgMusic Sub-Object to Loop Mode
 soundObject.bgMusic.loop = true;
 
-soundObject.bgMusic.play() 
+// soundObject.bgMusic.play() 

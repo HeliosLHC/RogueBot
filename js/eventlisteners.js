@@ -45,7 +45,12 @@ function keyBind() {
                 // Add Key to Key Array
                 keyCodeArray[e.which] = true
 
+                // Set RogueBot State to Shooting
                 rogueBot.state = "shooting"
+
+                // Creates new Projectile Element in Array 
+                rogueBot.projectileArray.push(new createProjectileObject(canvas.width / 2,rogueBot.positionY))
+
                 break;
 
             case 37: // left

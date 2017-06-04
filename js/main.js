@@ -2,11 +2,11 @@
 	// Settings
 
 		// Font Size in px
-		var fontSize = 60;
+		var fontSize = 40;
 		var debugEnabled = false;
 
 	// GLOBAL SCALE FACTOR
-	// Set Scale Factor based on screen resolution dimensions relative to 974 (height only)
+	// Set Scale Factor based on screen resolution dimensions relative to 504 (height only)
 	var scaleFactor; // Width, Height, Velocity, positions
 
 	// Declare Sprite Objects
@@ -42,7 +42,7 @@
 			$('canvas').attr({
 				width: ($(window).width()),
 				// height: ($(window).height())
-				height: 700
+				height: 504
 
 			});		
 		
@@ -67,7 +67,7 @@
 		function gameStart() {
 			// Asset Initialization
 				// Loads Map Image
-				mapImage.src = 'assets/images/mariotest3x.png';
+				mapImage.src = 'assets/images/finalmap.png';
 			// Waits for map to load before executing rest of initialization
 			mapImage.addEventListener('load', function() {
 				// Initialize Map 
@@ -119,14 +119,16 @@
 		// Set values for map dimensions
 			gMO.mapWidth = mapImage.width;
 			gMO.mapHeight = mapImage.height;
+
 			// Calculate Scaled map dimensions
 			gMO.mapDynamicWidth = gMO.mapWidth * canvas.height / gMO.mapHeight;
 			gMO.mapDynamicHeight = canvas.height;
+
 			// Set Scaling Factor			
-			scaleFactor = gMO.mapDynamicHeight / 974;
+			scaleFactor = gMO.mapDynamicHeight / 504;
 			console.log("Map Drawn");
 			// Set Map Floor Value
-			gMO.mapFloor = 620;
+			gMO.mapFloor = 380;
 
 	
 
@@ -153,13 +155,13 @@
 		// Order of Load Determines the Layer Order
 
 		// Clear Canvas
-		ctx.clearRect(0,0, canvas.width, canvas.height);
+		// ctx.clearRect(0,0, canvas.width, canvas.height);
 
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement
 		moveMap();
 		// collisionMapMove();
-		// loadRogueBot();	
+
 		// Checks if character is in jump state and begins jump animation
 		charJump();
 
