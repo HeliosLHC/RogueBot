@@ -425,9 +425,69 @@ var collisionMapArray = [
     ]
     ,
     platform2 = [
-        
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 4320,
+            rightBound: 4576,
+            solid: true,
+			floating: false
+        }
     ]
-    
+    ,
+    platform3 = [
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 4640,
+            rightBound: 4800,
+            solid: true,
+			floating: false
+        }
+    ]
+    ,
+    stairs7 = [ 
+        // Section 1
+        {
+            topBound: 480,
+            bottomBound: 512,
+            leftBound: 4896,
+            rightBound: 4928,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 2 
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 4928,
+            rightBound: 4960,
+            solid: true,
+			floating: false
+        }
+        ,
+        // Section 3 (trophy)
+        {
+            topBound: 421,
+            bottomBound: 512,
+            leftBound: 4960,
+            rightBound: 4992,
+            solid: true,
+			floating: false
+        }
+    ]
+    , 
+    fplatform7 = [
+        {
+            topBound: 256,
+            bottomBound: 320,
+            leftBound: 4832,
+            rightBound: 4992,
+            solid: true,
+			floating: true
+        }
+    ]
 ]
 
 	
