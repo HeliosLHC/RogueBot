@@ -67,7 +67,7 @@
 		function gameStart() {
 			// Asset Initialization
 				// Loads Map Image
-				mapImage.src = 'assets/images/finalmap.png';
+				mapImage.src = 'assets/images/finalmap_compressed.jpg';
 			// Waits for map to load before executing rest of initialization
 			mapImage.addEventListener('load', function() {
 				// Initialize Map 
@@ -155,7 +155,7 @@
 		// Order of Load Determines the Layer Order
 
 		// Clear Canvas
-		// ctx.clearRect(0,0, canvas.width, canvas.height);
+		ctx.clearRect(0,0, canvas.width, canvas.height);
 
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement
@@ -166,8 +166,11 @@
 		charJump();
 
 		// Move State Updates into Collison JS File
-		if (rogueBot.positionY == gMO.mapFloor && !(keyPressState == true)) {
+		
+		// Check if Character Hits Map FLoor, if true, stop the jump physics
+		if (rogueBot.positionY >= gMO.mapFloor && !(keyPressState == true)) {
 			rogueBot.state = "idle"
+			rogueBot.positionY = gMO.mapFloor;
 		}
 
 		updateTime();	

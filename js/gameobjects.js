@@ -106,7 +106,7 @@
 							return this.positionY
 						} 
 						else if (rogueBot.state == "jumping") {
-							return rogueBot.positionY - 64
+							return rogueBot.positionY - 56
 						} 
 
 						else {
