@@ -37,9 +37,9 @@
 // Initialization Functions (Called Only Once)
 	// Resize Canvas
 			$('canvas').attr({
-				width: ($(window).width()),
+				// width: ($(window).width()),
 				// height: ($(window).height()),
-				// width: 800,
+				width: 1200,
 				height: 672
 
 			});		
@@ -128,13 +128,16 @@
 	}
 	// Use 2d renderer's drawImage method
 	function moveMap() {
-		// Dynamic Scaling of Map
-		
-		// Draws map when map file is loaded using global variables		$(document).ready(function() {
+		if (collideState = "") {
+
+			// Draws map when map file is loaded using global variables		$(document).ready(function() {
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapWidth,gMO.mapHeight);				
 
-		// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
-		gMO.mapX += (gMO.mapVelocity);
+			// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
+			gMO.mapX += (gMO.mapVelocity);
+		} 
+		
+		
 	};
 
 
@@ -168,8 +171,6 @@
 		debugTable();
 		// Check for Collision Events for All Objects and Map
 		collisionCheck();
-		// collisionCheckExec();
-		// console.log(collideState)
 
 		// Initiates Animation Render Loop
 		renderAnim();	
