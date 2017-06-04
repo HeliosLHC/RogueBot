@@ -26,7 +26,7 @@
 	var jumpTime;
 	// GLobal Map Object (Contains all Map Properties)
 	var gMO = {
-		mapX: 0,
+		mapX: 340,
 		mapY: 0,
 		mapVelocity: 0,
 		// Initial Map Dimensions
@@ -65,7 +65,7 @@
 		function gameStart() {
 			// Asset Initialization
 				// Loads Map Image
-				mapImage.src = 'assets/images/100.png';
+				mapImage.src = 'assets/images/finalmap.png';
 			// Waits for map to load before executing rest of initialization
 			mapImage.addEventListener('load', function() {
 				// Initialize Map 
@@ -122,20 +122,19 @@
 			// Set Map Floor Value
 			gMO.mapFloor = 510;
 
-	
 
 
 	}
 	// Use 2d renderer's drawImage method
 	function moveMap() {
-		if (collideState = "") {
-
 			// Draws map when map file is loaded using global variables		$(document).ready(function() {
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapWidth,gMO.mapHeight);				
 
 			// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
-			gMO.mapX += (gMO.mapVelocity);
-		} 
+			if (collideState == "") {
+				gMO.mapX += (gMO.mapVelocity);
+			}
+			
 		
 		
 	};
@@ -149,7 +148,8 @@
 
 		// Clear Canvas
 		ctx.clearRect(0,0, canvas.width, canvas.height);
-
+		// Check for Collision Events for All Objects and Map
+		collisionCheck();
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement
 		moveMap();
@@ -169,18 +169,20 @@
 		updateTime();	
 		updateKills();
 		debugTable();
-		// Check for Collision Events for All Objects and Map
-		collisionCheck();
+		
 
 		// Initiates Animation Render Loop
 		renderAnim();	
+
+		// Check if Game Ends
+		checkGameEnd();
 		requestAnimationFrame(render);
 	}
 
 	// Check if Game End
 		// Create gameEnd event
-		function gameEnd() {
-			if (true) {
+		function checkGameEnd() {
+			if (rogueBot.health <= 0) {
 				calculateScore(killCount,timeDelta);
 			} 
 			else {

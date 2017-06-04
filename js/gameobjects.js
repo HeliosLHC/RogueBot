@@ -30,9 +30,6 @@
 		var health = 100;
 		// Creates RogueBot Object with the values set above
 		rogueBot = createCharacterObject(name,health);	
-		// Set Source Path for Sprite
-		spriteRogueBot.src = 'assets/images/megaman.png';
-		// Creates RogueBot Sprite Object
 
 		// DEBUG 
 		console.log(rogueBot);
