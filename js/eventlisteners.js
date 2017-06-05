@@ -51,6 +51,8 @@ function keyBind() {
                 // Creates new Projectile Element in Array 
                 rogueBot.projectileArray.push(new createProjectileObject(canvas.width / 2,rogueBot.positionY))
 
+                // Plays Projectile Fire Sound
+                soundObject.projectileFire.play()
                 break;
 
             case 37: // left

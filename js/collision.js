@@ -32,7 +32,7 @@
 							// 	collideState = "left"
 							// }
 							// Lower Bound
-							if (eval(Math.abs(gMO.mapX) >= collisionMapArray[i][j].leftBound && Math.abs(gMO.mapX) <= collisionMapArray[i][j].rightBound)) {
+							if (eval(-gMO.mapX + 590 >= collisionMapArray[i][j].leftBound && -gMO.mapX + 600 <= collisionMapArray[i][j].rightBound)) {
 								console.error("Collide Event")
 								collideState = "left"
 							}
