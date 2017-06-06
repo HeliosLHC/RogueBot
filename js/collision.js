@@ -35,9 +35,9 @@
 							}
 							// Lower Bound (Left Edge)
 							if (deltaDist >= collisionMapArray[i][j].leftBound && deltaDist <= collisionMapArray[i][j].rightBound) {
-								console.log(collisionMapArray[i][j])
-								console.error(collideState)
-								console.log(deltaDist + "px")
+								// console.log(collisionMapArray[i][j])
+								// console.error(collideState)
+								// console.log(deltaDist + "px")
 								collideState = "left"
 							}
 						} 

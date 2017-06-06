@@ -177,7 +177,10 @@
 
 		// Check if Game Ends
 		checkGameEnd();
-		requestAnimationFrame(render);
+		if (gameRun) {
+			requestAnimationFrame(render);
+		}
+		
 	}
 
 	// Check if Game End
