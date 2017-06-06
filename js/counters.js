@@ -15,7 +15,9 @@
 	function updateTime() {
 		// Get time since game start
 		currTime = new Date()
-		timeDelta = Math.floor((currTime - startTime) / 1000);
+        if (gameRun = true) {
+            timeDelta = Math.floor((currTime - startTime) / 1000);
+        }
 		// Draws Timer on Screen
 		// TODO add scaling to text
 		ctx.fillStyle = "white"
@@ -28,10 +30,11 @@
 		// console.log(timeDelta);
 	}
 // Kills
+    var killCount = 0;
 	// Kill Event
 
 	// Update Kill Count
-		var killCount;
+		
 	// Draw Kill Counter
 	function updateKills() {
 		ctx.fillStyle = "white"
@@ -43,9 +46,11 @@
 	}
 	
 // Score Algorithm based on Time and Kills
-	 function calculateScore (kills,time) {
-		gameScore = kills * 10 + timeDelta;
-	 }
+    var gameScore = 0;
+	function calculateScore (kills,time) {
+		gameScore = Math.round(kills * 100 + (1/timeDelta*100000));
+        return gameScore
+    }
 // DEBUG
 	function debugTable() {
 		ctx.fillStyle = "white"

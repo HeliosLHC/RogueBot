@@ -33,6 +33,7 @@
 		mapWidth: null,
 		mapHeight: null,
 	}
+    var gameRun = true;
 
 // Initialization Functions (Called Only Once)
 	// Resize Canvas
@@ -183,9 +184,13 @@
 		// Create gameEnd event
 		function checkGameEnd() {
 			if (rogueBot.health <= 0) {
-				calculateScore(killCount,timeDelta);
-			} 
-			else {
-				return;
-			}
+                gameRun = false;
+                ctx.fillStyle = "black"; 
+                ctx.fillRect(0,0,1200,672);
+                ctx.font = fontSize + " 'Press Start 2P'";
+                ctx.fillStyle = "white"; 
+                ctx.fillText("Game Over!", 600, 100)
+                ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
+                
+            } 
 		}
