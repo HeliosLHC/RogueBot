@@ -68,6 +68,7 @@
 //Health Bar
     function healthBarUpdate() {
         var HP = rogueBot.health;
+        //updates health bar according to rogue bot health
         $('progress').attr({value: HP});
     }
 	

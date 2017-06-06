@@ -84,9 +84,11 @@
 				createEnemy();	
 				setAnimations();
                 
+                //make health bar appear
                 if (gameBegin == true && gameRun == true) {
                     $('progress').css("display","block");
                 }
+                
 				// loadRogueBot();
 
 				// Initialize Time Object and Set Font Rendering Properties
@@ -195,13 +197,16 @@
 		function checkGameEnd() {
 			if (rogueBot.health <= 0) {
                 gameRun = false;
-                $('progress').css("display","none");
+                //hide health bar
+                $('progress').css("display","none"); 
+                //fill canvas black
                 ctx.fillStyle = "black"; 
                 ctx.fillRect(0,0,1200,672);
                 ctx.font = fontSize + " 'Press Start 2P'";
                 ctx.fillStyle = "white"; 
                 ctx.fillText("Game Over!", 600, 100)
                 ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
+                //make restart button appear
                 document.getElementById("restart-btn").style.display = "block";
                 $("#restart-btn").on('click', function(event) {
                     event.preventDefault();
