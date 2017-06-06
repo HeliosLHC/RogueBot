@@ -12,7 +12,7 @@
 			// RogueBot Initial Velocity in pixels/frame				
 			this.velocity = 5;
 			// RogueBot Jump Velocity
-			this.jumpVelocity = 25
+			this.jumpVelocity = 30
 			// State Property can have values: "idle", "jump", "running"
 			this.state = ""
 			// Create Animation Sub-Object
@@ -51,13 +51,15 @@
 			// RogueBot Initial Velocity in pixels/frame				
 			this.velocity = 5;
 			// RogueBot Jump Velocity
-			this.jumpVelocity = 25
+			this.jumpVelocity = 30
 			// State Property can have values: "idle", "jump", "running"
 			this.state = ""
 			// Create Animation Sub-Object
 			this.animation = {}
 
 			this.projectileArray = []
+
+			return this
 		}
 
 	// Dynamically Generate Random Stats for Enemy using Constructor
@@ -84,9 +86,14 @@
 
 
 	function spawnEnemy() {
+		// If maximum amount of enemies not reached, spawn more enemies
+		if (enemyBotArray.length < maxEnemies) {
+
 		var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
 		for (var i = 0; i < enemyBotSpawnRate; i++) {
 			enemyBotArray.push(createEnemy())
+
+		}
 			
 	}
 	}
@@ -128,7 +135,8 @@
 					if (this.type == "playerProjectile") {
 							return this.positionY
 						} 
-						else if (rogueBot.state == "jumping") {
+
+						else if (rogueBot.state == "jumping" && this.type == "player") {
 							return rogueBot.positionY - 56
 						} 
 
@@ -288,13 +296,10 @@
 				}
 			}
 
-	// Projectile Animations
+	// RogueBot Projectile Animations
 		// Load Spritesheet
 		var rogueBotProjectile = new Image();
 		rogueBotProjectile.src = "assets/images/playerbot-bullet-Sheet.png"
-
-		var enemyBotProjectile = new Image();
-		enemyBotProjectile.src = "assets/images/enemybot-bullet-Sheet.png"
 
 		// Create Animation Objects
 		// rogueBot.projectileArray = []
@@ -362,7 +367,7 @@
 	// 		}
 
 	// 	// Animation Trigger and Render (Select Which Animation to Render)
-	// 		function rogueBotAnimSelector() {
+	// 		function enemyBotAnimSelector() {
 	// 			if (enemyBot.state == "idle") {
 	// 				// Reverts Sprite to Initial Frame
 	// 				if (enemyBot.animation.idle.frameNum === 100) {
@@ -466,40 +471,37 @@
 	// 			}
 	// 		}
 
-	// // Projectile Animations
+	// // Enemy Projectile Animations
 	// 	// Load Spritesheet
-	// 	var rogueBotProjectile = new Image();
-	// 	rogueBotProjectile.src = "assets/images/playerbot-bullet-Sheet.png"
-
 	// 	var enemyBotProjectile = new Image();
 	// 	enemyBotProjectile.src = "assets/images/enemybot-bullet-Sheet.png"
 
 	// 	// Create Animation Objects
-	// 	// rogueBot.projectileArray = []
+	// 	// enemyBot.projectileArray = []
 	// 	// enemyBot.projectileArray = []
 
 	// 	// Renders Projectiles
 	// 	function projectileAnimation() {
 	// 		// Check if Projectiles Exist
-	// 		if (rogueBot.projectileArray.length > 0) {
-	// 			for (var i = rogueBot.projectileArray.length - 1; i >= 0; i--) {
+	// 		if (enemyBot.projectileArray.length > 0) {
+	// 			for (var i = enemyBot.projectileArray.length - 1; i >= 0; i--) {
 	// 				// Reverts Sprite to Initial Frame
-	// 					if (rogueBot.projectileArray[i].animation.frameNum === 30) {
-	// 						rogueBot.projectileArray[i].animation.frameNum = 0
+	// 					if (enemyBot.projectileArray[i].animation.frameNum === 30) {
+	// 						enemyBot.projectileArray[i].animation.frameNum = 0
 	// 					}
-	// 					if (rogueBot.projectileArray[i].animation.spriteFrameIndex === 3) {
-	// 						rogueBot.projectileArray[i].animation.spriteFrameIndex = 0
+	// 					if (enemyBot.projectileArray[i].animation.spriteFrameIndex === 3) {
+	// 						enemyBot.projectileArray[i].animation.spriteFrameIndex = 0
 	// 					}
 
 	// 					// Increments Sprite Frame
-	// 					rogueBot.projectileArray[i].animation.spriteFrameIndex = Math.floor(rogueBot.projectileArray[i].animation.frameNum / 10)
+	// 					enemyBot.projectileArray[i].animation.spriteFrameIndex = Math.floor(enemyBot.projectileArray[i].animation.frameNum / 10)
 						
-	// 					rogueBot.projectileArray[i].animation.renderSprite()
+	// 					enemyBot.projectileArray[i].animation.renderSprite()
 	// 					// Increments Frame Number
-	// 					rogueBot.projectileArray[i].animation.frameNum += 1
+	// 					enemyBot.projectileArray[i].animation.frameNum += 1
 
 	// 					// Moves Projectile
-	// 					rogueBot.projectileArray[i].animation.positionX += 10
+	// 					enemyBot.projectileArray[i].animation.positionX += 10
 	// 			}
 	// 		}
 	// 	}

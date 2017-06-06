@@ -20,44 +20,51 @@
 			// 		// Enemy
 			// }
 
+			// TODO calculated deltaYDist (Height) for all platforms
 
-			function globalCollisionCheck(collider, colliderObject) {
+			// DEPRECATED
+			// function globalCollisionCheck(collider, colliderObject)
+
+			function globalCollisionCheck() {
 				// Calculate Relative Distance of player 
-				var deltaDist = -gMO.mapX + 582; 
+				var deltaXDist = -gMO.mapX + 582; 
+				var deltaYDist = rogueBot.positionY -  gMO.mapFloor
 				// RogueBot-Map Loop
 				for (var i = 0; i < collisionMapArray.length; i++) {
 					for (var j = 0; j < collisionMapArray[i].length; j++) {
 						if (!collisionMapArray[i][j].floating) {
-							if (deltaDist + 36 >= collisionMapArray[i][j].leftBound && deltaDist + 36 <= collisionMapArray[i][j].rightBound) {
+
+							// Horizontal Collision
+
+							// Upper Bound
+							if (deltaXDist + 36 >= collisionMapArray[i][j].leftBound && deltaXDist + 36 <= collisionMapArray[i][j].rightBound) {
 								console.log(collisionMapArray[i][j])
 								console.error(collideState)
 								collideState = "right"
 							}
 							// Lower Bound (Left Edge)
-							else if (deltaDist >= collisionMapArray[i][j].leftBound && deltaDist <= collisionMapArray[i][j].rightBound) {
+							else if (deltaXDist >= collisionMapArray[i][j].leftBound && deltaXDist <= collisionMapArray[i][j].rightBound) {
 								console.log(collisionMapArray[i][j])
 								console.error(collideState)
-								console.log(deltaDist + "px")
+								console.log(deltaXDist + "px")
 								collideState = "left"
 							}
+
+							// Vertical Collision
+							else if (deltaYDist >= collisionMapArray[i][j].lowerBound - collisionMapArray[i][j].topBound) {
+								gMO.mapFloor = collisionMapArray[i][j].topbound
+								collideState = "bottom"
+							} 
+
 							else {
-								// collideState = ""
-							}
+							// collideState = ""
+						}
 
 						} 
-							// Check X Axis Collision
-							// Upper Bound (Right Edge)
 							
-						// Check Y Axis Collision
-							// Upper Bound
-
-							// Lower Bound
-						
-					
+										
 					}
-
-
-					
+				
 
 				}
 				// // RogueBot-Enemy Projectile Loop
@@ -122,20 +129,3 @@
 			
 
 		}
-// DEPRECATED
-// Global Collision Check 
-	// Uses gMO (Map Object) as "collider"
-	// Uses Object being tested for collision as "collideObject" 
-
-	// Check if Collsion Came from Right or Left
-	// Compares Character Position to the center of the colliderObject collision box
-	// function collideDirectionCheck(collider, colliderObject) {
-	// 	var collObjCenter = (colliderObject.leftBound + colliderObject.rightBound) / 2; 
-
-	// 	if (collObjCenter > collider.mapX) {
-	// 		return true;
-	// 	} 
-	// 	else {
-	// 		return false;
-	// 	}
-	// }

@@ -7,12 +7,27 @@
 	// Check for distance between Player and Enemy and maintain distance
 	// Load JSON Array for Collison and execute check per frame
 	// Iterate all checks for every rogueBot in array (use FOR loop to iterate whole array before next frame is rendered) 
-// Distance Between Enemy and Player in Pixels
-var enemyDistance = 300
-if ((rogueBot.mapX - enemyBot.mapX) < enemyDistance ) {
-	// Move EnemyBot Back
 
-}
-else if ((rogueBot.mapX - enemyBot.mapX) > enemyDistance ) {
-	// Move EnemyBot Closer
+// TODO Replace Delete with Splice for enemyBotArray in enemyCheck()
+
+// Distance Between Enemy and Player in Pixels
+// var enemyDistance = 300
+// if ((rogueBot.mapX - enemyBot.mapX) < enemyDistance ) {
+// 	// Move EnemyBot Back
+
+// }
+// else if ((rogueBot.mapX - enemyBot.mapX) > enemyDistance ) {
+// 	// Move EnemyBot Closer
+// }
+
+// Check for Enemy Death
+function enemyCheck() {
+	for (var i = enemyBotArray.length - 1; i >= 0; i--) {
+		if (enemyBotArray[i].health <= 0) {
+			
+			// Remove Enemy (Dead)
+			delete enemyBotArray[i]
+		
+		} 
+	}
 }

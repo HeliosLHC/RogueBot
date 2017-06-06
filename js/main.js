@@ -97,16 +97,11 @@
 		}
 
 // Load Map
- 	// TODO gameRescale() function with mapRescale() and spriteRescale() inside when eventlistene for window resize is triggered
-	// TODO Split Javascript File into separate components
 	// TODO Move render functions (map and characters) into gameRender() function
-	// TODO Move Jump Collision Check into new function and plae into collision.js
+	// TODO Move Jump Collision Check into new function and pass into collision.js
 	// TODO Debug Object with console.table()
-	// JSON Object include properties "solid" true or false and "floating" true or false
 	// TODO Move Global Vars and Initialization Functions into its own JS Module
 	// TODO Move Jump Collision into COllision.js
-	// Collision Check Function, set range for x and y that check becomes active, this input collisionbox data to check for match
-	// TODO Create JSON File for All Collision Map Data OR Create Multiple Objects per Collision Box
 	// Dynamic Collision State Generation
 	// Creates the Initial State of Map
 	// Change Map Floor as mapX changes (changes in height)
@@ -114,7 +109,6 @@
 
 		// Set source path for Map
 
-		// .load commented out to allow rogueBot to run prior to .load occurence
 		// Set values for map dimensions
 			gMO.mapWidth = mapImage.width;
 			gMO.mapHeight = mapImage.height;
@@ -132,7 +126,7 @@
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapWidth,gMO.mapHeight);				
 
 			// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
-			if (collideState == "") {
+			if (collideState == "" || collideState == "bottom") {
 				gMO.mapX += (gMO.mapVelocity);
 			}
 			
@@ -175,6 +169,9 @@
 		// Initiates Animation Render Loop
 		renderAnim();	
 
+		// Check Enemy Deaths
+		enemyCheck()
+
 		// Check if Game Ends
 		checkGameEnd();
 		if (gameRun) {
@@ -194,13 +191,18 @@
                 ctx.fillStyle = "white"; 
                 ctx.fillText("Game Over!", 600, 100)
                 ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
+
+                // Restart Button
                 document.getElementById("restart-btn").style.display = "block";
                 $("#restart-btn").on('click', function(event) {
                     event.preventDefault();
                     /* Act on the event */
                     $(this).hide(300);
                     // gameStart();
+
+                    // Refreshes Page Upon Click
                     location.reload();
+
                     // DEBUG
                     console.log("Game Started")
                 })
