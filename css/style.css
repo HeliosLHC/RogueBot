@@ -76,3 +76,25 @@ body {
     z-index: 1;
     display: none;
 }
+
+#healthbar {
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200px;
+    height: 20px;
+    padding: 3px;
+    background: #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    z-index: 1;
+    display: none;
+}
+
+
