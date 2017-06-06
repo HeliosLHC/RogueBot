@@ -97,4 +97,8 @@ body {
     display: none;
 }
 
+::-webkit-progress-value {
+    background: green;
+}
+
 
