@@ -83,6 +83,10 @@
 				createCharacter();
 				createEnemy();	
 				setAnimations();
+                
+                if (gameBegin == true && gameRun == true) {
+                    $('progress').css("display","block");
+                }
 				// loadRogueBot();
 
 				// Initialize Time Object and Set Font Rendering Properties
@@ -172,7 +176,7 @@
 		updateTime();	
 		updateKills();
 		debugTable();
-        //healthBarUpdate();
+        healthBarUpdate();
 		
 
 		// Initiates Animation Render Loop
@@ -191,6 +195,7 @@
 		function checkGameEnd() {
 			if (rogueBot.health <= 0) {
                 gameRun = false;
+                $('progress').css("display","none");
                 ctx.fillStyle = "black"; 
                 ctx.fillRect(0,0,1200,672);
                 ctx.font = fontSize + " 'Press Start 2P'";
