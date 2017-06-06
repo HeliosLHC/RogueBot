@@ -34,12 +34,16 @@
 								collideState = "right"
 							}
 							// Lower Bound (Left Edge)
-							if (deltaDist >= collisionMapArray[i][j].leftBound && deltaDist <= collisionMapArray[i][j].rightBound) {
-								// console.log(collisionMapArray[i][j])
-								// console.error(collideState)
-								// console.log(deltaDist + "px")
+							else if (deltaDist >= collisionMapArray[i][j].leftBound && deltaDist <= collisionMapArray[i][j].rightBound) {
+								console.log(collisionMapArray[i][j])
+								console.error(collideState)
+								console.log(deltaDist + "px")
 								collideState = "left"
 							}
+							else {
+								// collideState = ""
+							}
+
 						} 
 							// Check X Axis Collision
 							// Upper Bound (Right Edge)

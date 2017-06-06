@@ -63,14 +63,12 @@ function keyBind() {
                     keyCodeArray[e.which] = true
                     // Positive Map Velocity = Map Moves Right
                     gMO.mapVelocity = rogueBot.velocity;
-
+                    
                     // Set RogueBot State
                     rogueBot.state = "running"
 
                     break;
                 } else {
-                    collideState = ""
-
                     e.preventDefault();
                     break;
                 }
@@ -91,19 +89,18 @@ function keyBind() {
                 break;
 
             case 39: // right
-                if (collideState != "left") {
+                if (collideState != "right") {
                     // Add Key to Key Array
                     keyCodeArray[e.which] = true
 
                     // Negative Map Velocity = Map Moves Left				
                     gMO.mapVelocity = -rogueBot.velocity;
+     
                     // Set RogueBot State
                     rogueBot.state = "running"
 
                     break;
                 } else {
-                    collideState = ""
-                    
                     e.preventDefault();
                 }
                 break;

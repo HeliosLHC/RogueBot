@@ -58,7 +58,7 @@
 			gameStart();
 
 			// Disable Background Image 
-			$("#gameDiv").css('background-image', 'url("")');
+			$("#gameDiv").css('background-image', 'url("")').css('background-color', 'black');;
 			// DEBUG
 			console.log("Game Started")
 		})
@@ -199,8 +199,8 @@
                     event.preventDefault();
                     /* Act on the event */
                     $(this).hide(300);
-                    gameStart();
-
+                    // gameStart();
+                    location.reload();
                     // DEBUG
                     console.log("Game Started")
                 })

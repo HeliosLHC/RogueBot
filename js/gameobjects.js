@@ -45,14 +45,24 @@
 	function createEnemyObject(name,health) {
 			this.name = name,
 			this.health = health,
-			this.positionX,
-			this.positionY
+			this.positionX = null
+			this.positionY = null
+
+			// RogueBot Initial Velocity in pixels/frame				
+			this.velocity = 5;
+			// RogueBot Jump Velocity
+			this.jumpVelocity = 25
+			// State Property can have values: "idle", "jump", "running"
+			this.state = ""
+			// Create Animation Sub-Object
+			this.animation = {}
+
+			this.projectileArray = []
 		}
 
 	// Dynamically Generate Random Stats for Enemy using Constructor
 	function createEnemy() {
 		// Modify local variables to change enemy stats
-		var name = "enemy1";
 		var health = 100;
 		enemyBot = new createEnemyObject(name,health)
 		spriteEnemyBot.src = 'assets/images/megaman.png'; 
@@ -62,14 +72,30 @@
 		// Return Object
 		// return enemyBot
 	}
-	function loadEnemy() {
-		enemyBotArray.push(createEnemy())
-	}
 	// Enemy Array
 	var enemyBotArray = []
 
-	// var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
+	function loadEnemy() {
+		for (var i = enemyBotArray.length - 1; i >= 0; i--) {
+			enemyBotArray[i]
+			spriteAnim
+		}
+	}
+
+
+	function spawnEnemy() {
+		var enemyBotSpawnRate = Math.Floor(timeDelta / 30)
+		for (var i = 0; i < enemyBotSpawnRate; i++) {
+			enemyBotArray.push(createEnemy())
+			
+	}
+	}
+
+	// Limit max enemies in array, raise limit each interval
+	
 	// Math.Random() SPAWN RATE
+	// Locate mapFloor for 500px in front of player and spawn enemy
+
 // TODO Destory Projectiles Upon Collision or Off Screen
 // Create Projectile
 	// Create Projectile Constructor
@@ -299,6 +325,184 @@
 				}
 			}
 		}
+	// // EnemyBot Animations
+	// 	// Load Spritesheet
+	// 		// Idle - 64px x 64px / Frame
+	// 		var enemyBotAnimIdleImg = new Image();
+	// 		enemyBotAnimIdleImg.src = "assets/images/enemybot-idle-Sheet.png";
+
+	// 		// Running - 64px x 64px / Frame
+	// 		var enemyBotAnimRunningImg = new Image();
+	// 		enemyBotAnimRunningImg.src = "assets/images/enemybot-run-Sheet.png";
+
+	// 		// Running with Gun - 64px x 64px / Frame
+	// 		var enemyBotAnimRunningShootingImg = new Image();
+	// 		enemyBotAnimRunningShootingImg.src = "assets/images/enemybot-run-shoot-Sheet.png";
+
+	// 		// Jumping - 64px x 64px / Frame
+	// 		var enemyBotAnimJumpingImg = new Image();
+	// 		enemyBotAnimJumpingImg.src = "assets/images/enemybot-jump-Sheet-Mod.png";
+
+	// 		// Shooting - 64px x 64px / Frame
+	// 		var enemyBotAnimShootingImg = new Image();
+	// 		enemyBotAnimShootingImg.src = "assets/images/enemybot-shoot-Sheet.png";
+
+	// 		// Destroyed - 64px x 64px / Frame
+	// 		var enemyBotAnimDestroyedImg = new Image();
+	// 		enemyBotAnimDestroyedImg.src = "assets/images/enemybot-damaged-Sheet.png"
+	// 	// Create Animation Objects
+	// 		function setAnimations() {
+	// 			// RogueBot Animations
+	// 				enemyBot.animation.idle = spriteAnim(enemyBotAnimIdleImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62), "player")
+	// 				enemyBot.animation.running = spriteAnim(enemyBotAnimRunningImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+	// 				enemyBot.animation.jumping = spriteAnim(enemyBotAnimJumpingImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+	// 				enemyBot.animation.shooting = spriteAnim(enemyBotAnimShootingImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")
+	// 				enemyBot.animation.runningshooting = spriteAnim(enemyBotAnimRunningShootingImg,64,64,canvas.width / 2 - 32,eval(gMO.mapFloor - 62) ,"player")
+	// 				enemyBot.animation.destroyed = spriteAnim(enemyBotAnimDestroyedImg,64,64,canvas.width / 2 - 32, eval(gMO.mapFloor - 62),"player")		
+	// 		}
+
+	// 	// Animation Trigger and Render (Select Which Animation to Render)
+	// 		function rogueBotAnimSelector() {
+	// 			if (enemyBot.state == "idle") {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.idle.frameNum === 100) {
+	// 					enemyBot.animation.idle.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.idle.spriteFrameIndex === 5) {
+	// 					enemyBot.animation.idle.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.idle.spriteFrameIndex = Math.floor(enemyBot.animation.idle.frameNum / 20)
+					
+	// 				enemyBot.animation.idle.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.idle.frameNum += 1
+
+	// 			} 
+	// 			else if (enemyBot.state == "running") {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.running.frameNum === 80) {
+	// 					enemyBot.animation.running.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.running.spriteFrameIndex === 10) {
+	// 					enemyBot.animation.running.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.running.spriteFrameIndex = Math.floor(enemyBot.animation.running.frameNum / 8)
+					
+	// 				enemyBot.animation.running.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.running.frameNum += 1
+	// 			} 
+
+	// 			else if (enemyBot.state == "jumping") {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.jumping.frameNum === 96) {
+	// 					enemyBot.animation.jumping.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.jumping.spriteFrameIndex === 13) {
+	// 					enemyBot.animation.jumping.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.jumping.spriteFrameIndex = Math.floor(enemyBot.animation.jumping.frameNum / 8)
+					
+	// 				enemyBot.animation.jumping.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.jumping.frameNum += 1
+	// 			}
+
+	// 			else if (keyComboCheck()) {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.runningshooting.frameNum === 80) {
+	// 					enemyBot.animation.runningshooting.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.runningshooting.spriteFrameIndex === 10) {
+	// 					enemyBot.animation.runningshooting.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.runningshooting.spriteFrameIndex = Math.floor(enemyBot.animation.runningshooting.frameNum / 8)
+					
+	// 				enemyBot.animation.runningshooting.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.runningshooting.frameNum += 1
+	// 			} 
+
+	// 			else if (enemyBot.state == "shooting") {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.shooting.frameNum === 40) {
+	// 					enemyBot.animation.shooting.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.shooting.spriteFrameIndex === 2) {
+	// 					enemyBot.animation.shooting.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.shooting.spriteFrameIndex = Math.floor(enemyBot.animation.shooting.frameNum / 20)
+					
+	// 				enemyBot.animation.shooting.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.shooting.frameNum += 1
+	// 			}
+
+	// 			else if (enemyBot.state == "destroyed") {
+	// 				// Reverts Sprite to Initial Frame
+	// 				if (enemyBot.animation.destroyed.frameNum === 40) {
+	// 					enemyBot.animation.destroyed.frameNum = 0
+	// 				}
+	// 				if (enemyBot.animation.destroyed.spriteFrameIndex === 3) {
+	// 					enemyBot.animation.destroyed.spriteFrameIndex = 0
+	// 				}
+
+	// 				// Increments Sprite Frame
+	// 				enemyBot.animation.destroyed.spriteFrameIndex = Math.floor(enemyBot.animation.destroyed.frameNum / 20)
+					
+	// 				enemyBot.animation.destroyed.renderSprite()
+	// 				// Increments Frame Number
+	// 				enemyBot.animation.destroyed.frameNum += 1
+	// 			}
+	// 		}
+
+	// // Projectile Animations
+	// 	// Load Spritesheet
+	// 	var rogueBotProjectile = new Image();
+	// 	rogueBotProjectile.src = "assets/images/playerbot-bullet-Sheet.png"
+
+	// 	var enemyBotProjectile = new Image();
+	// 	enemyBotProjectile.src = "assets/images/enemybot-bullet-Sheet.png"
+
+	// 	// Create Animation Objects
+	// 	// rogueBot.projectileArray = []
+	// 	// enemyBot.projectileArray = []
+
+	// 	// Renders Projectiles
+	// 	function projectileAnimation() {
+	// 		// Check if Projectiles Exist
+	// 		if (rogueBot.projectileArray.length > 0) {
+	// 			for (var i = rogueBot.projectileArray.length - 1; i >= 0; i--) {
+	// 				// Reverts Sprite to Initial Frame
+	// 					if (rogueBot.projectileArray[i].animation.frameNum === 30) {
+	// 						rogueBot.projectileArray[i].animation.frameNum = 0
+	// 					}
+	// 					if (rogueBot.projectileArray[i].animation.spriteFrameIndex === 3) {
+	// 						rogueBot.projectileArray[i].animation.spriteFrameIndex = 0
+	// 					}
+
+	// 					// Increments Sprite Frame
+	// 					rogueBot.projectileArray[i].animation.spriteFrameIndex = Math.floor(rogueBot.projectileArray[i].animation.frameNum / 10)
+						
+	// 					rogueBot.projectileArray[i].animation.renderSprite()
+	// 					// Increments Frame Number
+	// 					rogueBot.projectileArray[i].animation.frameNum += 1
+
+	// 					// Moves Projectile
+	// 					rogueBot.projectileArray[i].animation.positionX += 10
+	// 			}
+	// 		}
+	// 	}
 
 // Animation Render Loop 
 	// Separate Render Loop vs For Loop to animate 1 frame every X rendered frames
@@ -311,4 +515,4 @@
 		// projectileAnimation(enemyBot.projectileArray)
 
 		// requestAnimationFrame(renderAnim) (Causes Lag)
-	}
+	} 
