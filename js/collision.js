@@ -22,24 +22,34 @@
 
 
 			function globalCollisionCheck(collider, colliderObject) {
+				// Calculate Relative Distance of player 
+				var deltaDist = -gMO.mapX + 582; 
 				// RogueBot-Map Loop
 				for (var i = 0; i < collisionMapArray.length; i++) {
 					for (var j = 0; j < collisionMapArray[i].length; j++) {
-						// Check X Axis Collision
-							// Upper Bound
-							// if (gMO.mapX - 426 >= collisionMapArray[i][j].leftBound && gMO.mapX - 426 <= collisionMapArray[i][j].rightBound) {
-							// 	console.error("Collide Event")
-							// 	collideState = "left"
-							// }
-							// Lower Bound
-							if (eval(-gMO.mapX + 590 >= collisionMapArray[i][j].leftBound && -gMO.mapX + 600 <= collisionMapArray[i][j].rightBound)) {
-								console.error("Collide Event")
+						if (!collisionMapArray[i][j].floating) {
+							if (deltaDist + 36 >= collisionMapArray[i][j].leftBound && deltaDist + 36 <= collisionMapArray[i][j].rightBound) {
+								console.log(collisionMapArray[i][j])
+								console.error(collideState)
+								collideState = "right"
+							}
+							// Lower Bound (Left Edge)
+							if (deltaDist >= collisionMapArray[i][j].leftBound && deltaDist <= collisionMapArray[i][j].rightBound) {
+								console.log(collisionMapArray[i][j])
+								console.error(collideState)
+								console.log(deltaDist + "px")
 								collideState = "left"
 							}
+						} 
+							// Check X Axis Collision
+							// Upper Bound (Right Edge)
+							
 						// Check Y Axis Collision
 							// Upper Bound
 
 							// Lower Bound
+						
+					
 					}
 
 

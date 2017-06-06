@@ -32,14 +32,14 @@ var collisionMapArray = [
         }
         ,
         //Section 4
-   //      {
-   //          topBound: 448,
-   //          bottomBound: 512,
-   //          leftBound: 192,
-   //          rightBound: 384,
-   //          solid: true,
-			// floating: false
-   //      }
+        {
+            topBound: 448,
+            bottomBound: 512,
+            leftBound: 192,
+            rightBound: 224,
+            solid: true,
+			floating: false
+        }
     ]
     ,
     fplatform1 = [
@@ -47,7 +47,7 @@ var collisionMapArray = [
             topBound: 384,
             bottomBound: 416,
             leftBound: 256,
-            rightBound: 224,
+            rightBound: 384,
             solid: true,
             floating: true
         }
