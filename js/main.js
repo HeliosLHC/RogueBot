@@ -194,6 +194,15 @@
                 ctx.fillStyle = "white"; 
                 ctx.fillText("Game Over!", 600, 100)
                 ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
-                
+                document.getElementById("restart-btn").style.display = "block";
+                $("#restart-btn").on('click', function(event) {
+                    event.preventDefault();
+                    /* Act on the event */
+                    $(this).hide(300);
+                    gameStart();
+
+                    // DEBUG
+                    console.log("Game Started")
+                })
             } 
 		}
