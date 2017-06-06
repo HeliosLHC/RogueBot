@@ -68,14 +68,17 @@
 //Health Bar
     function healthBarUpdate() {
         var HP = rogueBot.health;
-		
         //updates health bar according to rogue bot health
-        $('progress').attr({value: HP});
-		if (HP <= 50) {
-			$('::-webkit-progress-value').css('background','yellow');
-			if (HP <= 20) {
-				$('::-webkit-progress-value').css('background','red');
-			}
-		}
+        $('#innerHealthBar').css("width", HP*2+'');
+        //change color of health bar according to health
+        if (HP <= 100){
+            $('#innerHealthBar').css("background","green");
+            if (HP <= 50) {
+                $('#innerHealthBar').css("background","yellow");
+                if (HP <= 20) {
+                    $('#innerHealthBar').css("background","red");
+                }
+            }
+        }
     }
 	

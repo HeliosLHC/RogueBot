@@ -86,7 +86,7 @@
                 
                 //make health bar appear
                 if (gameBegin == true && gameRun == true) {
-                    $('progress').css("display","block");
+                    $('div').css("display","block");
                 }
                 
 				// loadRogueBot();
@@ -198,7 +198,7 @@
 			if (rogueBot.health <= 0) {
                 gameRun = false;
                 //hide health bar
-                $('progress').css("display","none"); 
+                $('div').css("display","none"); 
                 //fill canvas black
                 ctx.fillStyle = "black"; 
                 ctx.fillRect(0,0,1200,672);
