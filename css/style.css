@@ -1,7 +1,7 @@
 body {
     background-image: url('../assets/images/ponybackground.png');
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #gameDiv {
