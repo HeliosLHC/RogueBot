@@ -108,8 +108,9 @@ body {
 
 #logo {
     position: absolute;
-    top: 12%;
-    left: 43%;
+    top: 5%;
+    left: 36%;
+    display: block;
 }
 
 #info {
