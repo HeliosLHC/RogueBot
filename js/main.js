@@ -35,6 +35,8 @@
 	}
     var gameBegin = false;
     var gameRun = true;
+    var pauseState = false;
+
 
 // Initialization Functions (Called Only Once)
 	// Resize Canvas
@@ -83,6 +85,12 @@
 				createCharacter();
 				createEnemy();	
 				setAnimations();
+                
+                //make health bar appear
+                if (gameBegin == true && gameRun == true) {
+                    $('div').css("display","block");
+                }
+                
 				// loadRogueBot();
 
 				// Initialize Time Object and Set Font Rendering Properties
@@ -166,8 +174,28 @@
 		updateTime();	
 		updateKills();
 		debugTable();
+<<<<<<< HEAD
         //healthBarUpdate();
 		
+=======
+        healthBarUpdate();
+        
+        $(document).keydown(function(e) {
+            if(e.which == 80 && gameBegin == true) {
+                pauseState = !pauseState;
+                if (pauseState == true) {
+                    gameRun = false;
+                    ctx.fillStyle = "black"; 
+                    ctx.fillRect(0,0,1200,672);
+                    $('div').css("display","none"); 
+                }
+                if (pauseState == false) {
+                    gameRun = true;
+                    $('div').css("display","block"); 
+                }
+            }
+        });
+>>>>>>> b59b1e46e35bb28c6e9b4782e1a63f1d36294872
 
 		// Initiates Animation Render Loop
 		renderAnim();	
@@ -182,20 +210,29 @@
 		}
 		
 	}
+    
+    
 
 	// Check if Game End
 		// Create gameEnd event
 		function checkGameEnd() {
 			if (rogueBot.health <= 0) {
                 gameRun = false;
+                //hide health bar
+                $('div').css("display","none"); 
+                //fill canvas black
                 ctx.fillStyle = "black"; 
                 ctx.fillRect(0,0,1200,672);
                 ctx.font = fontSize + " 'Press Start 2P'";
                 ctx.fillStyle = "white"; 
                 ctx.fillText("Game Over!", 600, 100)
                 ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
+<<<<<<< HEAD
 
                 // Restart Button
+=======
+                //make restart button appear
+>>>>>>> b59b1e46e35bb28c6e9b4782e1a63f1d36294872
                 document.getElementById("restart-btn").style.display = "block";
                 $("#restart-btn").on('click', function(event) {
                     event.preventDefault();

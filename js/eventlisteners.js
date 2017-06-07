@@ -138,27 +138,6 @@ function keyBind() {
 
     // Resize Event
     $(document).ready(function() {
-        // $(window).resize(function(event) {
-        //     canvasWidthInit = canvas.width;
-        //     canvasHeightInit = canvas.height;
-        //     // Resize Canvas
-        //     // TODO Refactor to allow a resizeCanvas() function to be called without interfering with map loading
-        //     $('canvas').attr({
-        //         width: ($(window).width()),
-        //         // height: ($(window).height())
-        //     });
-        //     canvasWidthFinal = canvas.width;
-        //     canvasHeightFinal = canvas.height;
-        //     gMO.mapX -= 0.5 * (canvasWidthInit - canvasWidthFinal);
-        //     // gMO.mapX += 0.005 * (canvasWidthInit * ((canvasHeightInit - canvasHeightFinal) / 974));
-        //     initMap();
-        //     rogueBot.positionY = gMO.mapFloor;
-
-        //     // loadRogueBot();
-        //     // setFontSize();
-        //     console.log("Window Resized");
-        // });
-
 
         // Checks if game window is not in focus
         $(window).focusout(function(event) {
