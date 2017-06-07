@@ -35,6 +35,8 @@
 	}
     var gameBegin = false;
     var gameRun = true;
+    var pauseState = false;
+
 
 // Initialization Functions (Called Only Once)
 	// Resize Canvas
@@ -179,7 +181,22 @@
 		updateKills();
 		debugTable();
         healthBarUpdate();
-		
+        
+        $(document).keydown(function(e) {
+            if(e.which == 80 && gameBegin == true) {
+                pauseState = !pauseState;
+                if (pauseState == true) {
+                    gameRun = false;
+                    ctx.fillStyle = "black"; 
+                    ctx.fillRect(0,0,1200,672);
+                    $('div').css("display","none"); 
+                }
+                if (pauseState == false) {
+                    gameRun = true;
+                    $('div').css("display","block"); 
+                }
+            }
+        });
 
 		// Initiates Animation Render Loop
 		renderAnim();	
@@ -191,6 +208,8 @@
 		}
 		
 	}
+    
+    
 
 	// Check if Game End
 		// Create gameEnd event
