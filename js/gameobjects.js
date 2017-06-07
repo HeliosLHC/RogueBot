@@ -10,9 +10,9 @@
 			// Set Sprite Location on Map Floor
 			this.positionY = gMO.mapFloor
 			// RogueBot Initial Velocity in pixels/frame				
-			this.velocity = 5;
+			this.velocity = 3;
 			// RogueBot Jump Velocity
-			this.jumpVelocity = 30
+			this.jumpVelocity = 33
 			// State Property can have values: "idle", "jump", "running"
 			this.state = ""
 			// Create Animation Sub-Object

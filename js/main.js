@@ -136,9 +136,9 @@
 			ctx.drawImage(mapImage,gMO.mapX,gMO.mapY,gMO.mapWidth,gMO.mapHeight);				
 
 			// Moves map sprite distance X calculated from the velocity of the map (assume map moves "gMO.mapVelocity" pixels per frame)
-			if (collideState == "" || collideState == "bottom") {
+			// if (collideState == "" || collideState == "bottom") {
 				gMO.mapX += (gMO.mapVelocity);
-			}
+			// }
 			
 		
 		
@@ -155,6 +155,8 @@
 		ctx.clearRect(0,0, canvas.width, canvas.height);
 		// Check for Collision Events for All Objects and Map
 		collisionCheck();
+
+
 		// Loop render function via requestAnimationFrame
 		// Animates Map Movement
 		moveMap();
@@ -176,7 +178,7 @@
 		debugTable();
         healthBarUpdate();
         
-        
+
 
 		// Initiates Animation Render Loop
 		renderAnim();	

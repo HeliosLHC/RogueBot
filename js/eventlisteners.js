@@ -59,6 +59,13 @@ function keyBind() {
                 // Check Map Collision
                 // Checks if Collision occurs before setting map velocity
                 if (collideState != "left") {
+                    if (rogueBot.state == "jumping") {
+                    return
+                }
+
+                    // Removes Collision State
+                    collideState = ""
+
                     // Add Key to Key Array
                     keyCodeArray[e.which] = true
                     // Positive Map Velocity = Map Moves Right
@@ -69,7 +76,8 @@ function keyBind() {
 
                     break;
                 } 
-                else {
+                else if (collideState == "left") {
+                    gMO.mapVelocity = 0;
                     e.preventDefault();
                     break;
                 }
@@ -84,13 +92,19 @@ function keyBind() {
                     rogueBot.state = "jumping"
                 };
 
-                // Set Jump State - charJump() called if rogueBot.state = "jump"
-                rogueBot.state = "jumping";
+                
                 console.log("Jumping");
                 break;
 
             case 39: // right
+                if (rogueBot.state == "jumping") {
+                    return
+                }
+
                 if (collideState != "right") {
+                    // Removes Collision State
+                    collideState = ""
+
                     // Add Key to Key Array
                     keyCodeArray[e.which] = true
 
@@ -101,8 +115,11 @@ function keyBind() {
                     rogueBot.state = "running"
 
                     break;
-                } else {
+                } 
+                else if (collideState == "right") {
+                    gMO.mapVelocity = 0;
                     e.preventDefault();
+                    break;
                 }
                 break;
 
