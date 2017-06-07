@@ -104,3 +104,8 @@ body {
     z-index: 1;
     display: none;
 }
+
+img {
+    display: block;
+    margin: 0 auto;
+}
