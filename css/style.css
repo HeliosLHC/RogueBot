@@ -110,6 +110,7 @@ body {
     position: absolute;
     top: 5%;
     left: 36%;
+    display: block;
 }
 
 #info {

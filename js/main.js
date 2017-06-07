@@ -59,6 +59,7 @@
 			event.preventDefault();
 			/* Act on the event */
 			$(this).hide(300);
+            $("#logo").css("display","none");
 			gameStart();
 
 			// Disable Background Image 
