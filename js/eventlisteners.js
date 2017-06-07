@@ -58,7 +58,7 @@ function keyBind() {
             case 37: // left
                 // Check Map Collision
                 // Checks if Collision occurs before setting map velocity
-                if (collideState != "right") {
+                if (collideState != "left") {
                     // Add Key to Key Array
                     keyCodeArray[e.which] = true
                     // Positive Map Velocity = Map Moves Right
@@ -68,7 +68,8 @@ function keyBind() {
                     rogueBot.state = "running"
 
                     break;
-                } else {
+                } 
+                else {
                     e.preventDefault();
                     break;
                 }

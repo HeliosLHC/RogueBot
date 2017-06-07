@@ -28,37 +28,32 @@
 			function globalCollisionCheck() {
 				// Calculate Relative Distance of player 
 				var deltaXDist = -gMO.mapX + 582; 
-				var deltaYDist = rogueBot.positionY -  gMO.mapFloor
+				var deltaYDist = gMO.mapFloor - rogueBot.positionY;
+				console.log(deltaYDist)
 				// RogueBot-Map Loop
 				for (var i = 0; i < collisionMapArray.length; i++) {
 					for (var j = 0; j < collisionMapArray[i].length; j++) {
 						if (!collisionMapArray[i][j].floating) {
+							if (deltaYDist <= collisionMapArray[i][j].bottomBound - collisionMapArray[i][j].topBound) {
+									// Horizontal Collision
 
-							// Horizontal Collision
-
-							// Upper Bound
-							if (deltaXDist + 36 >= collisionMapArray[i][j].leftBound && deltaXDist + 36 <= collisionMapArray[i][j].rightBound) {
-								console.log(collisionMapArray[i][j])
-								console.error(collideState)
-								collideState = "right"
+								// Upper Bound
+								if (deltaXDist + 36 >= collisionMapArray[i][j].leftBound && deltaXDist + 36 <= collisionMapArray[i][j].rightBound) {
+									console.log(collisionMapArray[i][j])
+									console.error(collideState)
+									collideState = "right"
+								}
+								// Lower Bound (Left Edge)
+								else if (deltaXDist >= collisionMapArray[i][j].leftBound && deltaXDist <= collisionMapArray[i][j].rightBound) {
+									console.log(collisionMapArray[i][j])
+									console.error(collideState)
+									console.log(deltaXDist + "px")
+									collideState = "left"
+								}
 							}
-							// Lower Bound (Left Edge)
-							else if (deltaXDist >= collisionMapArray[i][j].leftBound && deltaXDist <= collisionMapArray[i][j].rightBound) {
-								console.log(collisionMapArray[i][j])
-								console.error(collideState)
-								console.log(deltaXDist + "px")
-								collideState = "left"
-							}
+							
 
-							// Vertical Collision
-							else if (deltaYDist >= collisionMapArray[i][j].lowerBound - collisionMapArray[i][j].topBound) {
-								gMO.mapFloor = collisionMapArray[i][j].topbound
-								collideState = "bottom"
-							} 
-
-							else {
-							// collideState = ""
-						}
+						
 
 						} 
 							
