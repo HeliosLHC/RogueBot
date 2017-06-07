@@ -65,4 +65,10 @@
 		ctx.strokeStyle = "black";
 		ctx.strokeText("Collision = " + collideState, canvas.width - 50, 200);
 	}
+//Health Bar
+    //function healthBarUpdate() {
+        //if (gameBegin = true && gameRun = true) {
+            //document.getElementById("healthbar").style.display = "block";
+            
+    //}
 	

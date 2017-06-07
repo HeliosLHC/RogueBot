@@ -33,6 +33,7 @@
 		mapWidth: null,
 		mapHeight: null,
 	}
+    var gameBegin = false;
     var gameRun = true;
 
 // Initialization Functions (Called Only Once)
@@ -52,6 +53,7 @@
 		var ctx = canvas.getContext('2d');
 	// Start Button
 		$("#start-btn").on('click', function(event) {
+            gameBegin = true;
 			event.preventDefault();
 			/* Act on the event */
 			$(this).hide(300);
@@ -164,6 +166,7 @@
 		updateTime();	
 		updateKills();
 		debugTable();
+        //healthBarUpdate();
 		
 
 		// Initiates Animation Render Loop
