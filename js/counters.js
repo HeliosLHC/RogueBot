@@ -65,10 +65,9 @@
 		ctx.strokeStyle = "black";
 		ctx.strokeText("Collision = " + collideState, canvas.width - 50, 200);
 	}
-//Health Bar
     function healthBarUpdate() {
         var HP = rogueBot.health;
-        //updates health bar according to rogue bot health
+       //updates health bar according to rogue bot health
         $('#innerHealthBar').css("width", HP*2+'');
         //change color of health bar according to health
         if (HP <= 100){
