@@ -65,17 +65,9 @@
 		ctx.strokeStyle = "black";
 		ctx.strokeText("Collision = " + collideState, canvas.width - 50, 200);
 	}
-//Health Bar
-<<<<<<< HEAD
-    //function healthBarUpdate() {
-        //if (gameBegin = true && gameRun = true) {
-            //document.getElementById("healthbar").style.display = "block";
-            
-    //}
-=======
     function healthBarUpdate() {
         var HP = rogueBot.health;
-        //updates health bar according to rogue bot health
+       //updates health bar according to rogue bot health
         $('#innerHealthBar').css("width", HP*2+'');
         //change color of health bar according to health
         if (HP <= 100){
@@ -88,5 +80,4 @@
             }
         }
     }
->>>>>>> b59b1e46e35bb28c6e9b4782e1a63f1d36294872
 	

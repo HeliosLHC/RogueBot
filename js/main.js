@@ -174,10 +174,6 @@
 		updateTime();	
 		updateKills();
 		debugTable();
-<<<<<<< HEAD
-        //healthBarUpdate();
-		
-=======
         healthBarUpdate();
         
         $(document).keydown(function(e) {
@@ -195,7 +191,6 @@
                 }
             }
         });
->>>>>>> b59b1e46e35bb28c6e9b4782e1a63f1d36294872
 
 		// Initiates Animation Render Loop
 		renderAnim();	
@@ -227,12 +222,8 @@
                 ctx.fillStyle = "white"; 
                 ctx.fillText("Game Over!", 600, 100)
                 ctx.fillText("Score: " + calculateScore(killCount,timeDelta), 600, 200);
-<<<<<<< HEAD
 
                 // Restart Button
-=======
-                //make restart button appear
->>>>>>> b59b1e46e35bb28c6e9b4782e1a63f1d36294872
                 document.getElementById("restart-btn").style.display = "block";
                 $("#restart-btn").on('click', function(event) {
                     event.preventDefault();
