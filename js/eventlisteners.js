@@ -108,6 +108,25 @@ function keyBind() {
             case 40: // down
                 break;
 
+            case 80: // P for Pause
+                    if (e.which == 80 && gameBegin == true) {
+                    pauseState = !pauseState;
+
+                        if (pauseState == true) {
+                            gameRun = false;
+                            console.log("event " + gameRun)
+                            ctx.fillStyle = "black"; 
+                            ctx.fillRect(0,0,1200,672);
+                            $('#outerHealthBar').css("display","none"); 
+                        }
+
+                        if (pauseState == false) {
+                            gameRun = true;
+                            $('#innerHealthBar').css("display","block"); 
+                        }
+                    }
+                    break;
+
             default:
                 return; // exit this handler for other keys
         }
@@ -153,3 +172,18 @@ function keyComboCheck() {
         return false
     }
 }
+// $(document).keydown(function(e) {
+//             if(e.which == 80 && gameBegin == true) {
+//                 pauseState = !pauseState;
+//                 if (pauseState == true) {
+//                     gameRun = false;
+//                     ctx.fillStyle = "black"; 
+//                     ctx.fillRect(0,0,1200,672);
+//                     $('div').css("display","none"); 
+//                 }
+//                 if (pauseState == false) {
+//                     gameRun = true;
+//                     $('div').css("display","block"); 
+//                 }
+//             }
+//         });
